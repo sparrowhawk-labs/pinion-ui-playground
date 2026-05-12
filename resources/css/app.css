@@ -1,0 +1,15 @@
+@import 'tailwindcss';
+@plugin 'daisyui' {
+    themes: all;
+}
+
+/* pinion-ui preset: bundles @source globs for Blade + Compose PHP and tune tokens.
+   Paths inside the preset resolve relative to the preset file itself, so adding
+   new components in the package doesn't require touching this file again. */
+@import '../../vendor/sparrowhawk-labs/pinion-ui/src/resources/css/pinion-ui.css';
+
+/* Consumer-side sources (Laravel app pages + framework views + JS) */
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
