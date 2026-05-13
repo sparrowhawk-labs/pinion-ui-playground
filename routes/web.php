@@ -4,10 +4,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',       fn () => view('pages.overview'))->name('overview');
 Route::get('/button', fn () => view('pages.button'))->name('button');
+Route::get('/button-group', fn () => view('pages.button-group'))->name('button-group');
 Route::get('/alert',  fn () => view('pages.alert'))->name('alert');
 Route::get('/badge',  fn () => view('pages.badge'))->name('badge');
 Route::get('/card',   fn () => view('pages.card'))->name('card');
 Route::get('/avatar', fn () => view('pages.avatar'))->name('avatar');
+Route::get('/avatar-group', fn () => view('pages.avatar-group'))->name('avatar-group');
 Route::get('/input',    fn () => view('pages.input'))->name('input');
 Route::get('/textarea', fn () => view('pages.textarea'))->name('textarea');
 Route::get('/select',   fn () => view('pages.select'))->name('select');
@@ -18,6 +20,27 @@ Route::get('/file-upload', fn () => view('pages.file-upload'))->name('file-uploa
 Route::get('/pagination',  fn () => view('pages.pagination'))->name('pagination');
 Route::get('/notification-system', fn () => view('pages.notification-system'))->name('notification-system');
 Route::get('/table-scroll', fn () => view('pages.table-scroll'))->name('table-scroll');
+Route::get('/progress',   fn () => view('pages.progress'))->name('progress');
+Route::get('/skeleton',   fn () => view('pages.skeleton'))->name('skeleton');
+Route::get('/spinner',    fn () => view('pages.spinner'))->name('spinner');
+Route::get('/kbd',        fn () => view('pages.kbd'))->name('kbd');
+Route::get('/tooltip',    fn () => view('pages.tooltip'))->name('tooltip');
+Route::get('/indicator',  fn () => view('pages.indicator'))->name('indicator');
+Route::get('/breadcrumb', fn () => view('pages.breadcrumb'))->name('breadcrumb');
+Route::get('/stat',       fn () => view('pages.stat'))->name('stat');
+Route::get('/divider',    fn () => view('pages.divider'))->name('divider');
+Route::get('/rating',     fn () => view('pages.rating'))->name('rating');
+Route::get('/timeline',   fn () => view('pages.timeline'))->name('timeline');
+Route::get('/dropdown',   fn () => view('pages.dropdown'))->name('dropdown');
+Route::get('/modal',      fn () => view('pages.modal'))->name('modal');
+Route::get('/tabs',       fn () => view('pages.tabs'))->name('tabs');
+Route::get('/accordion',  fn () => view('pages.accordion'))->name('accordion');
+Route::get('/collapse',   fn () => view('pages.collapse'))->name('collapse');
+Route::get('/sidebar',    fn () => view('pages.sidebar'))->name('sidebar');
+Route::get('/demo/sidebar-left',         fn () => view('pages.demo.sidebar-left'));
+Route::get('/demo/sidebar-right',        fn () => view('pages.demo.sidebar-right'));
+Route::get('/demo/sidebar-no-backdrop',  fn () => view('pages.demo.sidebar-no-backdrop'));
+Route::get('/demo/sidebar-with-content', fn () => view('pages.demo.sidebar-with-content'));
 
 Route::get('/icons', function () {
     $solarPath = config('icons.libraries.solar.path');
