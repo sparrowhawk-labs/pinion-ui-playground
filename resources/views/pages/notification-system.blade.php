@@ -5,7 +5,7 @@
 @section('subheading', 'ページに1度置き、任意の Alpine コンポーネントから $dispatch("notify", { type, content }) で Toast を出す。position / appearance / size / duration / event-name は props で制御。')
 
 @section('content')
-    <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">基本 (soft / md / bottom-right、event: <code class="text-base-content">notify</code>)</p>
+    <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">基本 (bordered-left / md / bottom-right、event: <code class="text-base-content">notify</code>)</p>
     <div class="flex flex-wrap gap-2 mb-3">
         <x-button color="info" appearance="soft"
             x-on:click="$dispatch('notify', { type: 'info', content: '更新を確認しています…' })">info</x-button>
@@ -33,7 +33,7 @@
             x-on:click="$dispatch('notify-solid', { type: 'error', content: 'タイムアウト' })">error</x-button>
     </div>
 
-    <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2 mt-6">bordered-left / bottom-left / lg (event: <code class="text-base-content">notify-left</code>)</p>
+    <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2 mt-6">soft / bottom-left / lg (event: <code class="text-base-content">notify-left</code>)</p>
     <div class="flex flex-wrap gap-2 mb-3">
         <x-button color="info" appearance="soft" size="sm"
             x-on:click="$dispatch('notify-left', { type: 'info', content: 'バックアップを開始しました' })">info</x-button>
@@ -72,6 +72,6 @@ return redirect()-&gt;back()-&gt;with('notify', ['type' =&gt; 'success', 'conten
     {{-- Mount instances with different prop combos, each scoped to its own event name. --}}
     <x-notification-system />
     <x-notification-system event-name="notify-solid" appearance="solid" position="top-right" size="sm" />
-    <x-notification-system event-name="notify-left" appearance="bordered-left" position="bottom-left" size="lg" />
+    <x-notification-system event-name="notify-left" appearance="soft" position="bottom-left" size="lg" />
     <x-notification-system event-name="notify-top" appearance="outline" position="top-center" size="sm" />
 @endsection
