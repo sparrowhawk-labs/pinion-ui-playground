@@ -66,24 +66,68 @@
 }">
 
     @php
-        $nav = [
-            ['slug' => '',        'label' => 'Overview'],
-            ['slug' => 'button',  'label' => 'Button'],
-            ['slug' => 'alert',   'label' => 'Alert'],
-            ['slug' => 'badge',   'label' => 'Badge'],
-            ['slug' => 'card',    'label' => 'Card'],
-            ['slug' => 'avatar',  'label' => 'Avatar'],
-            ['slug' => 'input',    'label' => 'Input'],
-            ['slug' => 'textarea', 'label' => 'Textarea'],
-            ['slug' => 'select',   'label' => 'Select'],
-            ['slug' => 'checkbox', 'label' => 'Checkbox'],
-            ['slug' => 'radio',    'label' => 'Radio'],
-            ['slug' => 'toggle',   'label' => 'Toggle'],
-            ['slug' => 'file-upload', 'label' => 'File Upload'],
-            ['slug' => 'pagination', 'label' => 'Pagination'],
-            ['slug' => 'notification-system', 'label' => 'Notification'],
-            ['slug' => 'table-scroll', 'label' => 'Table'],
-            ['slug' => 'icons',    'label' => 'Icons',    'section' => 'pinion-icons'],
+        // Sidebar groups. Components are split by **whether they use Alpine.js**:
+        //   - Static  → no x-data / no Alpine state. Pure Tailwind + daisyUI.
+        //   - Dynamic → Alpine state (open/close, focus trap, char count, dismiss…).
+        // Single source of truth for the sidebar.
+        $navSections = [
+            [
+                'title' => 'pinion-ui',
+                'subtitle' => 'Static',
+                'badge' => null,
+                'items' => [
+                    ['slug' => '',           'label' => 'Overview'],
+                    ['slug' => 'button',     'label' => 'Button'],
+                    ['slug' => 'button-group', 'label' => 'Button Group'],
+                    ['slug' => 'badge',      'label' => 'Badge'],
+                    ['slug' => 'card',       'label' => 'Card'],
+                    ['slug' => 'avatar',     'label' => 'Avatar'],
+                    ['slug' => 'avatar-group', 'label' => 'Avatar Group'],
+                    ['slug' => 'input',      'label' => 'Input'],
+                    ['slug' => 'checkbox',   'label' => 'Checkbox'],
+                    ['slug' => 'radio',      'label' => 'Radio'],
+                    ['slug' => 'toggle',     'label' => 'Toggle'],
+                    ['slug' => 'pagination', 'label' => 'Pagination'],
+                    ['slug' => 'progress',   'label' => 'Progress'],
+                    ['slug' => 'skeleton',   'label' => 'Skeleton'],
+                    ['slug' => 'spinner',    'label' => 'Spinner'],
+                    ['slug' => 'kbd',        'label' => 'Kbd'],
+                    ['slug' => 'tooltip',    'label' => 'Tooltip'],
+                    ['slug' => 'indicator',  'label' => 'Indicator'],
+                    ['slug' => 'breadcrumb', 'label' => 'Breadcrumb'],
+                    ['slug' => 'stat',       'label' => 'Stat'],
+                    ['slug' => 'divider',    'label' => 'Divider'],
+                    ['slug' => 'rating',     'label' => 'Rating'],
+                    ['slug' => 'timeline',   'label' => 'Timeline'],
+                ],
+            ],
+            [
+                'title' => 'pinion-ui',
+                'subtitle' => 'Dynamic',
+                'badge' => 'Alpine',
+                'items' => [
+                    ['slug' => 'alert',               'label' => 'Alert'],
+                    ['slug' => 'textarea',            'label' => 'Textarea'],
+                    ['slug' => 'select',              'label' => 'Select'],
+                    ['slug' => 'file-upload',         'label' => 'File Upload'],
+                    ['slug' => 'notification-system', 'label' => 'Notification'],
+                    ['slug' => 'table-scroll',        'label' => 'Table'],
+                    ['slug' => 'dropdown',            'label' => 'Dropdown'],
+                    ['slug' => 'modal',               'label' => 'Modal'],
+                    ['slug' => 'tabs',                'label' => 'Tabs'],
+                    ['slug' => 'accordion',           'label' => 'Accordion'],
+                    ['slug' => 'collapse',            'label' => 'Collapse'],
+                    ['slug' => 'sidebar',             'label' => 'Sidebar'],
+                ],
+            ],
+            [
+                'title' => 'pinion-icons',
+                'subtitle' => null,
+                'badge' => null,
+                'items' => [
+                    ['slug' => 'icons', 'label' => 'Icons'],
+                ],
+            ],
         ];
         $current = request()->path() === '/' ? '' : request()->path();
     @endphp
@@ -96,19 +140,23 @@
                 <p class="text-xs text-base-content/50 mt-1">Blade components</p>
             </div>
             <nav class="p-2 flex flex-col gap-0.5">
-                <div class="px-3 pt-1 pb-1 text-[10px] font-semibold uppercase tracking-wider text-base-content/40">pinion-ui</div>
-                @foreach($nav as $item)
-                    @php
-                        $active = $current === $item['slug'];
-                        $isSection = isset($item['section']);
-                    @endphp
-                    @if($isSection)
-                        <div class="mt-3 px-3 pt-1 pb-1 text-[10px] font-semibold uppercase tracking-wider text-base-content/40">{{ $item['section'] }}</div>
-                    @endif
-                    <a href="/{{ $item['slug'] }}"
-                       class="block px-3 py-2 rounded text-sm transition-colors {{ $active ? 'bg-primary text-primary-content font-semibold' : 'text-base-content hover:bg-base-300' }}">
-                        {{ $item['label'] }}
-                    </a>
+                @foreach($navSections as $sectionIndex => $section)
+                    <div class="{{ $sectionIndex > 0 ? 'mt-3' : '' }} px-3 pt-1 pb-1 flex items-baseline gap-1.5">
+                        <span class="text-[10px] font-semibold uppercase tracking-wider text-base-content/40">{{ $section['title'] }}</span>
+                        @if($section['subtitle'])
+                            <span class="text-[10px] font-medium uppercase tracking-wider text-base-content/30">· {{ $section['subtitle'] }}</span>
+                        @endif
+                        @if($section['badge'])
+                            <span class="ml-auto text-[9px] font-medium tracking-wide rounded bg-primary/10 text-primary px-1.5 py-0.5">{{ $section['badge'] }}</span>
+                        @endif
+                    </div>
+                    @foreach($section['items'] as $item)
+                        @php $active = $current === $item['slug']; @endphp
+                        <a href="/{{ $item['slug'] }}"
+                           class="block px-3 py-2 rounded text-sm transition-colors {{ $active ? 'bg-primary text-primary-content font-semibold' : 'text-base-content hover:bg-base-300' }}">
+                            {{ $item['label'] }}
+                        </a>
+                    @endforeach
                 @endforeach
             </nav>
         </aside>
