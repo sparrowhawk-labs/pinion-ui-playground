@@ -81,7 +81,8 @@
             ['slug' => 'toggle',   'label' => 'Toggle'],
             ['slug' => 'file-upload', 'label' => 'File Upload'],
             ['slug' => 'pagination', 'label' => 'Pagination'],
-            ['slug' => 'notification-system', 'label' => 'Notification System'],
+            ['slug' => 'notification-system', 'label' => 'Notification'],
+            ['slug' => 'table-scroll', 'label' => 'Table'],
             ['slug' => 'icons',    'label' => 'Icons',    'section' => 'pinion-icons'],
         ];
         $current = request()->path() === '/' ? '' : request()->path();

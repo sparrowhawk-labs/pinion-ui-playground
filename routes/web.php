@@ -17,6 +17,7 @@ Route::get('/toggle',   fn () => view('pages.toggle'))->name('toggle');
 Route::get('/file-upload', fn () => view('pages.file-upload'))->name('file-upload');
 Route::get('/pagination',  fn () => view('pages.pagination'))->name('pagination');
 Route::get('/notification-system', fn () => view('pages.notification-system'))->name('notification-system');
+Route::get('/table-scroll', fn () => view('pages.table-scroll'))->name('table-scroll');
 
 Route::get('/icons', function () {
     $solarPath = config('icons.libraries.solar.path');
