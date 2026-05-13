@@ -11,7 +11,10 @@
 
     {{-- 1. appearance × color matrix --}}
     @foreach(['solid','soft'] as $app)
-        <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">{{ $app }} (checked)</p>
+        <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">
+            @if($app === 'solid')<span class="inline-block text-[9px] font-bold tracking-wider uppercase bg-primary text-primary-content rounded px-1.5 py-0.5 mr-2 align-middle">default</span>@endif
+            {{ $app }} (checked)
+        </p>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-compact mb-2">
             @foreach($colors as $c)
                 <x-toggle :appearance="$app" :color="$c" :label="$c" checked />

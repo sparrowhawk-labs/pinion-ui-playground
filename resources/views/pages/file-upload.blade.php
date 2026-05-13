@@ -11,7 +11,10 @@
 
     {{-- 1. inline appearance × color --}}
     @foreach(['outline','soft'] as $app)
-        <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">{{ $app }} (inline)</p>
+        <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">
+            @if($app === 'outline')<span class="inline-block text-[9px] font-bold tracking-wider uppercase bg-primary text-primary-content rounded px-1.5 py-0.5 mr-2 align-middle">default</span>@endif
+            {{ $app }} (inline)
+        </p>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-element mb-6">
             @foreach(['primary','success','warning','error'] as $c)
                 <x-file-upload :appearance="$app" :color="$c" :label="ucfirst($c).' — '.$app" />
