@@ -6,7 +6,10 @@
 
 @section('content')
     @foreach(['solid','outline','soft','base-100','base-200','base-300'] as $app)
-        <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">{{ $app }}</p>
+        <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">
+            @if($app === 'solid')<span class="inline-block text-[9px] font-bold tracking-wider uppercase bg-primary text-primary-content rounded px-1.5 py-0.5 mr-2 align-middle">default</span>@endif
+            {{ $app }}
+        </p>
         <div class="flex flex-wrap items-center gap-compact mb-6">
             @foreach(['primary','secondary','accent','neutral','info','success','warning','error'] as $c)
                 <x-button :color="$c" :appearance="$app">{{ $c }}</x-button>

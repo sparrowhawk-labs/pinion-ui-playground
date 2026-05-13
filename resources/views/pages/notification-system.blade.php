@@ -5,7 +5,10 @@
 @section('subheading', 'ページに1度置き、任意の Alpine コンポーネントから $dispatch("notify", { type, content }) で Toast を出す。position / appearance / size / duration / event-name は props で制御。')
 
 @section('content')
-    <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">基本 (bordered-left / md / bottom-right、event: <code class="text-base-content">notify</code>)</p>
+    <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">
+        <span class="inline-block text-[9px] font-bold tracking-wider uppercase bg-primary text-primary-content rounded px-1.5 py-0.5 mr-2 align-middle">default</span>
+        bordered-left / md / bottom-right (event: <code class="text-base-content">notify</code>)
+    </p>
     <div class="flex flex-wrap gap-2 mb-3">
         <x-button color="info" appearance="soft"
             x-on:click="$dispatch('notify', { type: 'info', content: '更新を確認しています…' })">info</x-button>

@@ -7,7 +7,10 @@
 @section('content')
     {{-- 1. appearance matrix × colors --}}
     @foreach(['outline','soft','underline','ghost'] as $app)
-        <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">{{ $app }}</p>
+        <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">
+            @if($app === 'outline')<span class="inline-block text-[9px] font-bold tracking-wider uppercase bg-primary text-primary-content rounded px-1.5 py-0.5 mr-2 align-middle">default</span>@endif
+            {{ $app }}
+        </p>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-compact mb-6">
             @foreach(['neutral','primary','info','success','warning','error'] as $c)
                 <x-textarea :appearance="$app" :color="$c" rows="2" placeholder="{{ $c }}" />

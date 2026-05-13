@@ -5,7 +5,10 @@
 @section('subheading', '8 appearances × semantic colors, dismissible 対応')
 
 @section('content')
-    <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">Bordered-left (default)</p>
+    <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">
+        <span class="inline-block text-[9px] font-bold tracking-wider uppercase bg-primary text-primary-content rounded px-1.5 py-0.5 mr-2 align-middle">default</span>
+        bordered-left
+    </p>
     <div class="flex flex-col gap-compact mb-6">
         <x-alert color="info" title="お知らせ">新しいバージョンが利用可能です。</x-alert>
         <x-alert color="success" title="完了">データが正常に保存されました。</x-alert>

@@ -5,7 +5,10 @@
 @section('subheading', 'full (numbered) / simple (prev-current/total-next) — color × appearance × size、Laravel paginator 対応')
 
 @section('content')
-    <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">Full — default (solid primary, md)</p>
+    <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">
+        <span class="inline-block text-[9px] font-bold tracking-wider uppercase bg-primary text-primary-content rounded px-1.5 py-0.5 mr-2 align-middle">default</span>
+        Full — soft primary, md
+    </p>
     <div class="mb-8">
         <x-pagination.full :current="3" :last="10" :total="237" :perPage="25" />
     </div>
@@ -26,7 +29,7 @@
     </div>
 
     <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">Full — appearance variants (color=accent)</p>
-    @foreach(['solid','outline','soft'] as $app)
+    @foreach(['soft','solid','outline'] as $app)
         <div class="mb-4">
             <p class="text-[10px] text-base-content/40 mb-1">{{ $app }}</p>
             <x-pagination.full :current="3" :last="7" :total="160" :perPage="25" color="accent" :appearance="$app" />
@@ -55,7 +58,10 @@
 
     <hr class="my-10 border-base-300">
 
-    <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">Simple — default</p>
+    <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">
+        <span class="inline-block text-[9px] font-bold tracking-wider uppercase bg-primary text-primary-content rounded px-1.5 py-0.5 mr-2 align-middle">default</span>
+        Simple — soft primary, md
+    </p>
     <div class="mb-8">
         <x-pagination.simple :current="3" :last="10" :total="237" :perPage="25" />
     </div>
