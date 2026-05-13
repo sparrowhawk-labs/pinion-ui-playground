@@ -80,6 +80,7 @@
             ['slug' => 'radio',    'label' => 'Radio'],
             ['slug' => 'toggle',   'label' => 'Toggle'],
             ['slug' => 'file-upload', 'label' => 'File Upload'],
+            ['slug' => 'pagination', 'label' => 'Pagination'],
             ['slug' => 'icons',    'label' => 'Icons',    'section' => 'pinion-icons'],
         ];
         $current = request()->path() === '/' ? '' : request()->path();
