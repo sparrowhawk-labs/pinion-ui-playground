@@ -34,6 +34,7 @@ Route::get('/range-slider', fn () => view('pages.range-slider'))->name('range-sl
 Route::get('/input-number', fn () => view('pages.input-number'))->name('input-number');
 Route::get('/input-group',  fn () => view('pages.input-group'))->name('input-group');
 Route::get('/pin-input',    fn () => view('pages.pin-input'))->name('pin-input');
+Route::get('/popover',      fn () => view('pages.popover'))->name('popover');
 Route::get('/timeline',   fn () => view('pages.timeline'))->name('timeline');
 Route::get('/dropdown',   fn () => view('pages.dropdown'))->name('dropdown');
 Route::get('/modal',      fn () => view('pages.modal'))->name('modal');

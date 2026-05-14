@@ -117,6 +117,7 @@
                     ['slug' => 'notification-system', 'label' => 'Notification'],
                     ['slug' => 'table-scroll',        'label' => 'Table'],
                     ['slug' => 'dropdown',            'label' => 'Dropdown'],
+                    ['slug' => 'popover',             'label' => 'Popover'],
                     ['slug' => 'modal',               'label' => 'Modal'],
                     ['slug' => 'tabs',                'label' => 'Tabs'],
                     ['slug' => 'accordion',           'label' => 'Accordion'],
