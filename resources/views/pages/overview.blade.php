@@ -15,7 +15,13 @@
 @section('content')
     {{-- ============================================================
          1. Hero band
+         Wrapped in a "breakout" div that pulls left/right/up out of
+         main's `px-6 lg:px-10 py-10` padding so the gradient fills the
+         full content area without awkward white gaps. max-w-6xl on main
+         still bounds the overall column — that's intentional for the
+         playground's reading-width.
          ============================================================ --}}
+    <div class="-mx-6 lg:-mx-10 -mt-10 mb-element">
     <x-pn::section.hero
         variant="centered"
         size="xl"
@@ -47,6 +53,7 @@
             <x-badge appearance="outline" color="info" icon="palette">30+ daisyUI themes</x-badge>
         </div>
     </x-pn::section.hero>
+    </div>
 
     {{-- ============================================================
          2. Stat strip
