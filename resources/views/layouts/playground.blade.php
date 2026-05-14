@@ -218,7 +218,7 @@
                  in the supposedly-visible single pane. `<template x-if>` swaps the
                  actual DOM, eliminating both issues. --}}
             <template x-if="!debug">
-                <main class="flex-1 px-6 lg:px-10 py-10 max-w-6xl">
+                <main class="flex-1 px-6 lg:px-10 py-10 w-full">
                     <h1 class="text-3xl font-bold mb-2">@yield('heading')</h1>
                     @hasSection('subheading')
                         <p class="text-base-content/60 mb-8">@yield('subheading')</p>
