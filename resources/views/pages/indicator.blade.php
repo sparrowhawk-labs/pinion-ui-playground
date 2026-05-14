@@ -2,12 +2,12 @@
 
 @section('title', '— Indicator')
 @section('heading', 'Indicator')
-@section('subheading', 'daisyUI 5 の indicator class を wrap した、別要素の角にバッジやドットを重ねるためのレイアウト。position (top/middle/bottom × start/center/end の 9 通り)・dot (bool, true = テキスト無しの純ドット)・color (8 色、default=error) の 3 props。中身は $badge slot に入れ、被せたい要素は $slot に入れる。')
+@section('subheading', 'daisyUI 5 の indicator class を wrap した、別要素の角にバッジやドットを重ねるためのレイアウト。position (top/middle/bottom × start/center/end の 9 通り)・dot (bool, true = テキスト無しの純ドット)・color (8 色、default=error)・appearance (soft default / solid / outline / ghost / dash) の 4 props。v0.3.0 から default appearance が soft になり、多数のバッジが並んでも目に優しい。中身は $badge slot に入れ、被せたい要素は $slot に入れる。')
 
 @section('content')
     <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">
         <span class="inline-block text-[9px] font-bold tracking-wider uppercase bg-primary text-primary-content rounded px-1.5 py-0.5 mr-2 align-middle">default</span>
-        position=top-end, dot=false, color=error — bell button に未読数 "3" を重ねる
+        position=top-end, dot=false, color=error, appearance=soft — bell button に未読数 "3" を重ねる (v0.3.0 から soft がデフォルト)
     </p>
     <div class="mb-8 border border-base-300 rounded-[var(--radius-box)] bg-base-100 p-element">
         <div class="flex items-center gap-6">
@@ -93,6 +93,24 @@
                 </div>
             @endforeach
         </div>
+    </div>
+
+    <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">appearance variants — soft (default) / solid (pre-v0.3) / outline / ghost / dash</p>
+    <div class="mb-8 border border-base-300 rounded-[var(--radius-box)] bg-base-100 p-element">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-x-6 gap-y-8 place-items-center">
+            @foreach (['soft' => 'soft (default)', 'solid' => 'solid (pre-v0.3)', 'outline' => 'outline', 'ghost' => 'ghost', 'dash' => 'dash'] as $app => $label)
+                <div class="flex flex-col items-center gap-2">
+                    <x-indicator :appearance="$app" color="error">
+                        <x-slot:badge>3</x-slot:badge>
+                        <div class="w-20 h-14 bg-base-200 border border-base-300 rounded-[var(--radius-box)] flex items-center justify-center text-xs text-base-content/60">
+                            box
+                        </div>
+                    </x-indicator>
+                    <span class="text-[10px] text-base-content/50 font-mono">{{ $label }}</span>
+                </div>
+            @endforeach
+        </div>
+        <p class="text-xs text-base-content/50 mt-6 text-center">v0.3.0 から default が <code>soft</code>。旧来の塗りつぶしが必要なら <code>appearance="solid"</code>。</p>
     </div>
 
     <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">real-world examples — Avatar + new message dot / Cart + count / Inbox + unread</p>
@@ -183,6 +201,12 @@
 &lt;x-indicator color="primary"&gt;
     &lt;x-slot:badge&gt;NEW&lt;/x-slot:badge&gt;
     &lt;div&gt;...&lt;/div&gt;
+&lt;/x-indicator&gt;
+
+{{-- appearance: soft (default since v0.3.0) / solid (pre-v0.3) / outline / ghost / dash --}}
+&lt;x-indicator appearance="solid" color="error"&gt;
+    &lt;x-slot:badge&gt;3&lt;/x-slot:badge&gt;
+    &lt;button class="btn btn-circle"&gt;...&lt;/button&gt;
 &lt;/x-indicator&gt;
 @endverbatim</code></pre>
 @endsection
