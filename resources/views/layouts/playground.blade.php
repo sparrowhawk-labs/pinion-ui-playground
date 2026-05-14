@@ -99,6 +99,7 @@
                     ['slug' => 'divider',    'label' => 'Divider'],
                     ['slug' => 'rating',     'label' => 'Rating'],
                     ['slug' => 'range-slider', 'label' => 'Range Slider'],
+                    ['slug' => 'input-number', 'label' => 'Input Number'],
                     ['slug' => 'timeline',   'label' => 'Timeline'],
                 ],
             ],
