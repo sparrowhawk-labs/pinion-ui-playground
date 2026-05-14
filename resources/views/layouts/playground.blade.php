@@ -98,6 +98,7 @@
                     ['slug' => 'stat',       'label' => 'Stat'],
                     ['slug' => 'divider',    'label' => 'Divider'],
                     ['slug' => 'rating',     'label' => 'Rating'],
+                    ['slug' => 'range-slider', 'label' => 'Range Slider'],
                     ['slug' => 'timeline',   'label' => 'Timeline'],
                 ],
             ],
