@@ -90,18 +90,18 @@
     </div>
 
     {{-- arrowless --}}
-    <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2 mt-6">arrow=false — context menu 風のミニ panel</p>
+    <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2 mt-6">context menu — `arrow=false` + `padding="p-1"` で行のオーバーヘッドを除去 (v0.3.20 から)</p>
     <div class="mb-8 border border-base-300 rounded-[var(--radius-box)] bg-base-100 p-element">
-        <x-popover :arrow="false" width="w-48">
+        <x-popover :arrow="false" width="w-48" padding="p-1">
             <x-slot:triggerSlot>
                 <x-button appearance="ghost" size="sm" class="!p-1">
                     <x-i type="more-horizontal" variant="linear" class="w-5 h-5" />
                 </x-button>
             </x-slot:triggerSlot>
-            <ul class="text-sm space-y-1">
-                <li><a href="#" class="block hover:bg-base-200 rounded px-2 py-1">Edit</a></li>
-                <li><a href="#" class="block hover:bg-base-200 rounded px-2 py-1">Duplicate</a></li>
-                <li><a href="#" class="block hover:bg-base-200 rounded px-2 py-1 text-error">Delete</a></li>
+            <ul class="text-sm">
+                <li><a href="#" class="block hover:bg-base-200 rounded px-3 py-1.5">Edit</a></li>
+                <li><a href="#" class="block hover:bg-base-200 rounded px-3 py-1.5">Duplicate</a></li>
+                <li><a href="#" class="block hover:bg-base-200 rounded px-3 py-1.5 text-error">Delete</a></li>
             </ul>
         </x-popover>
     </div>
