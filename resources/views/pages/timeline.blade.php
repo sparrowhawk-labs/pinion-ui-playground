@@ -2,12 +2,12 @@
 
 @section('title', '— Timeline')
 @section('heading', 'Timeline')
-@section('subheading', 'daisyUI 5 の timeline class を wrap した時系列リスト。items 配列で渡すだけ。orientation (vertical/horizontal)・compact (片側寄せ)・snap (アイコンを上端 snap)・appearance (soft default / solid) の 4 modifier。各 item に state=done|current|upcoming を付けると middle icon と connector の色が変化。v0.3.0 から default appearance が soft で、多数の done が並んでも穏やかなグラデになる。')
+@section('subheading', 'daisyUI 5 の timeline class を wrap した時系列リスト。items 配列で渡すだけ。orientation (vertical/horizontal)・compact (片側寄せ)・snap (アイコンを上端 snap)・appearance (solid default / soft) の 4 modifier。各 item に state=done|current|upcoming を付けると middle icon と connector の色が変化。default は solid (濃い primary) で done chain がはっきり立つ。穏やかに見せたいときだけ appearance="soft" を opt-in。')
 
 @section('content')
     <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">
         <span class="inline-block text-[9px] font-bold tracking-wider uppercase bg-primary text-primary-content rounded px-1.5 py-0.5 mr-2 align-middle">default</span>
-        vertical, no compact, appearance=soft — 4 items (商品ステータス 例)
+        vertical, no compact, appearance=solid — 4 items (商品ステータス 例)
     </p>
     <div class="mb-8 border border-base-300 rounded-[var(--radius-box)] bg-base-100 p-element">
         <x-timeline :items="[
@@ -59,11 +59,11 @@
         ]" />
     </div>
 
-    <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">appearance — soft (default since v0.3.0) vs solid (pre-v0.3 saturated)</p>
+    <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">appearance — solid (default, saturated) vs soft (opt-in, muted)</p>
     <div class="mb-8 border border-base-300 rounded-[var(--radius-box)] bg-base-100 p-element">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-                <p class="text-xs text-base-content/50 mb-3 font-mono">appearance=soft (default)</p>
+                <p class="text-xs text-base-content/50 mb-3 font-mono">appearance=solid (default)</p>
                 <x-timeline :items="[
                     ['title' => 'Step 1', 'time' => 'done',    'state' => 'done'],
                     ['title' => 'Step 2', 'time' => 'done',    'state' => 'done'],
@@ -73,8 +73,8 @@
                 ]" />
             </div>
             <div>
-                <p class="text-xs text-base-content/50 mb-3 font-mono">appearance=solid (pre-v0.3)</p>
-                <x-timeline appearance="solid" :items="[
+                <p class="text-xs text-base-content/50 mb-3 font-mono">appearance=soft (opt-in)</p>
+                <x-timeline appearance="soft" :items="[
                     ['title' => 'Step 1', 'time' => 'done',    'state' => 'done'],
                     ['title' => 'Step 2', 'time' => 'done',    'state' => 'done'],
                     ['title' => 'Step 3', 'time' => 'done',    'state' => 'done'],
@@ -83,7 +83,7 @@
                 ]" />
             </div>
         </div>
-        <p class="text-xs text-base-content/50 mt-6 text-center">soft (左) = done icon が <code>text-primary/70</code> + connector が <code>bg-primary/30</code>。solid (右) = 旧 default の <code>text-primary</code> / <code>bg-primary</code>。</p>
+        <p class="text-xs text-base-content/50 mt-6 text-center">solid (左) = default の <code>text-primary</code> / <code>bg-primary</code>。soft (右) = done icon が <code>text-primary/70</code> + connector が <code>bg-primary/30</code> で muted。</p>
     </div>
 
     <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2 mt-8">使い方</p>
@@ -111,7 +111,7 @@
     ['title' =&gt; 'Step 3', 'state' =&gt; 'upcoming'],
 ]" /&gt;
 
-{{-- appearance: soft (default since v0.3.0) / solid (pre-v0.3 saturated) --}}
-&lt;x-timeline appearance="solid" :items="[...]" /&gt;
+{{-- appearance: solid (default, saturated) / soft (opt-in, muted) --}}
+&lt;x-timeline appearance="soft" :items="[...]" /&gt;
 @endverbatim</code></pre>
 @endsection
