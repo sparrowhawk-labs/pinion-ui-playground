@@ -100,6 +100,7 @@
                     ['slug' => 'rating',     'label' => 'Rating'],
                     ['slug' => 'range-slider', 'label' => 'Range Slider'],
                     ['slug' => 'input-number', 'label' => 'Input Number'],
+                    ['slug' => 'input-group',  'label' => 'Input Group'],
                     ['slug' => 'timeline',   'label' => 'Timeline'],
                 ],
             ],

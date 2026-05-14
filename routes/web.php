@@ -32,6 +32,7 @@ Route::get('/divider',    fn () => view('pages.divider'))->name('divider');
 Route::get('/rating',     fn () => view('pages.rating'))->name('rating');
 Route::get('/range-slider', fn () => view('pages.range-slider'))->name('range-slider');
 Route::get('/input-number', fn () => view('pages.input-number'))->name('input-number');
+Route::get('/input-group',  fn () => view('pages.input-group'))->name('input-group');
 Route::get('/timeline',   fn () => view('pages.timeline'))->name('timeline');
 Route::get('/dropdown',   fn () => view('pages.dropdown'))->name('dropdown');
 Route::get('/modal',      fn () => view('pages.modal'))->name('modal');
