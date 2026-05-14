@@ -2,32 +2,32 @@
 
 @section('title', '— Collapse')
 @section('heading', 'Collapse')
-@section('subheading', 'daisyUI 5 の collapse class を wrap した single open/close ブロック (no-JS、内部の checkbox で開閉制御)。title prop か slot:title でヘッダ、$slot で本文を渡す。icon (arrow / plus / null)・bordered (default true)・open (初期 open) の 3 props + title。複数まとめて FAQ にしたい時はそのまま縦に並べるだけ。')
+@section('subheading', 'daisyUI 5 の collapse class を wrap した single open/close ブロック (no-JS、内部の checkbox で開閉制御)。title prop か slot:title でヘッダ、$slot で本文を渡す。icon (null=default / arrow / plus)・bordered (default true)・open (初期 open) の 3 props + title。デフォルトはアイコンなしのミニマル表示で、必要に応じて icon prop でアイコンを opt-in する。複数まとめて FAQ にしたい時はそのまま縦に並べるだけ。')
 
 @section('content')
     {{-- DEFAULT --}}
     <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">
         <span class="inline-block text-[9px] font-bold tracking-wider uppercase bg-primary text-primary-content rounded px-1.5 py-0.5 mr-2 align-middle">default</span>
-        icon=arrow, bordered=true — header をクリックで開閉
+        icon=null (アイコンなし), bordered=true — header をクリックで開閉
     </p>
     <div class="mb-8 border border-base-300 rounded-[var(--radius-box)] bg-base-100 p-element">
         <x-collapse title="Default — クリックで開いてみてください" :open="true">
             <p>これは collapse の本文です。初期状態で <code>:open="true"</code> を指定しているので、ページ表示時から開いています。もう一度ヘッダをクリックすると閉じます。</p>
-            <p class="mt-2 text-base-content/60">no-JS で動作 — 内部の checkbox の checked 状態のみで開閉します。</p>
+            <p class="mt-2 text-base-content/60">デフォルトはアイコンなし。no-JS で動作 — 内部の checkbox の checked 状態のみで開閉します。</p>
         </x-collapse>
     </div>
 
     {{-- icon variants --}}
-    <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2 mt-6">icon variants — arrow (default) / plus / null (no icon)</p>
+    <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2 mt-6">icon variants — null (default, no icon) / arrow / plus</p>
     <div class="mb-8 border border-base-300 rounded-[var(--radius-box)] bg-base-100 p-element space-y-3">
-        <x-collapse title="icon=arrow (default)" icon="arrow">
+        <x-collapse title="icon=null (default) — アイコンなし" :icon="null">
+            <p>デフォルト。ヘッダ右側に icon が出ません。ミニマルな見た目。</p>
+        </x-collapse>
+        <x-collapse title="icon=arrow — 矢印" icon="arrow">
             <p>右側に下向き ▼ が出て、開くと回転します。</p>
         </x-collapse>
-        <x-collapse title="icon=plus" icon="plus">
+        <x-collapse title="icon=plus — プラス/マイナス" icon="plus">
             <p>右側に + が出て、開くと × に変わります。</p>
-        </x-collapse>
-        <x-collapse title="icon=null — アイコンなし" :icon="null">
-            <p>ヘッダ右側に icon が出ません。ミニマルにしたい時用。</p>
         </x-collapse>
     </div>
 
