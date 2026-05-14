@@ -103,6 +103,7 @@
                     ['slug' => 'input-group',  'label' => 'Input Group'],
                     ['slug' => 'pin-input',    'label' => 'Pin Input'],
                     ['slug' => 'timeline',   'label' => 'Timeline'],
+                    ['slug' => 'stepper',    'label' => 'Stepper'],
                 ],
             ],
             [
