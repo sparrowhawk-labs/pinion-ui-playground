@@ -29,7 +29,7 @@
     tune: localStorage.getItem('pinion-tune') || 'default',
     ja: localStorage.getItem('pinion-ja') !== 'off',
     debug: localStorage.getItem('pinion-debug') === 'on',
-    themes: ['pinion','pinion-dark','light','dark','abyss','acid','aqua','autumn','black','bumblebee','business','caramellatte','cmyk','coffee','corporate','cupcake','cyberpunk','dim','dracula','emerald','fantasy','forest','garden','halloween','lemonade','lofi','luxury','night','nord','pastel','retro','silk','sunset','synthwave','valentine','winter','wireframe'],
+    themes: ['pinion','light','dark','abyss','acid','aqua','autumn','black','bumblebee','business','caramellatte','cmyk','coffee','corporate','cupcake','cyberpunk','dim','dracula','emerald','fantasy','forest','garden','halloween','lemonade','lofi','luxury','night','nord','pastel','retro','silk','sunset','synthwave','valentine','winter','wireframe'],
     tunes: ['default','sharp','soft','playful','corporate','brutal','elegant','bold','pixel','tech'],
     setTheme(t) { this.theme = t; document.documentElement.setAttribute('data-theme', t); localStorage.setItem('pinion-theme', t); },
     setTune(t) { this.tune = t; document.documentElement.setAttribute('data-tune', t); localStorage.setItem('pinion-tune', t); },
@@ -183,7 +183,7 @@
                     <div class="flex items-center gap-2">
                         <label class="text-xs font-medium text-base-content/60">Theme:</label>
                         <select x-model="theme" @change="setTheme($event.target.value)" class="text-xs bg-base-100 border border-base-300 rounded px-2 py-1 outline-none">
-                            @foreach(['pinion','pinion-dark','light','dark','abyss','acid','aqua','autumn','black','bumblebee','business','caramellatte','cmyk','coffee','corporate','cupcake','cyberpunk','dim','dracula','emerald','fantasy','forest','garden','halloween','lemonade','lofi','luxury','night','nord','pastel','retro','silk','sunset','synthwave','valentine','winter','wireframe'] as $t)
+                            @foreach(['pinion','light','dark','abyss','acid','aqua','autumn','black','bumblebee','business','caramellatte','cmyk','coffee','corporate','cupcake','cyberpunk','dim','dracula','emerald','fantasy','forest','garden','halloween','lemonade','lofi','luxury','night','nord','pastel','retro','silk','sunset','synthwave','valentine','winter','wireframe'] as $t)
                                 <option value="{{ $t }}">{{ $t }}</option>
                             @endforeach
                         </select>

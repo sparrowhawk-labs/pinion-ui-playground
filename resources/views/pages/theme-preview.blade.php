@@ -234,7 +234,7 @@
             <li>primary の濃さは「CTA の存在感」と「テキストとの差分」のバランス。0.18 = beck 完全踏襲 / 0.24 = 落ち着き / 0.26 = やや薄く読みやすい</li>
             <li>amber-500 vs amber-600 は「明るく親しみ」 vs 「深く真面目」。pinion-ui のブランド感としてどっちを取るか</li>
             <li>確定したら <code>src/resources/css/pinion-ui.css</code> に <code>@plugin 'daisyui/theme' { name: 'pinion'; ... }</code> を追加 (v0.4.0 BC break)</li>
-            <li>dark 同梱は別判断 — daisyUI 標準 dark で当面 OK なら scope 外、ブランド統一したいなら <code>pinion-dark</code> も追加</li>
+            <li>dark 専用テーマは v0.4.0 では同梱しない方針 — dark mode が要るユーザーは daisyUI 標準の <code>dark</code> / <code>dim</code> / <code>night</code> 等を <code>data-theme</code> で指定してもらう</li>
         </ul>
     </section>
 </div>
