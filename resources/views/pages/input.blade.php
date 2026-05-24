@@ -2,7 +2,7 @@
 
 @section('title', '— Input')
 @section('heading', 'Inputs')
-@section('subheading', 'color × appearance (outline / soft / underline / ghost) — プレフィックス/サフィックス, アイコン, フローティングラベル, アペンドスロット対応')
+@section('subheading', __('playground.subheading.input'))
 
 @section('content')
     {{-- 1. appearance matrix × colors --}}

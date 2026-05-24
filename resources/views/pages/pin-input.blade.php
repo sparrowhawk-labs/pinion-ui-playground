@@ -2,7 +2,7 @@
 
 @section('title', '— Pin Input')
 @section('heading', 'Pin Input')
-@section('subheading', 'OTP / 認証コード入力 — N 個の単一文字ボックスが auto-advance / backspace-back / arrow nav / paste-to-fill で連携。autocomplete="one-time-code" を最初のボックスに付与済 (iOS/Android で SMS コード候補が出る)。numeric (default) / alphanumeric、length / size / masked / autofocus 等の prop。combined value は hidden input で form submit される。')
+@section('subheading', __('playground.subheading.pin-input'))
 
 @section('content')
     {{-- DEFAULT --}}

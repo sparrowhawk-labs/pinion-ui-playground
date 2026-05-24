@@ -2,7 +2,7 @@
 
 @section('title', '— Skeleton')
 @section('heading', 'Skeleton')
-@section('subheading', 'コンテンツ読み込み中の placeholder。daisyUI の skeleton class を wrap し、shape (rect / circle / text) / width / height / radius / animated を props で制御。width / height は Tailwind class 名 (`w-32`, `h-4` 等) で渡す。')
+@section('subheading', __('playground.subheading.skeleton'))
 
 @section('content')
     {{-- ============================================================

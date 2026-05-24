@@ -2,7 +2,7 @@
 
 @section('title', '— Tabs')
 @section('heading', 'Tabs')
-@section('subheading', 'タブ式コンテンツ切替。v0.4.0 で nested 構文に変更 (Blade slot を XSS なく自然に渡せる)。&lt;x-tab name="..." label="..."&gt;content&lt;/x-tab&gt; を &lt;x-tabs&gt; の中に並べる。variant: underline (default) / boxed / pill、size: sm / md / lg。default で初期 active な name を指定 (省略時は最初の tab)。Alpine の x-data でクライアント側の active 状態を保持。')
+@section('subheading', __('playground.subheading.tabs'))
 
 @section('content')
     {{-- DEFAULT --}}

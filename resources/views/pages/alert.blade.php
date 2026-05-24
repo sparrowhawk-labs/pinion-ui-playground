@@ -2,7 +2,7 @@
 
 @section('title', '— Alert')
 @section('heading', 'Alerts')
-@section('subheading', '8 appearances × semantic colors, dismissible 対応')
+@section('subheading', __('playground.subheading.alert'))
 
 @section('content')
     <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">

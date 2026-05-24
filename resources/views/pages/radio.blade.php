@@ -2,7 +2,7 @@
 
 @section('title', '— Radio')
 @section('heading', 'Radios')
-@section('subheading', 'fake-radio (peer + sr-only) — color × appearance (solid / soft / base-100 / base-200 / base-300) × size, with radio-group')
+@section('subheading', __('playground.subheading.radio'))
 
 @section('content')
     @php

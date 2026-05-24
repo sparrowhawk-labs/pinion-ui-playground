@@ -1,5 +1,14 @@
 <!DOCTYPE html>
-<html lang="ja" data-theme="light" data-tune="default" data-ja>
+@php
+    // data-ja drives the JP font stack and is locked to locale=ja so end-users
+    // never see a mismatched JA-script-but-Latin-fallback render. Designers can
+    // still toggle it transiently from /font-debug (Alpine setJa mutates the
+    // DOM attribute for the current page; no localStorage persistence — a page
+    // reload reverts to locale-derived state).
+    $htmlLocale = app()->getLocale();
+    $dataJaAttr = $htmlLocale === 'ja' ? 'data-ja' : 'data-ja="off"';
+@endphp
+<html lang="{{ $htmlLocale }}" data-theme="light" data-tune="default" {!! $dataJaAttr !!}>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,16 +18,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Fredoka:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;700&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Lora:ital,wght@0,400;0,500;0,700;1,400&family=M+PLUS+1+Code:wght@400;500;700&family=M+PLUS+1p:wght@400;500;700&family=Montserrat:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Nunito:wght@400;700;800&family=Outfit:wght@400;500;600;700&family=Playfair+Display:wght@400;700&family=Press+Start+2P&family=Quicksand:wght@400;500;700&family=Shippori+Mincho:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
 
-    {{-- Restore theme/tune/ja from localStorage before paint to avoid FOUC --}}
+    {{-- Restore theme/tune from localStorage before paint to avoid FOUC.
+         data-ja is NOT in localStorage — it's server-rendered from locale above. --}}
     <script>
         (function () {
             var d = document.documentElement;
             var t = localStorage.getItem('pinion-theme');
             var u = localStorage.getItem('pinion-tune');
-            var j = localStorage.getItem('pinion-ja');
             if (t) d.setAttribute('data-theme', t);
             if (u) d.setAttribute('data-tune', u);
-            d.setAttribute('data-ja', j === 'off' ? 'off' : '');
         })();
     </script>
 
@@ -27,13 +35,13 @@
 <body class="bg-base-100 text-base-content min-h-screen" x-data="{
     theme: localStorage.getItem('pinion-theme') || 'light',
     tune: localStorage.getItem('pinion-tune') || 'default',
-    ja: localStorage.getItem('pinion-ja') !== 'off',
+    ja: '{{ $htmlLocale }}' === 'ja',
     debug: localStorage.getItem('pinion-debug') === 'on',
     themes: ['pinion','light','dark','abyss','acid','aqua','autumn','black','bumblebee','business','caramellatte','cmyk','coffee','corporate','cupcake','cyberpunk','dim','dracula','emerald','fantasy','forest','garden','halloween','lemonade','lofi','luxury','night','nord','pastel','retro','silk','sunset','synthwave','valentine','winter','wireframe'],
     tunes: ['default','sharp','soft','playful','corporate','brutal','elegant','bold','pixel','tech'],
     setTheme(t) { this.theme = t; document.documentElement.setAttribute('data-theme', t); localStorage.setItem('pinion-theme', t); },
     setTune(t) { this.tune = t; document.documentElement.setAttribute('data-tune', t); localStorage.setItem('pinion-tune', t); },
-    setJa(on) { this.ja = on; document.documentElement.setAttribute('data-ja', on ? '' : 'off'); localStorage.setItem('pinion-ja', on ? 'on' : 'off'); },
+    setJa(on) { this.ja = on; document.documentElement.setAttribute('data-ja', on ? '' : 'off'); },
     setDebug(on) { this.debug = on; localStorage.setItem('pinion-debug', on ? 'on' : 'off'); },
     // Debug mode mounts the same yielded content twice (lofi + night). The two
     // copies share name=... and id=... because the section is re-emitted
@@ -140,18 +148,25 @@
                 'badge' => 'WIP',
                 'items' => [
                     ['slug' => 'theme-preview', 'label' => 'Pinion Theme'],
+                    ['slug' => 'font-debug',    'label' => 'Font Debug'],
                 ],
             ],
         ];
-        $current = request()->path() === '/' ? '' : request()->path();
+        // Strip the /{locale}/ prefix so $current matches the sidebar's slug
+        // ('' for overview, 'button' for /ja/button, etc.). Without this strip
+        // the active-link check would never match since slugs don't carry the
+        // locale.
+        $locale = app()->getLocale();
+        $rawPath = request()->path();
+        $current = ($rawPath === $locale) ? '' : preg_replace('#^' . preg_quote($locale, '#') . '/#', '', $rawPath);
     @endphp
 
     <div class="flex min-h-screen">
         {{-- Sidebar --}}
         <aside class="w-60 shrink-0 border-r border-base-300 bg-base-200/40 sticky top-0 h-screen overflow-y-auto">
             <div class="p-4 border-b border-base-300">
-                <a href="/" class="text-sm font-bold text-primary">Pinion UI</a>
-                <p class="text-xs text-base-content/50 mt-1">Blade adapter · live demos</p>
+                <a href="/{{ $locale }}" class="text-sm font-bold text-primary">Pinion UI</a>
+                <p class="text-xs text-base-content/50 mt-1">{{ __('playground.brand.subline') }}</p>
             </div>
             <nav class="p-2 flex flex-col gap-0.5">
                 @foreach($navSections as $sectionIndex => $section)
@@ -165,8 +180,11 @@
                         @endif
                     </div>
                     @foreach($section['items'] as $item)
-                        @php $active = $current === $item['slug']; @endphp
-                        <a href="/{{ $item['slug'] }}"
+                        @php
+                            $active = $current === $item['slug'];
+                            $href = '/' . $locale . ($item['slug'] !== '' ? '/' . $item['slug'] : '');
+                        @endphp
+                        <a href="{{ $href }}"
                            class="block px-3 py-2 rounded text-sm transition-colors {{ $active ? 'bg-primary text-primary-content font-semibold' : 'text-base-content hover:bg-base-300' }}">
                             {{ $item['label'] }}
                         </a>
@@ -200,11 +218,28 @@
                         </div>
                     </div>
                     <div class="flex items-center gap-2">
-                        <label class="text-xs font-medium text-base-content/60">Japanese:</label>
-                        <button @click="setJa(!ja)"
-                            :class="ja ? 'bg-primary text-primary-content' : 'bg-base-100 text-base-content hover:bg-base-300'"
-                            class="text-xs px-2 py-0.5 rounded border border-base-300 transition-colors cursor-pointer"
-                            x-text="ja ? 'on' : 'off'"></button>
+                        <label class="text-xs font-medium text-base-content/60">Lang:</label>
+                        <div class="flex flex-wrap gap-1">
+                            @php
+                                // Anchor-based switcher: each chip is /{loc}/{currentSlug}.
+                                // No JS — server-rendered, copy-paste-safe, and crawled
+                                // intact by spatie/laravel-export at build time.
+                                $localeChips = [
+                                    ['code' => 'ja',      'label' => '🇯🇵 JA'],
+                                    ['code' => 'en',      'label' => '🇬🇧 EN'],
+                                    ['code' => 'zh-Hans', 'label' => '🇨🇳 ZH-S'],
+                                    ['code' => 'zh-Hant', 'label' => '🇹🇼 ZH-T'],
+                                ];
+                            @endphp
+                            @foreach($localeChips as $chip)
+                                @php
+                                    $chipActive = $locale === $chip['code'];
+                                    $chipHref = '/' . $chip['code'] . ($current !== '' ? '/' . $current : '');
+                                @endphp
+                                <a href="{{ $chipHref }}"
+                                   class="text-xs px-2 py-0.5 rounded border border-base-300 transition-colors cursor-pointer {{ $chipActive ? 'bg-primary text-primary-content' : 'bg-base-100 text-base-content hover:bg-base-300' }}">{{ $chip['label'] }}</a>
+                            @endforeach
+                        </div>
                     </div>
                     <div class="flex items-center gap-2">
                         <label class="text-xs font-medium text-base-content/60">Debug:</label>

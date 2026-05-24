@@ -2,7 +2,7 @@
 
 @section('title', '— Notification')
 @section('heading', 'Notification')
-@section('subheading', 'ページに1度置き、任意の Alpine コンポーネントから $dispatch("notify", { type, content }) で Toast を出す。position / appearance / size / duration / event-name は props で制御。')
+@section('subheading', __('playground.subheading.notification-system'))
 
 @section('content')
     <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">

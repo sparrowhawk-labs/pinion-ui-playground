@@ -2,7 +2,7 @@
 
 @section('title', '— Checkbox')
 @section('heading', 'Checkboxes')
-@section('subheading', 'fake-checkbox (peer + sr-only) — color × appearance (solid / soft / base-100 / base-200 / base-300) × size')
+@section('subheading', __('playground.subheading.checkbox'))
 
 @section('content')
     @php

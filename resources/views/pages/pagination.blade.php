@@ -2,7 +2,7 @@
 
 @section('title', '— Pagination')
 @section('heading', 'Pagination')
-@section('subheading', 'full (numbered) / simple (prev-current/total-next) — color × appearance × size、Laravel paginator 対応')
+@section('subheading', __('playground.subheading.pagination'))
 
 @section('content')
     <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">

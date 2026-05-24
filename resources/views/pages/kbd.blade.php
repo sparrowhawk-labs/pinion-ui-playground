@@ -2,7 +2,7 @@
 
 @section('title', '— Kbd')
 @section('heading', 'Kbd')
-@section('subheading', 'キーボードショートカット用の inline chip。HTML5 <kbd> 要素を daisyUI 5 の kbd class で wrap。size と appearance の 2 props のみ。文章内に埋め込んだり、+ で繋いで combo を表現する。')
+@section('subheading', __('playground.subheading.kbd'))
 
 @section('content')
     <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">

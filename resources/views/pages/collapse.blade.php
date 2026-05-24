@@ -2,7 +2,7 @@
 
 @section('title', '— Collapse')
 @section('heading', 'Collapse')
-@section('subheading', 'daisyUI 5 の collapse class を wrap した single open/close ブロック (no-JS、内部の checkbox で開閉制御)。title prop か slot:title でヘッダ、$slot で本文を渡す。icon (null=default / arrow / plus)・bordered (default true)・open (初期 open) の 3 props + title。デフォルトはアイコンなしのミニマル表示で、必要に応じて icon prop でアイコンを opt-in する。複数まとめて FAQ にしたい時はそのまま縦に並べるだけ。')
+@section('subheading', __('playground.subheading.collapse'))
 
 @section('content')
     {{-- DEFAULT --}}

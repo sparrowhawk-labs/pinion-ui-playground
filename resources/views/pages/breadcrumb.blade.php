@@ -2,7 +2,7 @@
 
 @section('title', '— Breadcrumb')
 @section('heading', 'Breadcrumb')
-@section('subheading', '階層ナビゲーション。daisyUI 5 の breadcrumbs class を wrap。dual API: items 配列で渡すか、自前で &lt;ul&gt; に &lt;li&gt; を書くか。最後の item (url 省略) は現在地として link 化しない。separator は chevron (default) / slash の 2 種、size は sm / md / lg。')
+@section('subheading', __('playground.subheading.breadcrumb'))
 
 @section('content')
     <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">
@@ -12,7 +12,7 @@
     <div class="mb-8 border border-base-300 rounded-[var(--radius-box)] bg-base-100 p-element">
         <x-breadcrumb :items="[
             ['label' => 'Home', 'url' => '/'],
-            ['label' => 'Docs', 'url' => '/docs'],
+            ['label' => 'Docs', 'url' => '#docs'],
             ['label' => 'Breadcrumb'],
         ]" />
     </div>
@@ -23,7 +23,7 @@
             <p class="text-xs text-base-content/60 mb-1">items 配列</p>
             <x-breadcrumb :items="[
                 ['label' => 'Home', 'url' => '/'],
-                ['label' => 'Products', 'url' => '/products'],
+                ['label' => 'Products', 'url' => '#products'],
                 ['label' => 'Detail'],
             ]" />
         </div>
@@ -31,7 +31,7 @@
             <p class="text-xs text-base-content/60 mb-1">slot で自前 li</p>
             <x-breadcrumb>
                 <li><a href="/">Home</a></li>
-                <li><a href="/products">Products</a></li>
+                <li><a href="#products">Products</a></li>
                 <li><span>Detail</span></li>
             </x-breadcrumb>
         </div>
@@ -43,7 +43,7 @@
             <p class="text-xs text-base-content/60 mb-1">chevron (default)</p>
             <x-breadcrumb separator="chevron" :items="[
                 ['label' => 'Home', 'url' => '/'],
-                ['label' => 'Settings', 'url' => '/settings'],
+                ['label' => 'Settings', 'url' => '#settings'],
                 ['label' => 'Profile'],
             ]" />
         </div>
@@ -51,7 +51,7 @@
             <p class="text-xs text-base-content/60 mb-1">slash</p>
             <x-breadcrumb separator="slash" :items="[
                 ['label' => 'Home', 'url' => '/'],
-                ['label' => 'Settings', 'url' => '/settings'],
+                ['label' => 'Settings', 'url' => '#settings'],
                 ['label' => 'Profile'],
             ]" />
         </div>
@@ -63,7 +63,7 @@
             <p class="text-xs text-base-content/60 mb-1">sm</p>
             <x-breadcrumb size="sm" :items="[
                 ['label' => 'Home', 'url' => '/'],
-                ['label' => 'Library', 'url' => '/library'],
+                ['label' => 'Library', 'url' => '#library'],
                 ['label' => 'Books'],
             ]" />
         </div>
@@ -71,7 +71,7 @@
             <p class="text-xs text-base-content/60 mb-1">md (default)</p>
             <x-breadcrumb size="md" :items="[
                 ['label' => 'Home', 'url' => '/'],
-                ['label' => 'Library', 'url' => '/library'],
+                ['label' => 'Library', 'url' => '#library'],
                 ['label' => 'Books'],
             ]" />
         </div>
@@ -79,7 +79,7 @@
             <p class="text-xs text-base-content/60 mb-1">lg</p>
             <x-breadcrumb size="lg" :items="[
                 ['label' => 'Home', 'url' => '/'],
-                ['label' => 'Library', 'url' => '/library'],
+                ['label' => 'Library', 'url' => '#library'],
                 ['label' => 'Books'],
             ]" />
         </div>
@@ -89,10 +89,10 @@
     <div class="mb-8 border border-base-300 rounded-[var(--radius-box)] bg-base-100 p-element">
         <x-breadcrumb size="sm" separator="slash" :items="[
             ['label' => 'Home', 'url' => '/'],
-            ['label' => 'Organization', 'url' => '/org'],
-            ['label' => 'Yakaze Tech Studio', 'url' => '/org/yakaze'],
-            ['label' => 'Projects', 'url' => '/org/yakaze/projects'],
-            ['label' => 'pinion-ui', 'url' => '/org/yakaze/projects/pinion-ui'],
+            ['label' => 'Organization', 'url' => '#org'],
+            ['label' => 'Yakaze Tech Studio', 'url' => '#org/yakaze'],
+            ['label' => 'Projects', 'url' => '#org/yakaze/projects'],
+            ['label' => 'pinion-ui', 'url' => '#org/yakaze/projects/pinion-ui'],
             ['label' => 'Breadcrumb'],
         ]" />
     </div>
@@ -107,7 +107,9 @@
                 </a>
             </li>
             <li>
-                <a href="/docs">
+                {{-- href is a hash fragment, not /docs, so the static-export crawler
+                     doesn't try to fetch a non-existent /docs page. --}}
+                <a href="#docs">
                     <x-i type="document-text" variant="linear" class="w-4 h-4" />
                     Docs
                 </a>

@@ -2,7 +2,7 @@
 
 @section('title', '— Input Group')
 @section('heading', 'Input Group')
-@section('subheading', 'form 要素を任意に組み合わせて横並びに joined する generic wrapper。select+input、input+button、input+input 等。x-input の prefix/suffix/append は単一 input 中心の組み合わせ用、こちらは複数の同格 form 要素用。`$c[\'addon\']` helper class でテキスト装飾 span も addon 高さに揃えられる。')
+@section('subheading', __('playground.subheading.input-group'))
 
 @section('content')
     @php

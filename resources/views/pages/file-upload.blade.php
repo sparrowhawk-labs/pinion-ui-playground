@@ -2,7 +2,7 @@
 
 @section('title', '— File Upload')
 @section('heading', 'File Upload')
-@section('subheading', 'native <input type="file"> + file:* utility (inline) and dashed dropzone (large area). Multi-file with progress bar driven by Alpine — simulate flag fakes upload progress so the demo is self-running.')
+@section('subheading', __('playground.subheading.file-upload'))
 
 @section('content')
     @php

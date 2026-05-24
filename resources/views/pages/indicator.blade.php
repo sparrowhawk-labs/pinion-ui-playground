@@ -2,7 +2,7 @@
 
 @section('title', '— Indicator')
 @section('heading', 'Indicator')
-@section('subheading', 'daisyUI 5 の indicator class を wrap した、別要素の角にバッジやドットを重ねるためのレイアウト。position (top/middle/bottom × start/center/end の 9 通り)・dot (bool, true = テキスト無しの純ドット)・color (8 色、default=error)・appearance (solid default / soft / outline / ghost / dash) の 4 props。default は solid (濃い fill) で「通知あり」を強く伝える。soft 等は opt-in。中身は $badge slot に入れ、被せたい要素は $slot に入れる。')
+@section('subheading', __('playground.subheading.indicator'))
 
 @section('content')
     <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">

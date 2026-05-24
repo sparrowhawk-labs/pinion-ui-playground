@@ -2,7 +2,7 @@
 
 @section('title', '— Accordion')
 @section('heading', 'Accordion')
-@section('subheading', '開閉式リスト。v0.4.0 で nested 構文に変更 (Blade slot を XSS なく自然に渡せる)。&lt;x-accordion-item title="..."&gt;content&lt;/x-accordion-item&gt; を &lt;x-accordion&gt; の中に並べる。single-open / multiple-open、size 3段階。content は Blade slot のため任意の Blade markup・コンポーネント・リンク等が使える。Alpine x-collapse で滑らかにアニメーション。')
+@section('subheading', __('playground.subheading.accordion'))
 
 @section('content')
     <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">

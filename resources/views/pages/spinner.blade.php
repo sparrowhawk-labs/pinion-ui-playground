@@ -2,7 +2,7 @@
 
 @section('title', '— Spinner')
 @section('heading', 'Spinner')
-@section('subheading', 'ローディング表示用の inline indicator。daisyUI 5 の loading class を wrap。variant (spinner/dots/ring/bars/ball/infinity) × size (xs〜xl) × color (8 色) の組み合わせで、ボタン内・ページ全体・カードなどあらゆる「待ち時間」を表現する。')
+@section('subheading', __('playground.subheading.spinner'))
 
 @section('content')
     <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">

@@ -2,7 +2,7 @@
 
 @section('title', '— Button Group')
 @section('heading', 'Button Group')
-@section('subheading', 'segmented control 風に複数の button / link を束ねる wrapper。中央 child の border-radius は wrapper が自動で 0 にし、隣接 border は 1 本に統合される。hover は wrapper 側で soft tint に上書きされ、group コンテキストで重くならない (v0.3.3 で改善)。orientation は horizontal (default) / vertical。child に `class="join-item"` を付ける必要はない (v0.3.3 で不要に)。')
+@section('subheading', __('playground.subheading.button-group'))
 
 @section('content')
     {{-- DEFAULT --}}

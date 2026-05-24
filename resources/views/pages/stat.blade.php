@@ -2,7 +2,7 @@
 
 @section('title', '— Stat')
 @section('heading', 'Stat')
-@section('subheading', 'KPI / metric の単独表示。daisyUI の stats + stat class を wrap し、label / value / desc に加え valueColor / trend / trendValue で色付け＆方向矢印を制御。複数並べたい場合は wrapped=false で外側に &lt;div class="stats"&gt; を自前で作る。')
+@section('subheading', __('playground.subheading.stat'))
 
 @section('content')
     {{-- ============================================================

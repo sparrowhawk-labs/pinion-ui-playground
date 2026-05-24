@@ -176,23 +176,26 @@
             <div class="tune-hero__copy-col">
                 {{-- Eyebrow + version chip --}}
                 <div class="tune-hero__eyebrow-row">
-                    <x-badge appearance="soft" color="primary" icon="bolt">v0.4.0 · BLADE</x-badge>
-                    <span class="tune-hero__eyebrow">— REACT / VUE / WEB COMPONENTS COMING v0.5+</span>
+                    <x-badge appearance="soft" color="primary" icon="bolt">{{ __('playground.hero.eyebrow_chip') }}</x-badge>
+                    <span class="tune-hero__eyebrow">{{ __('playground.hero.eyebrow_note') }}</span>
                 </div>
 
                 {{-- Title — leads with the two selling points (tune + AI native).
-                     "tuneable" picks up the active tune's display font on hover. --}}
+                     "tuneable" picks up the active tune's display font on hover.
+                     `line1_html` keeps the <span class="tune-hero__title-tune">Tuneable</span>
+                     wrapper inside the translation so it stays the accent word in
+                     every locale (it visually swaps font with the active tune). --}}
                 <h1 class="tune-hero__title">
                     <span
                         class="tune-hero__title-line tune-hero__title-line--accent"
                         :data-tune="tune"
-                    ><span class="tune-hero__title-tune">Tuneable</span> UI,</span>
-                    <span class="tune-hero__title-line">built for AI</span>
-                    <span class="tune-hero__title-line tune-hero__title-line--muted">to ship with.</span>
+                    >{!! __('playground.hero.title.line1_html') !!}</span>
+                    <span class="tune-hero__title-line">{{ __('playground.hero.title.line2') }}</span>
+                    <span class="tune-hero__title-line tune-hero__title-line--muted">{{ __('playground.hero.title.line3') }}</span>
                 </h1>
 
                 <p class="tune-hero__subtitle">
-                    Shape, spacing, and font are a switchable axis — flip <code>data-tune</code> and the whole surface changes without touching theme. Every component ships with an AGENTS.md-grade reference doc so AI agents read it once and code it right.
+                    {!! __('playground.hero.subtitle') !!}
                 </p>
 
                 {{-- Primary CTAs --}}
@@ -203,21 +206,21 @@
                         size="md"
                         icon="code-square"
                         iconRight="arrow-right"
-                    >View on GitHub</x-button>
+                    >{{ __('playground.hero.cta.github') }}</x-button>
                     <x-button
                         href="#components"
                         appearance="ghost"
                         size="md"
                         icon="widget"
-                    >Browse components</x-button>
+                    >{{ __('playground.hero.cta.components') }}</x-button>
                 </div>
 
                 {{-- Handoff strip. "10 Tune presets" lives last so the eye
                      runs into the typographic list immediately below. --}}
                 <div class="tune-hero__chips">
-                    <x-badge appearance="soft" color="info" icon="palette">30+ daisyUI themes</x-badge>
-                    <x-badge appearance="soft" color="neutral" icon="widget">46 Blade components</x-badge>
-                    <x-badge appearance="outline" color="accent" icon="magic-stick-3">10 Tune presets ↓</x-badge>
+                    <x-badge appearance="soft" color="info" icon="palette">{{ __('playground.hero.chip.themes') }}</x-badge>
+                    <x-badge appearance="soft" color="neutral" icon="widget">{{ __('playground.hero.chip.components') }}</x-badge>
+                    <x-badge appearance="outline" color="accent" icon="magic-stick-3">{{ __('playground.hero.chip.tunes') }}</x-badge>
                 </div>
 
                 {{-- ==== Selectors row: TUNE on the left, THEME on the right.
@@ -227,7 +230,7 @@
                     {{-- TUNE selector --}}
                     <div class="tune-hero__selector">
                         <div class="tune-hero__selector-head">
-                            <span class="tune-hero__selector-label">PICK A TUNE</span>
+                            <span class="tune-hero__selector-label">{{ __('playground.hero.selector.tune_label') }}</span>
                         </div>
 
                         <div class="tune-hero__list"
@@ -272,7 +275,7 @@
                          from that theme's CSS variables. --}}
                     <div class="tune-hero__selector">
                         <div class="tune-hero__selector-head">
-                            <span class="tune-hero__selector-label tune-hero__selector-label--theme">PICK A THEME</span>
+                            <span class="tune-hero__selector-label tune-hero__selector-label--theme">{{ __('playground.hero.selector.theme_label') }}</span>
                         </div>
 
                         <div class="tune-hero__list"
@@ -370,16 +373,16 @@
                     <div class="tune-hero__preview-foot">
                         <span class="inline-flex items-center gap-1.5">
                             <span class="tune-hero__live-dot"></span>
-                            <span>LIVE</span>
+                            <span>{{ __('playground.hero.iframe.live') }}</span>
                         </span>
                         <span class="opacity-50">·</span>
-                        <span>acme studio · throughput dashboard</span>
+                        <span>{{ __('playground.hero.iframe.foot') }}</span>
                         <span class="ml-auto opacity-50">
                             <template x-if="hoverTune || cycleTune">
-                                <span>previewing <span class="text-accent font-semibold" x-text="hoverTune ?? cycleTune"></span></span>
+                                <span>{{ __('playground.hero.iframe.previewing') }} <span class="text-accent font-semibold" x-text="hoverTune ?? cycleTune"></span></span>
                             </template>
                             <template x-if="!hoverTune && !cycleTune">
-                                <span>committed: <span class="text-primary font-semibold" x-text="tune"></span></span>
+                                <span>{{ __('playground.hero.iframe.committed') }} <span class="text-primary font-semibold" x-text="tune"></span></span>
                             </template>
                         </span>
                     </div>
@@ -879,9 +882,9 @@
         <div class="stats shadow grid grid-cols-2 lg:grid-cols-4 w-full">
             <x-stat
                 :wrapped="false"
-                label="Components"
+                :label="__('playground.stat.components.label')"
                 value="46"
-                desc="across 7 categories"
+                :desc="__('playground.stat.components.desc')"
                 valueColor="primary"
             >
                 <x-i type="widget" class="w-8 h-8" />
@@ -889,9 +892,9 @@
 
             <x-stat
                 :wrapped="false"
-                label="Tune presets"
+                :label="__('playground.stat.tunes.label')"
                 value="10"
-                desc="shape × space × font"
+                :desc="__('playground.stat.tunes.desc')"
                 valueColor="accent"
             >
                 <x-i type="magic-stick-3" class="w-8 h-8" />
@@ -899,9 +902,9 @@
 
             <x-stat
                 :wrapped="false"
-                label="daisyUI themes"
+                :label="__('playground.stat.themes.label')"
                 value="30+"
-                desc="light · dark · all themed"
+                :desc="__('playground.stat.themes.desc')"
                 valueColor="info"
             >
                 <x-i type="palette" class="w-8 h-8" />
@@ -909,18 +912,17 @@
 
             <x-stat
                 :wrapped="false"
-                label="Solar icons"
+                :label="__('playground.stat.icons.label')"
                 value="1,234"
-                desc="pinion-icons v0.1.0"
+                :desc="__('playground.stat.icons.desc')"
                 valueColor="success"
             >
                 <x-i type="stars" class="w-8 h-8" />
             </x-stat>
         </div>
         <p class="text-xs text-base-content/50 text-right mt-2">
-            Icon count from
             <a href="https://github.com/sparrowhawk-labs/pinion-icons" class="link link-hover text-primary">
-                sparrowhawk-labs/pinion-icons →
+                {{ __('playground.stat.icons_credit') }}
             </a>
         </p>
     </div>
@@ -930,9 +932,9 @@
          ============================================================ --}}
     <section class="mb-16">
         <div class="flex items-baseline justify-between mb-element">
-            <h2 class="text-2xl font-bold tracking-tight">What's new</h2>
+            <h2 class="text-2xl font-bold tracking-tight">{{ __('playground.whats_new.title') }}</h2>
             <a href="https://github.com/sparrowhawk-labs/pinion-ui/releases" class="text-sm link link-hover text-primary">
-                All releases <x-i type="arrow-right" class="w-3.5 h-3.5 inline-block align-middle" />
+                {{ __('playground.whats_new.all_releases') }} <x-i type="arrow-right" class="w-3.5 h-3.5 inline-block align-middle" />
             </a>
         </div>
 
@@ -945,12 +947,12 @@
                         <x-badge size="xs" appearance="soft" color="primary">CSS</x-badge>
                     </div>
                 </x-slot:header>
-                <h3 class="font-semibold mb-1">Single-import preset</h3>
+                <h3 class="font-semibold mb-1">{{ __('playground.whats_new.card1.title') }}</h3>
                 <p class="text-sm text-base-content/70">
-                    One <code class="text-xs bg-base-200 px-1.5 py-0.5 rounded">pinion-ui.css</code> import wires Tailwind v4, daisyUI v5, and the tune token system in your app.css.
+                    {!! __('playground.whats_new.card1.body') !!}
                 </p>
                 <x-slot:footer>
-                    <p class="text-xs text-base-content/40">Released — 2026-04</p>
+                    <p class="text-xs text-base-content/40">{{ __('playground.whats_new.card1.released') }}</p>
                 </x-slot:footer>
             </x-card>
 
@@ -962,12 +964,12 @@
                         <x-badge size="xs" appearance="soft" color="accent">Alpine</x-badge>
                     </div>
                 </x-slot:header>
-                <h3 class="font-semibold mb-1">Focus + collapse plugins</h3>
+                <h3 class="font-semibold mb-1">{{ __('playground.whats_new.card2.title') }}</h3>
                 <p class="text-sm text-base-content/70">
-                    <code class="text-xs bg-base-200 px-1.5 py-0.5 rounded">ui:install</code> now auto-wires <code class="text-xs bg-base-200 px-1.5 py-0.5 rounded">@alpinejs/focus</code> and <code class="text-xs bg-base-200 px-1.5 py-0.5 rounded">@alpinejs/collapse</code> — modal focus-trap and accordion height animation just work.
+                    {!! __('playground.whats_new.card2.body') !!}
                 </p>
                 <x-slot:footer>
-                    <p class="text-xs text-base-content/40">Released — 2026-05</p>
+                    <p class="text-xs text-base-content/40">{{ __('playground.whats_new.card2.released') }}</p>
                 </x-slot:footer>
             </x-card>
 
@@ -979,12 +981,12 @@
                         <x-badge size="xs" appearance="soft" color="success">Polish</x-badge>
                     </div>
                 </x-slot:header>
-                <h3 class="font-semibold mb-1">Popover padding prop</h3>
+                <h3 class="font-semibold mb-1">{{ __('playground.whats_new.card3.title') }}</h3>
                 <p class="text-sm text-base-content/70">
-                    New <code class="text-xs bg-base-200 px-1.5 py-0.5 rounded">padding</code> prop on <code class="text-xs bg-base-200 px-1.5 py-0.5 rounded">&lt;x-popover&gt;</code> so right-click context menus can hug their content tightly.
+                    {!! __('playground.whats_new.card3.body') !!}
                 </p>
                 <x-slot:footer>
-                    <p class="text-xs text-base-content/40">Released — 2026-05</p>
+                    <p class="text-xs text-base-content/40">{{ __('playground.whats_new.card3.released') }}</p>
                 </x-slot:footer>
             </x-card>
         </div>
@@ -995,31 +997,31 @@
          4. LLM-native showcase
          ============================================================ --}}
     <section class="mb-16">
-        <h2 class="text-2xl font-bold tracking-tight mb-element">Built for AI agents</h2>
+        <h2 class="text-2xl font-bold tracking-tight mb-element">{{ __('playground.ai_native.title') }}</h2>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-element">
             <x-alert
                 color="primary"
                 appearance="bordered-left"
                 icon="programming"
-                title="AI agents code with pinion-ui correctly"
+                :title="__('playground.ai_native.alert_title')"
             >
                 <ul class="space-y-2 mt-2 text-sm">
                     <li class="flex items-start gap-2">
                         <x-i type="check-circle" class="w-4 h-4 text-success mt-0.5 shrink-0" />
-                        <span>Read <code class="text-xs bg-base-200 px-1.5 py-0.5 rounded">CLAUDE.md</code> once for project conventions</span>
+                        <span>{!! __('playground.ai_native.bullet1') !!}</span>
                     </li>
                     <li class="flex items-start gap-2">
                         <x-i type="check-circle" class="w-4 h-4 text-success mt-0.5 shrink-0" />
-                        <span><code class="text-xs bg-base-200 px-1.5 py-0.5 rounded">AGENTS.md</code> guides the per-component lookup workflow</span>
+                        <span>{!! __('playground.ai_native.bullet2') !!}</span>
                     </li>
                     <li class="flex items-start gap-2">
                         <x-i type="check-circle" class="w-4 h-4 text-success mt-0.5 shrink-0" />
-                        <span>46 per-component reference docs under <code class="text-xs bg-base-200 px-1.5 py-0.5 rounded">reference/components/</code></span>
+                        <span>{!! __('playground.ai_native.bullet3') !!}</span>
                     </li>
                     <li class="flex items-start gap-2">
                         <x-i type="check-circle" class="w-4 h-4 text-success mt-0.5 shrink-0" />
-                        <span>Fresh-Laravel install verified — drop the package into any new app and it builds</span>
+                        <span>{!! __('playground.ai_native.bullet4') !!}</span>
                     </li>
                 </ul>
             </x-alert>
@@ -1029,26 +1031,26 @@
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-2">
                             <x-i type="rocket" class="w-5 h-5 text-primary" />
-                            <h3 class="font-semibold">Install in 60 seconds</h3>
+                            <h3 class="font-semibold">{{ __('playground.ai_native.install.title') }}</h3>
                         </div>
                         <x-badge size="xs" appearance="dot" color="success">Laravel 11 / 12</x-badge>
                     </div>
                 </x-slot:header>
 
-                <pre class="text-xs bg-base-200 rounded-[var(--radius-box)] px-4 py-3 overflow-x-auto"><code><span class="text-base-content/40"># 1. Require the package</span>
+                <pre class="text-xs bg-base-200 rounded-[var(--radius-box)] px-4 py-3 overflow-x-auto"><code><span class="text-base-content/40">{{ __('playground.ai_native.install.step1') }}</span>
 composer require sparrowhawk-labs/pinion-ui
 
-<span class="text-base-content/40"># 2. Install assets + AGENTS.md scaffolding</span>
+<span class="text-base-content/40">{{ __('playground.ai_native.install.step2') }}</span>
 php artisan ui:install --ai
 
-<span class="text-base-content/40"># 3. Build &amp; run</span>
+<span class="text-base-content/40">{{ __('playground.ai_native.install.step3') }}</span>
 npm run build &amp;&amp; php artisan serve</code></pre>
 
                 <x-slot:footer>
                     <div class="flex items-center justify-between">
                         <p class="text-xs text-base-content/60">
                             <x-i type="info-circle" class="w-3.5 h-3.5 inline-block align-middle" />
-                            <code class="text-xs">--ai</code> drops <code class="text-xs">CLAUDE.md</code> + <code class="text-xs">AGENTS.md</code> in your repo root.
+                            {!! __('playground.ai_native.install.foot') !!}
                         </p>
                         <x-button
                             size="sm"
@@ -1068,8 +1070,8 @@ npm run build &amp;&amp; php artisan serve</code></pre>
          ============================================================ --}}
     <section id="components" class="mb-16 scroll-mt-24">
         <div class="flex items-baseline justify-between mb-element">
-            <h2 class="text-2xl font-bold tracking-tight">Components — a live taste</h2>
-            <span class="text-sm text-base-content/60">9 of 46 — pick anything from the sidebar for the full matrix</span>
+            <h2 class="text-2xl font-bold tracking-tight">{{ __('playground.components.title') }}</h2>
+            <span class="text-sm text-base-content/60">{{ __('playground.components.subtitle') }}</span>
         </div>
 
         @php
@@ -1147,11 +1149,11 @@ npm run build &amp;&amp; php artisan serve</code></pre>
                 <x-input
                     name="overview_email"
                     type="email"
-                    label="Email"
+                    :label="__('playground.components.input.label')"
                     floating
                     iconLeft="letter"
-                    hint="floating label · iconLeft prop"
-                    placeholder="you@example.com"
+                    :hint="__('playground.components.input.hint')"
+                    :placeholder="__('playground.components.input.placeholder')"
                 />
 
                 <x-slot:footer>
@@ -1170,17 +1172,17 @@ npm run build &amp;&amp; php artisan serve</code></pre>
                 </x-slot:header>
 
                 <h3 class="font-semibold mb-3">{{ $previews[3]['title'] }}</h3>
-                <p class="text-sm text-base-content/70 mb-3">Alpine-driven dialog with focus trap, ESC + backdrop dismiss.</p>
-                <x-modal title="Welcome to pinion-ui" size="md">
+                <p class="text-sm text-base-content/70 mb-3">{{ __('playground.components.modal.desc') }}</p>
+                <x-modal :title="__('playground.components.modal.title')" size="md">
                     <x-slot:trigger>
-                        <x-button size="sm" color="primary" icon="rocket">Open modal</x-button>
+                        <x-button size="sm" color="primary" icon="rocket">{{ __('playground.components.modal.button') }}</x-button>
                     </x-slot:trigger>
                     <p class="text-sm text-base-content/80">
-                        46 components, all themable, all documented for AI agents. Press <kbd class="kbd kbd-sm">Esc</kbd> or click outside to close.
+                        {!! __('playground.components.modal.body') !!}
                     </p>
                     <x-slot:actions>
-                        <x-button appearance="ghost" x-on:click="open = false">Close</x-button>
-                        <x-button color="primary" x-on:click="open = false">Got it</x-button>
+                        <x-button appearance="ghost" x-on:click="open = false">{{ __('playground.components.modal.close') }}</x-button>
+                        <x-button color="primary" x-on:click="open = false">{{ __('playground.components.modal.ok') }}</x-button>
                     </x-slot:actions>
                 </x-modal>
 
@@ -1201,9 +1203,9 @@ npm run build &amp;&amp; php artisan serve</code></pre>
 
                 <h3 class="font-semibold mb-3">{{ $previews[4]['title'] }}</h3>
                 <x-stepper :items="[
-                    ['label' => 'Plan',    'state' => 'done'],
-                    ['label' => 'Build',   'state' => 'current'],
-                    ['label' => 'Ship',    'state' => 'upcoming'],
+                    ['label' => __('playground.components.stepper.plan'),  'state' => 'done'],
+                    ['label' => __('playground.components.stepper.build'), 'state' => 'current'],
+                    ['label' => __('playground.components.stepper.ship'),  'state' => 'upcoming'],
                 ]" />
 
                 <x-slot:footer>
@@ -1224,11 +1226,11 @@ npm run build &amp;&amp; php artisan serve</code></pre>
                 <h3 class="font-semibold mb-3">{{ $previews[5]['title'] }}</h3>
                 <div class="space-y-2">
                     <div class="flex items-center gap-3">
-                        <span class="text-xs text-base-content/60 w-20">stars</span>
+                        <span class="text-xs text-base-content/60 w-20">{{ __('playground.components.rating.stars') }}</span>
                         <x-rating name="overview_rating_1" :value="4" />
                     </div>
                     <div class="flex items-center gap-3">
-                        <span class="text-xs text-base-content/60 w-20">half · heart</span>
+                        <span class="text-xs text-base-content/60 w-20">{{ __('playground.components.rating.half_heart') }}</span>
                         <x-rating name="overview_rating_2" :value="3.5" half shape="heart" color="error" />
                     </div>
                 </div>
@@ -1250,8 +1252,8 @@ npm run build &amp;&amp; php artisan serve</code></pre>
 
                 <h3 class="font-semibold mb-3">{{ $previews[6]['title'] }}</h3>
                 <div class="space-y-3">
-                    <x-toggle name="overview_toggle_1" label="Email notifications" checked stateLabel />
-                    <x-toggle name="overview_toggle_2" label="Dark mode" appearance="soft" color="accent" />
+                    <x-toggle name="overview_toggle_1" :label="__('playground.components.toggle.email')" checked stateLabel />
+                    <x-toggle name="overview_toggle_2" :label="__('playground.components.toggle.dark')" appearance="soft" color="accent" />
                 </div>
 
                 <x-slot:footer>
@@ -1272,11 +1274,11 @@ npm run build &amp;&amp; php artisan serve</code></pre>
                 <h3 class="font-semibold mb-3">{{ $previews[7]['title'] }}</h3>
                 <x-input-number
                     name="overview_qty"
-                    label="Quantity"
+                    :label="__('playground.components.input_number.label')"
                     :value="3"
                     :min="0"
                     :max="20"
-                    hint="Alpine-driven ± with bound clamping"
+                    :hint="__('playground.components.input_number.hint')"
                 />
 
                 <x-slot:footer>
@@ -1295,15 +1297,15 @@ npm run build &amp;&amp; php artisan serve</code></pre>
                 </x-slot:header>
 
                 <h3 class="font-semibold mb-3">{{ $previews[8]['title'] }}</h3>
-                <p class="text-sm text-base-content/70 mb-3">Hover any button below:</p>
+                <p class="text-sm text-base-content/70 mb-3">{{ __('playground.components.tooltip.intro') }}</p>
                 <div class="flex flex-wrap gap-2">
-                    <x-tooltip text="Default light surface" position="top">
+                    <x-tooltip :text="__('playground.components.tooltip.light')" position="top">
                         <x-button size="sm" appearance="soft">light</x-button>
                     </x-tooltip>
-                    <x-tooltip text="Stock dark bubble" color="neutral" position="top">
+                    <x-tooltip :text="__('playground.components.tooltip.neutral')" color="neutral" position="top">
                         <x-button size="sm">neutral</x-button>
                     </x-tooltip>
-                    <x-tooltip text="Semantic colour" color="success" position="top">
+                    <x-tooltip :text="__('playground.components.tooltip.success')" color="success" position="top">
                         <x-button size="sm" color="success">success</x-button>
                     </x-tooltip>
                 </div>
@@ -1323,8 +1325,8 @@ npm run build &amp;&amp; php artisan serve</code></pre>
 
     <section class="my-16">
         <div class="text-center">
-            <h2 class="text-xl font-bold tracking-tight mb-2">Ready to build?</h2>
-            <p class="text-sm text-base-content/60 mb-element">Grab the package, scan the components, ship UI.</p>
+            <h2 class="text-xl font-bold tracking-tight mb-2">{{ __('playground.ready.title') }}</h2>
+            <p class="text-sm text-base-content/60 mb-element">{{ __('playground.ready.subtitle') }}</p>
 
             <div class="flex flex-wrap items-center justify-center gap-2">
                 <x-button
@@ -1353,8 +1355,16 @@ npm run build &amp;&amp; php artisan serve</code></pre>
                 >pinion-icons</x-button>
             </div>
 
+            @php
+                // pre-render the heart icon as inline HTML so the lang file can
+                // splice it in via :heart — x-i is a Blade component and won't
+                // re-process from inside a __() string after compilation.
+                $heartIcon = \Illuminate\Support\Facades\Blade::render(
+                    '<x-i type="heart" class="w-3.5 h-3.5 inline-block align-middle text-error" />'
+                );
+            @endphp
             <p class="text-xs text-base-content/40 mt-element">
-                MIT licensed · built with <x-i type="heart" class="w-3.5 h-3.5 inline-block align-middle text-error" /> by sparrowhawk-labs
+                {!! __('playground.ready.foot', ['heart' => $heartIcon]) !!}
             </p>
         </div>
     </section>

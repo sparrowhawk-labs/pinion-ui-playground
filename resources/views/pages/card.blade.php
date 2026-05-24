@@ -2,7 +2,7 @@
 
 @section('title', '— Card')
 @section('heading', 'Cards')
-@section('subheading', 'appearance = default / elevated / filled / base-100 / base-200 / base-300 / outline / soft / solid / bordered-top / ghost — divider toggle')
+@section('subheading', __('playground.subheading.card'))
 
 @section('content')
     <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">Default / Elevated / Filled / Ghost</p>

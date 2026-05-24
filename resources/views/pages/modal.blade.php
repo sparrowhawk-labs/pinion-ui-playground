@@ -2,7 +2,7 @@
 
 @section('title', '— Modal')
 @section('heading', 'Modal')
-@section('subheading', 'Alpine x-data 駆動のオーバーレイダイアログ。trigger slot に置いた要素をクリックで開く、または別所から $dispatch("open-modal-{id}") で開く。size (sm/md/lg/xl/full)・title・showClose・closeOnBackdrop の 5 props。背景 click / Escape / × ボタンで閉じる。x-trap で focus trap、x-teleport で body 直下に描画。')
+@section('subheading', __('playground.subheading.modal'))
 
 @section('content')
     <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">

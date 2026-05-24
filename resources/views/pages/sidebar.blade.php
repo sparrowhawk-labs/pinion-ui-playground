@@ -2,7 +2,7 @@
 
 @section('title', '— Sidebar')
 @section('heading', 'Sidebar')
-@section('subheading', 'x-teleport で body 直下に描画される drawer 系コンポーネント。trigger slot を click で開き、Escape / × / 背景 click で閉じる。side (left/right)・size (sm/md/lg)・backdrop の 3 軸で variant を作る。focus trap (x-trap.inert.noscroll) と role=dialog/aria-modal=true で a11y も担保。backdrop=false の時は overlay 全体を pointer-events-none にして、panel のみ pointer-events-auto に戻し、背後ページを操作可能にする (永続 inspector ・ツールパレット用途)。')
+@section('subheading', __('playground.subheading.sidebar'))
 
 @section('content')
     <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">

@@ -2,7 +2,7 @@
 
 @section('title', '— Progress')
 @section('heading', 'Progress')
-@section('subheading', 'daisyUI progress bar wrapper. value=null で indeterminate (animated stripe)、value 指定で determinate。color × size × showLabel (percent / fraction) を props で制御。a11y は role=progressbar + aria-valuenow / valuemin / valuemax 付与済み。')
+@section('subheading', __('playground.subheading.progress'))
 
 @section('content')
     @php

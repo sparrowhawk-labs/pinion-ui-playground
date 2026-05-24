@@ -2,7 +2,7 @@
 
 @section('title', '— Toggle')
 @section('heading', 'Toggles')
-@section('subheading', 'switch (peer + sr-only, role="switch") — color × appearance (solid / soft) × size, with optional ON/OFF state label. solid fills the rail; soft inverts and fills the thumb.')
+@section('subheading', __('playground.subheading.toggle'))
 
 @section('content')
     @php

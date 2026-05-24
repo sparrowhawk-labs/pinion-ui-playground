@@ -2,7 +2,7 @@
 
 @section('title', '— Table')
 @section('heading', 'Table')
-@section('subheading', '通常の table 表示 + x-table-scroll ラッパーで横スクロール時のみ左右ボタンと gradient fade を出す。コンテンツが overflow しない時はラッパーは透明 (何も足さない)。table 専用ではなく、card list / image strip 等にも使える。')
+@section('subheading', __('playground.subheading.table-scroll'))
 
 @section('content')
     @php

@@ -2,7 +2,7 @@
 
 @section('title', '— Tooltip')
 @section('heading', 'Tooltip')
-@section('subheading', 'daisyUI 5 の tooltip class を wrap した no-JS / pure CSS のホバーチップ。trigger を slot に入れ、本文は text prop で渡す。position (top/right/bottom/left)・color (light default + 8 variants 含む neutral)・open (常時表示) の 3 props。')
+@section('subheading', __('playground.subheading.tooltip'))
 
 @section('content')
     <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">

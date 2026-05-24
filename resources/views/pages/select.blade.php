@@ -2,7 +2,7 @@
 
 @section('title', '— Select')
 @section('heading', 'Selects')
-@section('subheading', 'native select — color × appearance, sizes, optgroup, multiple, floating label')
+@section('subheading', __('playground.subheading.select'))
 
 @section('content')
     @php

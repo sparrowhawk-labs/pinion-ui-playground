@@ -2,7 +2,7 @@
 
 @section('title', '— Timeline')
 @section('heading', 'Timeline')
-@section('subheading', 'daisyUI 5 の timeline class を wrap した時系列リスト。items 配列で渡すだけ。orientation (vertical/horizontal)・compact (片側寄せ)・snap (アイコンを上端 snap)・appearance (solid default / soft) の 4 modifier。各 item に state=done|current|upcoming を付けると middle icon と connector の色が変化。default は solid (濃い primary) で done chain がはっきり立つ。穏やかに見せたいときだけ appearance="soft" を opt-in。')
+@section('subheading', __('playground.subheading.timeline'))
 
 @section('content')
     <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">

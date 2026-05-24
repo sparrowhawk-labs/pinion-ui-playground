@@ -30,3 +30,6 @@ Thumbs.db
 /.screenshots
 /.playwright-cli
 .screenshots/
+
+# spatie/laravel-export output (4 locales × ~44 pages = ~36MB; regenerated via `php artisan export`)
+/dist

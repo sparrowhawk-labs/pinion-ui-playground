@@ -2,7 +2,7 @@
 
 @section('title', '— Avatar')
 @section('heading', 'Avatars')
-@section('subheading', 'initials / icon / image + size × shape × status indicator')
+@section('subheading', __('playground.subheading.avatar'))
 
 @section('content')
     <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">Sizes (initials)</p>

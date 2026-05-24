@@ -2,7 +2,7 @@
 
 @section('title', '— Stepper')
 @section('heading', 'Stepper')
-@section('subheading', 'multi-step プロセスの可視化 — sign-up flow / checkout / wizard。items 配列で渡し、各 item に state=done|current|upcoming を付与。orientation (horizontal default / vertical) と variant (numbered default / dotted) の 2 modifier。timeline は append-only ヒストリ用、stepper は bounded sequential progress 用。')
+@section('subheading', __('playground.subheading.stepper'))
 
 @section('content')
     {{-- DEFAULT --}}

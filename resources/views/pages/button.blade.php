@@ -2,7 +2,7 @@
 
 @section('title', '— Button')
 @section('heading', 'Buttons')
-@section('subheading', 'color × appearance (solid / outline / soft / base-100 / base-200 / base-300 / ghost / link) — 全 8 colors')
+@section('subheading', __('playground.subheading.button'))
 
 @section('content')
     @foreach(['solid','outline','soft','base-100','base-200','base-300'] as $app)

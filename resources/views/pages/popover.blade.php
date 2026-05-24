@@ -2,7 +2,7 @@
 
 @section('title', '— Popover')
 @section('heading', 'Popover')
-@section('subheading', 'クリック (or hover) でトリガー横に浮かぶ panel。dropdown と tooltip の中間 — 任意コンテンツ (info card / mini form / 確認 prompt) を入れる。4 placement (top/right/bottom/left) を CSS で配置 (collision detection なし)、optional arrow、trigger="click" (default) / "hover"。Alpine 駆動、ESC で close、click 外で close。')
+@section('subheading', __('playground.subheading.popover'))
 
 @section('content')
     {{-- DEFAULT --}}

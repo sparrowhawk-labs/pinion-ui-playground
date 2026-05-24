@@ -2,7 +2,7 @@
 
 @section('title', '— Pinion Theme Preview')
 @section('heading', 'Pinion Theme — Preview')
-@section('subheading', 'v0.4.0 同梱予定の data-theme="pinion" の tone を user 判断するためのページ。各カードは inline CSS variables で daisyUI v5 token を上書きしている (実装上は themes 配列にまとめる)。')
+@section('subheading', __('playground.subheading.theme-preview'))
 
 @section('content')
 @php

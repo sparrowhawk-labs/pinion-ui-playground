@@ -2,7 +2,7 @@
 
 @section('title', '— Rating')
 @section('heading', 'Rating')
-@section('subheading', 'daisyUI 5 の rating (mask + radio) ラッパー。star / heart / circle 形状、半分星 (half=true)、readonly に対応。各 demo の name 属性は radio group を分離するため必ず unique。')
+@section('subheading', __('playground.subheading.rating'))
 
 @section('content')
     {{-- 1. デフォルト --}}

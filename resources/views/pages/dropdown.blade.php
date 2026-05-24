@@ -2,7 +2,7 @@
 
 @section('title', '— Dropdown')
 @section('heading', 'Dropdown')
-@section('subheading', 'Alpine.js で開閉する汎用ドロップダウン。trigger を slot で差し替え可能、label prop で簡易ボタン化も可能。position (bottom-end default / bottom-start / top-end / top-start)・size (sm/md/lg)・width (任意の Tailwind w-* class) の 3 props。menu の中身は自由スロット — リンクでもボタンでも何でも入る。')
+@section('subheading', __('playground.subheading.dropdown'))
 
 @section('content')
     <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">

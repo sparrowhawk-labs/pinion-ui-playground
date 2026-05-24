@@ -2,7 +2,7 @@
 
 @section('title', '— Badge')
 @section('heading', 'Badges')
-@section('subheading', 'color × appearance (solid / outline / soft / base-100 / base-200 / base-300 / dot)')
+@section('subheading', __('playground.subheading.badge'))
 
 @section('content')
     @foreach(['solid','outline','soft','base-100','base-200','base-300'] as $app)

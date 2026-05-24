@@ -2,7 +2,7 @@
 
 @section('title', '— Avatar Group')
 @section('heading', 'Avatar Group')
-@section('subheading', 'daisyUI 5 の avatar-group クラスで avatar を重ねた列 (facepile)。プロジェクトメンバー / 参加者 / 担当者リスト等に使う。slot に &lt;x-avatar&gt; を複数並べるだけ。spacing で重なり量を 3 段切替 (tight / normal / loose)。')
+@section('subheading', __('playground.subheading.avatar-group'))
 
 @section('content')
     <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">

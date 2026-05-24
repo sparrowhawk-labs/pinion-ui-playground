@@ -2,7 +2,7 @@
 
 @section('title', '— Divider')
 @section('heading', 'Divider')
-@section('subheading', 'daisyUI 5 の divider クラスをラップしたセクション区切り線。@verbatim<x-divider>@endverbatim でただの線、slot にテキストを入れるとラベル付き。direction=vertical で flex 内の縦線にもなる。')
+@section('subheading', __('playground.subheading.divider'))
 
 @section('content')
     <p class="text-xs uppercase tracking-wider text-base-content/50 mb-2">

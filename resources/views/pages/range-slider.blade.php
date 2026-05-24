@@ -2,7 +2,7 @@
 
 @section('title', '— Range Slider')
 @section('heading', 'Range Slider')
-@section('subheading', 'daisyUI 5 の range class を wrap した <input type="range"> + ラベル/値表示/ヒント/エラーの chrome 付き。8 colors × 5 sizes、min/max/step、showValue (Alpine で live 表示)、error state。フォーム入力としても、純粋な視覚スライダーとしても使える。')
+@section('subheading', __('playground.subheading.range-slider'))
 
 @section('content')
     {{-- DEFAULT --}}

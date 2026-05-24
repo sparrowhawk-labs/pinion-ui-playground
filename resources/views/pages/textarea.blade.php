@@ -2,7 +2,7 @@
 
 @section('title', '— Textarea')
 @section('heading', 'Textareas')
-@section('subheading', 'color × appearance (outline / soft / underline / ghost) — rows, autoresize, character counter, label/hint/error')
+@section('subheading', __('playground.subheading.textarea'))
 
 @section('content')
     {{-- 1. appearance matrix × colors --}}

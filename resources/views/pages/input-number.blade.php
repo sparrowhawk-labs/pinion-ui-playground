@@ -2,7 +2,7 @@
 
 @section('title', '— Input Number')
 @section('heading', 'Input Number')
-@section('subheading', '数量セレクタ — [−] [input] [＋] の 3 要素を border 連結。min/max/step は HTML 属性と Alpine clamp 両方で enforced、bound 到達時は ± ボタンが auto-disable する。native spinner arrows は非表示。decimal step (e.g. 0.5) も可。')
+@section('subheading', __('playground.subheading.input-number'))
 
 @section('content')
     {{-- DEFAULT --}}
