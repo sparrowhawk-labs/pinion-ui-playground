@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/',       fn () => view('pages.overview'))->name('overview');
+Route::get('/_demo-lp',  fn () => view('_demo-lp'))->name('_demo-lp');
+Route::get('/_demo-app', fn () => view('_demo-app'))->name('_demo-app');
 Route::get('/button', fn () => view('pages.button'))->name('button');
 Route::get('/button-group', fn () => view('pages.button-group'))->name('button-group');
 Route::get('/alert',  fn () => view('pages.alert'))->name('alert');

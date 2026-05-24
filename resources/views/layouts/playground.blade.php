@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pinion-ui playground @yield('title')</title>
+    <title>Pinion UI @yield('title')</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -150,8 +150,8 @@
         {{-- Sidebar --}}
         <aside class="w-60 shrink-0 border-r border-base-300 bg-base-200/40 sticky top-0 h-screen overflow-y-auto">
             <div class="p-4 border-b border-base-300">
-                <a href="/" class="text-sm font-bold text-primary">pinion-ui playground</a>
-                <p class="text-xs text-base-content/50 mt-1">Blade components</p>
+                <a href="/" class="text-sm font-bold text-primary">Pinion UI</a>
+                <p class="text-xs text-base-content/50 mt-1">Blade adapter · live demos</p>
             </div>
             <nav class="p-2 flex flex-col gap-0.5">
                 @foreach($navSections as $sectionIndex => $section)
