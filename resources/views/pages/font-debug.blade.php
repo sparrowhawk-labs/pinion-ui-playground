@@ -41,7 +41,7 @@
         上のトグルの影響を受けず independent に確認できる。
     </p>
     <div class="space-y-6">
-        @foreach(['default','sharp','soft','playful','corporate','brutal','elegant','bold','pixel','tech'] as $t)
+        @foreach(['default','minimal','sharp','soft','playful','corporate','brutal','elegant','bold','pixel','tech'] as $t)
             <div>
                 <div class="text-xs uppercase tracking-wider text-base-content/50 mb-2 font-semibold">tune = {{ $t }}</div>
                 <div class="grid grid-cols-2 gap-3">

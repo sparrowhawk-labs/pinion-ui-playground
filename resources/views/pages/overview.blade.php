@@ -40,6 +40,7 @@
         // reads as a faithful preview of the tune's own type voice.
         $tunesHero = [
             ['name' => 'default',   'label' => 'Default',   'font' => '"Inter", system-ui, sans-serif',                        'style' => '',                       'meta' => 'Inter · neutral'],
+            ['name' => 'minimal',   'label' => 'Minimal',   'font' => '"Inter", system-ui, sans-serif',                        'style' => 'font-weight:500;letter-spacing:-0.01em;', 'meta' => 'Inter · airy'],
             ['name' => 'sharp',     'label' => 'Sharp',     'font' => '"Instrument Sans", ui-sans-serif, sans-serif',          'style' => 'font-weight:600;letter-spacing:-0.01em;', 'meta' => 'Instrument · 0 radius'],
             ['name' => 'soft',      'label' => 'Soft',      'font' => '"Quicksand", ui-sans-serif, sans-serif',                'style' => 'font-weight:600;',       'meta' => 'Quicksand · pillows'],
             ['name' => 'playful',   'label' => 'Playful',   'font' => '"Fredoka", ui-sans-serif, sans-serif',                  'style' => 'font-weight:600;',       'meta' => 'Fredoka · cheerful'],

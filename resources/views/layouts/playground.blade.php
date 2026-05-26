@@ -38,7 +38,7 @@
     ja: '{{ $htmlLocale }}' === 'ja',
     debug: localStorage.getItem('pinion-debug') === 'on',
     themes: ['pinion','light','dark','abyss','acid','aqua','autumn','black','bumblebee','business','caramellatte','cmyk','coffee','corporate','cupcake','cyberpunk','dim','dracula','emerald','fantasy','forest','garden','halloween','lemonade','lofi','luxury','night','nord','pastel','retro','silk','sunset','synthwave','valentine','winter','wireframe'],
-    tunes: ['default','sharp','soft','playful','corporate','brutal','elegant','bold','pixel','tech'],
+    tunes: ['default','minimal','sharp','soft','playful','corporate','brutal','elegant','bold','pixel','tech'],
     setTheme(t) { this.theme = t; document.documentElement.setAttribute('data-theme', t); localStorage.setItem('pinion-theme', t); },
     setTune(t) { this.tune = t; document.documentElement.setAttribute('data-tune', t); localStorage.setItem('pinion-tune', t); },
     setJa(on) { this.ja = on; document.documentElement.setAttribute('data-ja', on ? '' : 'off'); },

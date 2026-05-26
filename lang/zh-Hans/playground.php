@@ -20,7 +20,7 @@ return [
         'chip' => [
             'themes'     => '30+ daisyUI themes',
             'components' => '46 Blade components',
-            'tunes'      => '10 Tune presets ↓',
+            'tunes'      => '11 Tune presets ↓',
         ],
         'selector' => [
             'tune_label'  => 'PICK A TUNE',
