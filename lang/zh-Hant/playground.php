@@ -9,11 +9,10 @@ return [
         'eyebrow_chip' => 'v0.4.0 · BLADE',
         'eyebrow_note' => '— REACT / VUE / WEB COMPONENTS COMING v0.5+',
         'title' => [
-            'line1_html' => '<span class="tune-hero__title-tune">Tuneable</span> UI、',
-            'line2'      => '與 AI 一起',
-            'line3'      => '出貨。',
+            'line1' => '創作的速度，',
+            'line2' => '沒有上限。',
         ],
-        'subtitle' => '形狀、間距和字體是可切換的維度 — 翻動 <code>data-tune</code>，整個表面無需觸及主題就能改變。每個元件都隨附 AGENTS.md 級別的參考文件，讓 AI 代理讀一次就能正確編寫。',
+        'subtitle' => '設計不必先定案，可以邊做邊決定。色彩、形狀、間距，一個屬性就能整體切換。轉向只在一瞬，返工時間歸零。與 AI 並肩，創意隨之變幻自如，不斷加速。',
         'cta' => [
             'github'     => '在 GitHub 上查看',
             'components' => '瀏覽元件',

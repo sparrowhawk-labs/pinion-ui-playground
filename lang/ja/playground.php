@@ -8,14 +8,11 @@ return [
     'hero' => [
         'eyebrow_chip' => 'v0.4.0 · BLADE',
         'eyebrow_note' => '— REACT / VUE / WEB COMPONENTS COMING v0.5+',
-        // line1_html: 「Tuneable」だけは accent tune font で動くブランド語なので
-        // <span class="tune-hero__title-tune">Tuneable</span> を HTML 込みで保持する。
         'title' => [
-            'line1_html' => '<span class="tune-hero__title-tune">Tuneable</span> な UI、',
-            'line2'      => 'AI と一緒に',
-            'line3'      => '出荷する。',
+            'line1' => 'つくる速度に、',
+            'line2' => '上限はない。',
         ],
-        'subtitle' => 'Shape / spacing / font は切り替え可能な軸。 <code>data-tune</code> を flip すれば theme を触らずに表面全体が変わる。 各コンポーネントは AGENTS.md 級の reference doc 付きで、 AI エージェントは一度読めば正しく書ける。',
+        'subtitle' => 'デザインは固めず、 走りながら決めていい。 色も形も余白も、 属性ひとつで丸ごと変わる。 ピボットは一瞬、 やり直しの時間はゼロ。 AI と並走するこの UI で、 クリエイティブが、 変幻自在に加速する。',
         'cta' => [
             'github'     => 'GitHub で見る',
             'components' => 'コンポーネント一覧',

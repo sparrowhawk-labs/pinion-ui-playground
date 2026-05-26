@@ -8,14 +8,11 @@ return [
     'hero' => [
         'eyebrow_chip' => 'v0.4.0 · BLADE',
         'eyebrow_note' => '— REACT / VUE / WEB COMPONENTS COMING v0.5+',
-        // line1_html: 「Tuneable」是品牌语，在 accent tune font 中工作
-        // <span class="tune-hero__title-tune">Tuneable</span> 保持 HTML 结构
         'title' => [
-            'line1_html' => '<span class="tune-hero__title-tune">Tuneable</span> UI，',
-            'line2'      => '为 AI 而生',
-            'line3'      => '一起发布。',
+            'line1' => '创作的速度，',
+            'line2' => '没有上限。',
         ],
-        'subtitle' => 'Shape、spacing、font 是可切换的维度 — 翻转 <code>data-tune</code>，整个界面改变而无需触碰 theme。每个组件都附带 AGENTS.md 级别的参考文档，AI 代理一次读完就能正确编码。',
+        'subtitle' => '设计不必先定下来，可以边做边决定。颜色、形状、间距，一个属性就能整体切换。转向只在一瞬，返工时间归零。与 AI 并肩，创意随之变幻自如，不断加速。',
         'cta' => [
             'github'     => '在 GitHub 查看',
             'components' => '浏览组件',

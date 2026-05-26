@@ -9,11 +9,10 @@ return [
         'eyebrow_chip' => 'v0.4.0 · BLADE',
         'eyebrow_note' => '— REACT / VUE / WEB COMPONENTS COMING v0.5+',
         'title' => [
-            'line1_html' => '<span class="tune-hero__title-tune">Tuneable</span> UI,',
-            'line2'      => 'built for AI',
-            'line3'      => 'to ship with.',
+            'line1' => 'No ceiling on',
+            'line2' => 'how fast you build.',
         ],
-        'subtitle' => 'Shape, spacing, and font are a switchable axis — flip <code>data-tune</code> and the whole surface changes without touching theme. Every component ships with an AGENTS.md-grade reference doc so AI agents read it once and code it right.',
+        'subtitle' => 'Don\'t lock the design down — decide as you go. Color, form, and spacing all swap with a single attribute. Pivots take a moment, rework drops to zero. With AI alongside, your creativity shape-shifts and accelerates.',
         'cta' => [
             'github'     => 'View on GitHub',
             'components' => 'Browse components',

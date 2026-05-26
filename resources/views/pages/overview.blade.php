@@ -180,18 +180,12 @@
                     <span class="tune-hero__eyebrow">{{ __('playground.hero.eyebrow_note') }}</span>
                 </div>
 
-                {{-- Title — leads with the two selling points (tune + AI native).
-                     "tuneable" picks up the active tune's display font on hover.
-                     `line1_html` keeps the <span class="tune-hero__title-tune">Tuneable</span>
-                     wrapper inside the translation so it stays the accent word in
-                     every locale (it visually swaps font with the active tune). --}}
+                {{-- Title — pure-locale headline: line1 is the muted setup,
+                     line2 the gradient punch. (The active-tune font morph that
+                     used to live here now belongs to the Tune selector below.) --}}
                 <h1 class="tune-hero__title">
-                    <span
-                        class="tune-hero__title-line tune-hero__title-line--accent"
-                        :data-tune="tune"
-                    >{!! __('playground.hero.title.line1_html') !!}</span>
-                    <span class="tune-hero__title-line">{{ __('playground.hero.title.line2') }}</span>
-                    <span class="tune-hero__title-line tune-hero__title-line--muted">{{ __('playground.hero.title.line3') }}</span>
+                    <span class="tune-hero__title-line tune-hero__title-line--muted">{{ __('playground.hero.title.line1') }}</span>
+                    <span class="tune-hero__title-line tune-hero__title-line--grad">{{ __('playground.hero.title.line2') }}</span>
                 </h1>
 
                 <p class="tune-hero__subtitle">
@@ -610,42 +604,30 @@
             font-weight: 600;
         }
         .tune-hero__title {
-            font-size: clamp(2.25rem, 4vw, 3.5rem);
-            line-height: 1.02;
+            font-size: clamp(2rem, 3.4vw, 3rem);
+            line-height: 1.04;
             font-weight: 900;
             letter-spacing: -0.032em;
+            /* keep-all stops Japanese/Chinese headlines from breaking mid-run
+               (e.g. 「つくる速度に、」 splitting into 「つくる速度」+「に、」). EN
+               still wraps at spaces. */
+            word-break: keep-all;
             display: flex; flex-direction: column; gap: 0.02em;
             margin-bottom: 0.875rem;
         }
         .tune-hero__title-line { display: block; }
-        .tune-hero__title-line--accent {
-            /* Inherit no `display: flex` from parent — keep word flow inline.
-               Size/weight match the other lines (parent .tune-hero__title) for
-               a uniform 3-line headline; only the font swap on `:data-tune`
-               distinguishes this line. */
-            display: inline-block;
-            /* Force-inherit from parent because tune.css applies
-               `[data-tune] { font-size: var(--font-size-base, 1rem) }` to ANY
-               element carrying data-tune, which would otherwise reset this
-               span to 16px. */
-            font-size: inherit;
-            line-height: inherit;
-            transition: font-family 280ms ease;
-        }
         .tune-hero__title-line--muted {
             color: color-mix(in oklab, var(--color-base-content) 60%, transparent);
             font-weight: 800;
         }
-        .tune-hero__title-tune {
-            /* This single word adopts the hovered/active tune's heading font
-               via inheritance (we set :data-tune on the parent span). It
-               also gets a gradient sweep to draw the eye. */
-            font-family: var(--font-heading, inherit);
+        .tune-hero__title-line--grad {
+            /* Punch line: gradient sweep for emphasis. No font morph —
+               the active-tune font swap lives in the Tune selector below. */
+            width: fit-content;
             background: linear-gradient(120deg, var(--color-primary), var(--color-accent));
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-style: italic;
             padding-right: 0.06em;
         }
         .tune-hero__subtitle {
@@ -871,7 +853,6 @@
                 animation: none !important;
             }
             .tune-hero__row:hover { transform: none; }
-            .tune-hero__title-line--accent { transition: none; }
         }
     </style>
 
