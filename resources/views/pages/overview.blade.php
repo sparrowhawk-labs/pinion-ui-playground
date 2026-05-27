@@ -210,7 +210,7 @@
                     >{{ __('playground.hero.cta.components') }}</x-button>
                 </div>
 
-                {{-- Handoff strip. "10 Tune presets" lives last so the eye
+                {{-- Handoff strip. "11 Tune presets" lives last so the eye
                      runs into the typographic list immediately below. --}}
                 <div class="tune-hero__chips">
                     <x-badge appearance="soft" color="info" icon="palette">{{ __('playground.hero.chip.themes') }}</x-badge>
@@ -706,7 +706,7 @@
             border: 1px solid color-mix(in oklab, var(--color-base-content) 10%, transparent);
             backdrop-filter: blur(6px);
             box-shadow: 0 20px 40px -25px color-mix(in oklab, var(--color-base-content) 22%, transparent);
-            /* All 10 tunes fit on tall viewports; on short viewports scroll
+            /* All 11 tunes fit on tall viewports; on short viewports scroll
                inside the list so the hero stays a single eyeful. */
             max-height: 290px;
             overflow-y: auto;

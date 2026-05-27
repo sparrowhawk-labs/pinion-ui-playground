@@ -4,14 +4,14 @@
 [![PHP Version](https://img.shields.io/badge/php-%5E8.3-777BB4?style=flat-square)](composer.json)
 [![Laravel](https://img.shields.io/badge/laravel-%5E13.0-FF2D20?style=flat-square)](https://laravel.com)
 
-A Laravel showcase app for **[`sparrowhawk-labs/pinion-ui`](https://github.com/sparrowhawk-labs/pinion-ui)** and **[`sparrowhawk-labs/pinion-icons`](https://github.com/sparrowhawk-labs/pinion-icons)**. Every component rendered across daisyUI's 35 themes × Pinion UI's 10 Tune presets, plus a browser for all 7,400+ Pinion Icons.
+A Laravel showcase app for **[`sparrowhawk-labs/pinion-ui`](https://github.com/sparrowhawk-labs/pinion-ui)** and **[`sparrowhawk-labs/pinion-icons`](https://github.com/sparrowhawk-labs/pinion-icons)**. Every component rendered across daisyUI's 35 themes × Pinion UI's 11 Tune presets, plus a browser for all 7,400+ Pinion Icons.
 
 By [Sparrowhawk Labs](https://sparrowhawk-labs.dev).
 
 ## What's in here
 
 - **13 component pages** — Button, Alert, Badge, Card, Avatar, Input, Textarea, Select, Checkbox, Radio, Toggle, File Upload
-- **Theme × Tune matrix** — pick any of 35 daisyUI themes and 10 Tune presets independently; every component re-renders live. State persisted in `localStorage`.
+- **Theme × Tune matrix** — pick any of 35 daisyUI themes and 11 Tune presets independently; every component re-renders live. State persisted in `localStorage`.
 - **Side-by-side debug mode** — render the same page in two themes (lofi / night) simultaneously to spot contrast issues, using `<template x-if>` so radios/checkboxes don't collide.
 - **Icon browser** — `/icons` page enumerates all 1,234 Solar concepts × 6 stroke variants + Fluent Emoji + Pixelarticons virtual variants. Filter, paginate, click-to-copy `<x-i>` snippets.
 - **Japanese toggle** — flip page-level `data-ja` for a Japanese-vs-English layout sanity check.
