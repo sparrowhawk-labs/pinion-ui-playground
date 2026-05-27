@@ -35,7 +35,7 @@
     </header>
 
     {{-- ============ HERO ============ --}}
-    <section class="relative overflow-hidden px-10 pt-20 pb-24">
+    <section class="relative overflow-hidden px-10 space-section">
         {{-- atmospheric backdrop --}}
         <div aria-hidden="true" class="absolute inset-0 -z-10">
             <div class="absolute -top-32 -right-32 w-[640px] h-[640px] rounded-full"
@@ -66,7 +66,7 @@
                 We design typefaces, identities, and editorial systems for studios that refuse to look like anyone else. Forty‑seven releases, six awards, zero stock fonts.
             </p>
 
-            <div class="flex flex-wrap items-center gap-3 mb-12">
+            <div class="flex flex-wrap items-center gap-3 mb-section-inner">
                 <x-button color="primary" size="lg" icon="rocket" iconRight="arrow-right">Commission a face</x-button>
                 <x-button appearance="ghost" size="lg" icon="play">Watch the reel</x-button>
             </div>
@@ -103,8 +103,8 @@
     </section>
 
     {{-- ============ Feature triptych ============ --}}
-    <section class="px-10 py-24">
-        <div class="max-w-3xl mb-14">
+    <section class="px-10 space-section">
+        <div class="max-w-3xl mb-section-inner">
             <p class="text-[11px] uppercase tracking-[0.22em] text-primary mb-3 font-semibold">— Our practice</p>
             <h2 class="text-4xl md:text-5xl font-black tracking-tight mb-5"
                 style="font-family: var(--font-heading);">
@@ -115,7 +115,7 @@
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-element">
             <x-card appearance="bordered-top" color="primary" hoverable>
                 <x-slot:header>
                     <div class="flex items-center gap-2">
@@ -167,8 +167,8 @@
     </section>
 
     {{-- ============ Specimen plate ============ --}}
-    <section class="px-10 py-24 bg-base-200/40 border-y border-base-300/60">
-        <div class="grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-12 items-center">
+    <section class="px-10 space-section bg-base-200/40 border-y border-base-300/60">
+        <div class="grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-section-inner items-center">
             <div>
                 <p class="text-[11px] uppercase tracking-[0.22em] text-accent mb-3 font-semibold">— Specimen N° 12</p>
                 <h2 class="text-4xl md:text-5xl font-black tracking-tight mb-5"
@@ -208,8 +208,8 @@
     </section>
 
     {{-- ============ Pricing-ish strip ============ --}}
-    <section class="px-10 py-24">
-        <div class="text-center max-w-2xl mx-auto mb-14">
+    <section class="px-10 space-section">
+        <div class="text-center max-w-2xl mx-auto mb-section-inner">
             <p class="text-[11px] uppercase tracking-[0.22em] text-primary mb-3 font-semibold">— Engagements</p>
             <h2 class="text-4xl md:text-5xl font-black tracking-tight mb-5"
                 style="font-family: var(--font-heading);">
@@ -220,7 +220,7 @@
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-element max-w-5xl mx-auto">
             <x-card appearance="default" hoverable>
                 <x-slot:header>
                     <span class="text-[10px] uppercase tracking-widest font-semibold text-base-content/50">Single-face license</span>
@@ -275,7 +275,7 @@
     </section>
 
     {{-- ============ Final CTA ============ --}}
-    <section class="px-10 py-24 bg-base-300/30 border-t border-base-300/60">
+    <section class="px-10 space-section bg-base-300/30 border-t border-base-300/60">
         <div class="max-w-3xl mx-auto text-center">
             <h2 class="text-5xl md:text-6xl font-black tracking-tight mb-6"
                 style="font-family: var(--font-heading);">

@@ -55,7 +55,7 @@
 
     {{-- Breakout: pull left/right/up out of main's padding so the gradient
          backdrop fills edge-to-edge. Bottom margin returns to flow. --}}
-    <div class="-mx-6 lg:-mx-10 -mt-10 mb-12">
+    <div class="-mx-6 lg:-mx-10 -mt-10 mb-section-inner">
     <section
         class="tune-hero relative isolate overflow-hidden"
         x-data="{
@@ -860,7 +860,7 @@
     {{-- ============================================================
          2. Stat strip
          ============================================================ --}}
-    <div class="mt-12 mb-16">
+    <div class="mt-section-inner mb-section-inner">
         <div class="stats shadow grid grid-cols-2 lg:grid-cols-4 w-full">
             <x-stat
                 :wrapped="false"
@@ -912,7 +912,7 @@
     {{-- ============================================================
          3. What's new
          ============================================================ --}}
-    <section class="mb-16">
+    <section class="mb-section-inner">
         <div class="flex items-baseline justify-between mb-element">
             <h2 class="text-2xl font-bold tracking-tight">{{ __('playground.whats_new.title') }}</h2>
             <a href="https://github.com/sparrowhawk-labs/pinion-ui/releases" class="text-sm link link-hover text-primary">
@@ -978,7 +978,7 @@
     {{-- ============================================================
          4. LLM-native showcase
          ============================================================ --}}
-    <section class="mb-16">
+    <section class="mb-section-inner">
         <h2 class="text-2xl font-bold tracking-tight mb-element">{{ __('playground.ai_native.title') }}</h2>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-element">
@@ -1050,7 +1050,7 @@ npm run build &amp;&amp; php artisan serve</code></pre>
     {{-- ============================================================
          5. Component preview grid
          ============================================================ --}}
-    <section id="components" class="mb-16 scroll-mt-24">
+    <section id="components" class="mb-section-inner scroll-mt-24">
         <div class="flex items-baseline justify-between mb-element">
             <h2 class="text-2xl font-bold tracking-tight">{{ __('playground.components.title') }}</h2>
             <span class="text-sm text-base-content/60">{{ __('playground.components.subtitle') }}</span>
@@ -1305,7 +1305,7 @@ npm run build &amp;&amp; php artisan serve</code></pre>
          ============================================================ --}}
     <x-divider />
 
-    <section class="my-16">
+    <section class="mt-section-inner mb-section-inner">
         <div class="text-center">
             <h2 class="text-xl font-bold tracking-tight mb-2">{{ __('playground.ready.title') }}</h2>
             <p class="text-sm text-base-content/60 mb-element">{{ __('playground.ready.subtitle') }}</p>
