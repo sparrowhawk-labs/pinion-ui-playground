@@ -12,8 +12,11 @@
     <title>Pinion UI @yield('title')</title>
 
     {{-- SEO meta — canonical, hreflang alternates, Open Graph, Twitter Card.
-         Per-page override: @section('description', '...') overrides the default.
-         Per-page title is already handled via @section('title', '...'). --}}
+         Description cascade (best → fallback):
+           1. @section('description', '...') if the page sets one explicitly
+           2. @section('subheading', '...') — already locale-aware via __()
+              on 42 component pages, so each locale gets a unique description
+           3. Generic locale-agnostic default. --}}
     @php
         $seoUrl = url()->current();
         $seoBase = rtrim(config('app.url'), '/');
@@ -24,8 +27,16 @@
         $seoLocales = ['ja' => 'ja_JP', 'en' => 'en_US', 'zh-Hans' => 'zh_CN', 'zh-Hant' => 'zh_TW'];
         $seoOgLocale = $seoLocales[$htmlLocale] ?? 'en_US';
         $seoDefaultDesc = 'Pinion UI — Blade UI components for Laravel. Tailwind v4 + daisyUI v5 + Alpine.js. 46 anonymous components with 11-preset tune token system.';
+
+        // Read both sections without consuming them — they are still rendered
+        // in the page body via @yield('subheading') / @yield('description').
+        $seoPageDesc = trim(strip_tags((string) $__env->yieldContent('description')));
+        $seoPageSub  = trim(strip_tags((string) $__env->yieldContent('subheading')));
+        $seoDescription = $seoPageDesc !== ''
+            ? $seoPageDesc
+            : ($seoPageSub !== '' ? $seoPageSub : $seoDefaultDesc);
     @endphp
-    <meta name="description" content="@yield('description', $seoDefaultDesc)">
+    <meta name="description" content="{{ $seoDescription }}">
     <link rel="canonical" href="{{ $seoUrl }}">
     @if ($seoIsLocalePage)
         @foreach (array_keys($seoLocales) as $alt)
@@ -37,7 +48,7 @@
     <meta property="og:url" content="{{ $seoUrl }}">
     <meta property="og:site_name" content="Pinion UI">
     <meta property="og:title" content="Pinion UI @yield('title')">
-    <meta property="og:description" content="@yield('description', $seoDefaultDesc)">
+    <meta property="og:description" content="{{ $seoDescription }}">
     <meta property="og:locale" content="{{ $seoOgLocale }}">
     @foreach ($seoLocales as $alt => $altOg)
         @if ($alt !== $htmlLocale)
@@ -46,7 +57,7 @@
     @endforeach
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Pinion UI @yield('title')">
-    <meta name="twitter:description" content="@yield('description', $seoDefaultDesc)">
+    <meta name="twitter:description" content="{{ $seoDescription }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
