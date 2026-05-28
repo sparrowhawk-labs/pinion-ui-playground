@@ -15,6 +15,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pinion-ui — live preview</title>
 
+    {{-- iframe-embedded preview only; never useful as a stand-alone search
+         hit. noindex prevents it from cluttering SERPs as duplicate / low-value. --}}
+    <meta name="robots" content="noindex,nofollow">
+
     {{-- Self-contained: needs the playground's compiled CSS so the embedded
          components render with theme + tune tokens. JS only needed for the
          tiny header CTA; safe to load. --}}

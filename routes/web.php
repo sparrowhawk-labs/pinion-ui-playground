@@ -170,6 +170,11 @@ Route::get('/sitemap.xml', function () {
         $uri = $r->uri();
         if (str_starts_with($uri, '{locale}')) {
             $slug = trim(substr($uri, strlen('{locale}')), '/');
+            // Skip component sub-demos (/demo/*) — they're noindex'd in their
+            // layout and don't deserve sitemap presence either.
+            if (str_starts_with($slug, 'demo/')) {
+                continue;
+            }
             $slugs[$slug] = true;
         }
     }

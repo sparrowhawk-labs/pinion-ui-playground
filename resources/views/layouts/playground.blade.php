@@ -59,6 +59,41 @@
     <meta name="twitter:title" content="Pinion UI @yield('title')">
     <meta name="twitter:description" content="{{ $seoDescription }}">
 
+    {{-- JSON-LD structured data (WebSite + Organization). Site-level — emitted
+         on every page; sufficient to give Google rich-result context for the
+         brand and the multi-language scope. Per-page SoftwareSourceCode markup
+         can be layered later if individual components warrant it.
+         NOTE: built as a PHP array + json_encode so Blade doesn't mistake the
+         schema.org "@context" / "@graph" / "@type" / "@id" prefixes for
+         Blade directives (they'd compile to nothing and emit broken PHP). --}}
+    @php
+        $seoJsonLd = [
+            '@context' => 'https://schema.org',
+            '@graph' => [
+                [
+                    '@type' => 'WebSite',
+                    '@id' => $seoBase . '/#website',
+                    'url' => $seoBase . '/',
+                    'name' => 'Pinion UI',
+                    'description' => 'Blade UI components for Laravel — Tailwind v4 + daisyUI v5 + Alpine.js, 46 anonymous components, 11-preset tune token system.',
+                    'inLanguage' => ['ja', 'en', 'zh-Hans', 'zh-Hant'],
+                    'publisher' => ['@id' => 'https://sparrowhawk-labs.dev/#org'],
+                ],
+                [
+                    '@type' => 'Organization',
+                    '@id' => 'https://sparrowhawk-labs.dev/#org',
+                    'name' => 'Sparrowhawk Labs',
+                    'url' => 'https://sparrowhawk-labs.dev/',
+                    'sameAs' => [
+                        'https://github.com/sparrowhawk-labs',
+                        'https://packagist.org/packages/sparrowhawk-labs/',
+                    ],
+                ],
+            ],
+        ];
+    @endphp
+    <script type="application/ld+json">{!! json_encode($seoJsonLd, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Fredoka:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;700&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Lora:ital,wght@0,400;0,500;0,700;1,400&family=M+PLUS+1+Code:wght@400;500;700&family=M+PLUS+1p:wght@400;500;700&family=Montserrat:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Nunito:wght@400;700;800&family=Outfit:wght@400;500;600;700&family=Playfair+Display:wght@400;700&family=Press+Start+2P&family=Quicksand:wght@400;500;700&family=Shippori+Mincho:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
