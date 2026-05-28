@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 @php
     // data-ja drives the JP font stack and is locked to locale=ja so end-users
-    // never see a mismatched JA-script-but-Latin-fallback render. Designers can
-    // still toggle it transiently from /font-debug (Alpine setJa mutates the
-    // DOM attribute for the current page; no localStorage persistence — a page
-    // reload reverts to locale-derived state).
+    // never see a mismatched JA-script-but-Latin-fallback render.
     $htmlLocale = app()->getLocale();
     $dataJaAttr = $htmlLocale === 'ja' ? 'data-ja' : 'data-ja="off"';
 @endphp
@@ -140,15 +137,6 @@
                 'badge' => null,
                 'items' => [
                     ['slug' => 'icons', 'label' => 'Icons'],
-                ],
-            ],
-            [
-                'title' => 'Theme',
-                'subtitle' => 'Preview',
-                'badge' => 'WIP',
-                'items' => [
-                    ['slug' => 'theme-preview', 'label' => 'Pinion Theme'],
-                    ['slug' => 'font-debug',    'label' => 'Font Debug'],
                 ],
             ],
         ];

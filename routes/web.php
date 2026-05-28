@@ -69,8 +69,6 @@ Route::prefix('{locale}')
         Route::get('/accordion',  fn () => view('pages.accordion'))->name('accordion');
         Route::get('/collapse',   fn () => view('pages.collapse'))->name('collapse');
         Route::get('/sidebar',    fn () => view('pages.sidebar'))->name('sidebar');
-        Route::get('/theme-preview', fn () => view('pages.theme-preview'))->name('theme-preview');
-        Route::get('/font-debug',    fn () => view('pages.font-debug'))->name('font-debug');
 
         Route::get('/demo/sidebar-left',         fn () => view('pages.demo.sidebar-left'));
         Route::get('/demo/sidebar-right',        fn () => view('pages.demo.sidebar-right'));
