@@ -148,3 +148,47 @@ Route::get('/vendor-icons/{library}/{file}', function (string $library, string $
         'Cache-Control' => 'public, max-age=3600',
     ]);
 })->where('file', '.*');
+
+/*
+|--------------------------------------------------------------------------
+| sitemap.xml
+|--------------------------------------------------------------------------
+|
+| Enumerated from the locale-prefixed route group above so adding a new
+| component page automatically lands in the sitemap on the next export.
+| Each <url> includes <xhtml:link rel="alternate"> for every locale +
+| x-default (= ja) so Google can serve the right language per visitor.
+| Iframe demos (/_demo-app, /_demo-lp) and asset routes are excluded.
+|
+*/
+Route::get('/sitemap.xml', function () {
+    $locales = ['ja', 'en', 'zh-Hans', 'zh-Hant'];
+    $base    = rtrim(config('app.url'), '/');
+
+    $slugs = [];
+    foreach (Route::getRoutes() as $r) {
+        $uri = $r->uri();
+        if (str_starts_with($uri, '{locale}')) {
+            $slug = trim(substr($uri, strlen('{locale}')), '/');
+            $slugs[$slug] = true;
+        }
+    }
+
+    $xml  = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+    $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">' . "\n";
+    foreach (array_keys($slugs) as $slug) {
+        $tail = $slug === '' ? '' : ('/' . $slug);
+        foreach ($locales as $loc) {
+            $xml .= "  <url>\n";
+            $xml .= "    <loc>{$base}/{$loc}{$tail}</loc>\n";
+            foreach ($locales as $alt) {
+                $xml .= "    <xhtml:link rel=\"alternate\" hreflang=\"{$alt}\" href=\"{$base}/{$alt}{$tail}\"/>\n";
+            }
+            $xml .= "    <xhtml:link rel=\"alternate\" hreflang=\"x-default\" href=\"{$base}/ja{$tail}\"/>\n";
+            $xml .= "  </url>\n";
+        }
+    }
+    $xml .= '</urlset>' . "\n";
+
+    return response($xml, 200, ['Content-Type' => 'application/xml']);
+});

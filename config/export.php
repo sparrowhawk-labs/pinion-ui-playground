@@ -29,6 +29,7 @@ return [
         '/zh-Hant',
         '/_demo-app',
         '/_demo-lp',
+        '/sitemap.xml',
     ],
 
     /*

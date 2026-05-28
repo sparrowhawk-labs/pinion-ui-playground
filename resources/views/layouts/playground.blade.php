@@ -11,6 +11,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pinion UI @yield('title')</title>
 
+    {{-- SEO meta — canonical, hreflang alternates, Open Graph, Twitter Card.
+         Per-page override: @section('description', '...') overrides the default.
+         Per-page title is already handled via @section('title', '...'). --}}
+    @php
+        $seoUrl = url()->current();
+        $seoBase = rtrim(config('app.url'), '/');
+        $seoPath = request()->getPathInfo();
+        $seoLocaleStrip = preg_replace('#^/(ja|en|zh-Hans|zh-Hant)(?=/|$)#', '', $seoPath);
+        $seoIsLocalePage = $seoLocaleStrip !== $seoPath;
+        $seoSlug = $seoIsLocalePage ? ($seoLocaleStrip ?: '') : '';
+        $seoLocales = ['ja' => 'ja_JP', 'en' => 'en_US', 'zh-Hans' => 'zh_CN', 'zh-Hant' => 'zh_TW'];
+        $seoOgLocale = $seoLocales[$htmlLocale] ?? 'en_US';
+        $seoDefaultDesc = 'Pinion UI — Blade UI components for Laravel. Tailwind v4 + daisyUI v5 + Alpine.js. 46 anonymous components with 11-preset tune token system.';
+    @endphp
+    <meta name="description" content="@yield('description', $seoDefaultDesc)">
+    <link rel="canonical" href="{{ $seoUrl }}">
+    @if ($seoIsLocalePage)
+        @foreach (array_keys($seoLocales) as $alt)
+            <link rel="alternate" hreflang="{{ $alt }}" href="{{ $seoBase }}/{{ $alt }}{{ $seoSlug }}">
+        @endforeach
+        <link rel="alternate" hreflang="x-default" href="{{ $seoBase }}/ja{{ $seoSlug }}">
+    @endif
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ $seoUrl }}">
+    <meta property="og:site_name" content="Pinion UI">
+    <meta property="og:title" content="Pinion UI @yield('title')">
+    <meta property="og:description" content="@yield('description', $seoDefaultDesc)">
+    <meta property="og:locale" content="{{ $seoOgLocale }}">
+    @foreach ($seoLocales as $alt => $altOg)
+        @if ($alt !== $htmlLocale)
+            <meta property="og:locale:alternate" content="{{ $altOg }}">
+        @endif
+    @endforeach
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Pinion UI @yield('title')">
+    <meta name="twitter:description" content="@yield('description', $seoDefaultDesc)">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Fredoka:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;700&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Lora:ital,wght@0,400;0,500;0,700;1,400&family=M+PLUS+1+Code:wght@400;500;700&family=M+PLUS+1p:wght@400;500;700&family=Montserrat:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Nunito:wght@400;700;800&family=Outfit:wght@400;500;600;700&family=Playfair+Display:wght@400;700&family=Press+Start+2P&family=Quicksand:wght@400;500;700&family=Shippori+Mincho:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
