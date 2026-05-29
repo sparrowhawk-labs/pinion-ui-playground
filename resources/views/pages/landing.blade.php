@@ -401,11 +401,16 @@
            Tune Hero styles — scoped under .tune-hero
            ============================================================ */
         .tune-hero {
-            padding: 1.75rem 1.5rem 1.5rem;
+            /* Top padding intentionally larger than the side / bottom so the
+               eyebrow chip sits clear of the sticky navbar even when the
+               navbar bg matches the body (base-100). Without this buffer the
+               chip + nav merge visually at scrollTop=0 and the top of the
+               hero reads as "hidden behind nav". */
+            padding: 3rem 1.5rem 1.5rem;
             border-radius: 0;
         }
         @media (min-width: 1024px) {
-            .tune-hero { padding: 2rem 2.5rem 1.75rem; }
+            .tune-hero { padding: 3.5rem 2.5rem 1.75rem; }
         }
         .tune-hero__bg {
             position: absolute; inset: 0; z-index: -1;
@@ -962,73 +967,8 @@
     </div>
 
     {{-- ============================================================
-         3. What's new
-         ============================================================ --}}
-    <section class="mb-section-inner">
-        <div class="flex items-baseline justify-between mb-element">
-            <h2 class="text-2xl font-bold tracking-tight">{{ __('playground.whats_new.title') }}</h2>
-            <a href="https://github.com/sparrowhawk-labs/pinion-ui/releases" class="text-sm link link-hover text-primary">
-                {{ __('playground.whats_new.all_releases') }} <x-i type="arrow-right" class="w-3.5 h-3.5 inline-block align-middle" />
-            </a>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-element">
-            <x-card appearance="bordered-top" color="primary" hoverable>
-                <x-slot:header>
-                    <div class="flex items-center gap-2">
-                        <x-i type="bolt" class="w-6 h-6 text-primary" />
-                        <span class="font-mono text-sm font-semibold">v0.3.17</span>
-                        <x-badge size="xs" appearance="soft" color="primary">CSS</x-badge>
-                    </div>
-                </x-slot:header>
-                <h3 class="font-semibold mb-1">{{ __('playground.whats_new.card1.title') }}</h3>
-                <p class="text-sm text-base-content/70">
-                    {!! __('playground.whats_new.card1.body') !!}
-                </p>
-                <x-slot:footer>
-                    <p class="text-xs text-base-content/40">{{ __('playground.whats_new.card1.released') }}</p>
-                </x-slot:footer>
-            </x-card>
-
-            <x-card appearance="bordered-top" color="accent" hoverable>
-                <x-slot:header>
-                    <div class="flex items-center gap-2">
-                        <x-i type="magic-stick-3" class="w-6 h-6 text-accent" />
-                        <span class="font-mono text-sm font-semibold">v0.3.19</span>
-                        <x-badge size="xs" appearance="soft" color="accent">Alpine</x-badge>
-                    </div>
-                </x-slot:header>
-                <h3 class="font-semibold mb-1">{{ __('playground.whats_new.card2.title') }}</h3>
-                <p class="text-sm text-base-content/70">
-                    {!! __('playground.whats_new.card2.body') !!}
-                </p>
-                <x-slot:footer>
-                    <p class="text-xs text-base-content/40">{{ __('playground.whats_new.card2.released') }}</p>
-                </x-slot:footer>
-            </x-card>
-
-            <x-card appearance="bordered-top" color="success" hoverable>
-                <x-slot:header>
-                    <div class="flex items-center gap-2">
-                        <x-i type="tuning-2" class="w-6 h-6 text-success" />
-                        <span class="font-mono text-sm font-semibold">v0.3.20</span>
-                        <x-badge size="xs" appearance="soft" color="success">Polish</x-badge>
-                    </div>
-                </x-slot:header>
-                <h3 class="font-semibold mb-1">{{ __('playground.whats_new.card3.title') }}</h3>
-                <p class="text-sm text-base-content/70">
-                    {!! __('playground.whats_new.card3.body') !!}
-                </p>
-                <x-slot:footer>
-                    <p class="text-xs text-base-content/40">{{ __('playground.whats_new.card3.released') }}</p>
-                </x-slot:footer>
-            </x-card>
-        </div>
-    </section>
-
-
-    {{-- ============================================================
-         4. LLM-native showcase
+         3. LLM-native showcase  (was 4; the original "What's new"
+         section was moved to just above the Links footer)
          ============================================================ --}}
     <section class="mb-section-inner">
         <h2 class="text-2xl font-bold tracking-tight mb-element">{{ __('playground.ai_native.title') }}</h2>
@@ -1347,6 +1287,73 @@ npm run build &amp;&amp; php artisan serve</code></pre>
                 <x-slot:footer>
                     <a href="https://github.com/sparrowhawk-labs/pinion-ui/blob/main/reference/components/{{ $previews[8]['name'] }}.md"
                        class="text-xs link link-hover text-primary">reference/components/{{ $previews[8]['name'] }}.md →</a>
+                </x-slot:footer>
+            </x-card>
+        </div>
+    </section>
+
+    {{-- ============================================================
+         6. What's new — moved here from its previous post-Stat
+         position so the most current release announcement is the
+         last thing visitors see before the closing CTA + links.
+         ============================================================ --}}
+    <section class="mb-section-inner">
+        <div class="flex items-baseline justify-between mb-element">
+            <h2 class="text-2xl font-bold tracking-tight">{{ __('playground.whats_new.title') }}</h2>
+            <a href="https://github.com/sparrowhawk-labs/pinion-ui/releases" class="text-sm link link-hover text-primary">
+                {{ __('playground.whats_new.all_releases') }} <x-i type="arrow-right" class="w-3.5 h-3.5 inline-block align-middle" />
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-element">
+            <x-card appearance="bordered-top" color="primary" hoverable>
+                <x-slot:header>
+                    <div class="flex items-center gap-2">
+                        <x-i type="bolt" class="w-6 h-6 text-primary" />
+                        <span class="font-mono text-sm font-semibold">v0.3.17</span>
+                        <x-badge size="xs" appearance="soft" color="primary">CSS</x-badge>
+                    </div>
+                </x-slot:header>
+                <h3 class="font-semibold mb-1">{{ __('playground.whats_new.card1.title') }}</h3>
+                <p class="text-sm text-base-content/70">
+                    {!! __('playground.whats_new.card1.body') !!}
+                </p>
+                <x-slot:footer>
+                    <p class="text-xs text-base-content/40">{{ __('playground.whats_new.card1.released') }}</p>
+                </x-slot:footer>
+            </x-card>
+
+            <x-card appearance="bordered-top" color="accent" hoverable>
+                <x-slot:header>
+                    <div class="flex items-center gap-2">
+                        <x-i type="magic-stick-3" class="w-6 h-6 text-accent" />
+                        <span class="font-mono text-sm font-semibold">v0.3.19</span>
+                        <x-badge size="xs" appearance="soft" color="accent">Alpine</x-badge>
+                    </div>
+                </x-slot:header>
+                <h3 class="font-semibold mb-1">{{ __('playground.whats_new.card2.title') }}</h3>
+                <p class="text-sm text-base-content/70">
+                    {!! __('playground.whats_new.card2.body') !!}
+                </p>
+                <x-slot:footer>
+                    <p class="text-xs text-base-content/40">{{ __('playground.whats_new.card2.released') }}</p>
+                </x-slot:footer>
+            </x-card>
+
+            <x-card appearance="bordered-top" color="success" hoverable>
+                <x-slot:header>
+                    <div class="flex items-center gap-2">
+                        <x-i type="tuning-2" class="w-6 h-6 text-success" />
+                        <span class="font-mono text-sm font-semibold">v0.3.20</span>
+                        <x-badge size="xs" appearance="soft" color="success">Polish</x-badge>
+                    </div>
+                </x-slot:header>
+                <h3 class="font-semibold mb-1">{{ __('playground.whats_new.card3.title') }}</h3>
+                <p class="text-sm text-base-content/70">
+                    {!! __('playground.whats_new.card3.body') !!}
+                </p>
+                <x-slot:footer>
+                    <p class="text-xs text-base-content/40">{{ __('playground.whats_new.card3.released') }}</p>
                 </x-slot:footer>
             </x-card>
         </div>

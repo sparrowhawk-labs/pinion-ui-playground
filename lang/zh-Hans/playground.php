@@ -35,7 +35,7 @@ return [
         ],
         'chip' => [
             'themes'     => '30+ daisyUI themes',
-            'components' => '46 Blade components',
+            'components' => '46 UI components',
             'tunes'      => '11 Tune presets ↓',
         ],
         'selector' => [

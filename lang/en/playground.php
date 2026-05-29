@@ -11,7 +11,7 @@ return [
 
     'catalog' => [
         'title'    => 'Component Catalog',
-        'subtitle' => '46 Blade components. Static ones run on Tailwind + daisyUI alone; dynamic ones layer in Alpine.js for interactive behaviour. Tap any card to open the component\'s own page.',
+        'subtitle' => '46 UI components. Static ones run on Tailwind + daisyUI alone; dynamic ones layer in Alpine.js for interactive behaviour. Tap any card to open the component\'s own page.',
         'section'  => [
             'static'  => 'Static — Tailwind + daisyUI only',
             'dynamic' => 'Dynamic — Alpine.js driven',
@@ -35,7 +35,7 @@ return [
         ],
         'chip' => [
             'themes'     => '30+ daisyUI themes',
-            'components' => '46 Blade components',
+            'components' => '46 UI components',
             'tunes'      => '11 Tune presets ↓',
         ],
         'selector' => [

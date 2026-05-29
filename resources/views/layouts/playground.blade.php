@@ -282,18 +282,12 @@
                  `.tune-hero` padding and the catalog wrapper's padding, or
                  the first nav item and the first content character won't
                  share an X position at the same viewport. --}}
-            <div class="sticky top-0 z-50 bg-base-200 border-b border-base-300 px-6 lg:px-10 py-3 w-full">
+            <div class="sticky top-0 z-50 bg-base-100 border-b border-base-300 px-6 lg:px-10 py-3 w-full">
                 <div class="flex flex-wrap items-center gap-4 max-w-7xl mx-auto w-full">
-                    {{-- Brand + primary nav. Always visible so the LP (no sidebar)
-                         and the catalog both expose the brand mark and the
-                         Components catalog entry. On pages WITH a sidebar this is
-                         redundant with the sidebar header but keeps the top-bar
-                         self-sufficient across all routes. --}}
-                    <div class="flex items-center gap-3 pr-2 border-r border-base-300">
-                        <a href="/{{ $locale }}" class="text-sm font-bold text-primary tracking-tight">Pinion UI</a>
-                        <a href="/{{ $locale }}/overview"
-                           class="text-xs font-medium px-2 py-0.5 rounded border border-base-300 transition-colors {{ $current === 'overview' ? 'bg-primary text-primary-content' : 'bg-base-100 text-base-content hover:bg-base-300' }}">{{ __('playground.nav.components') }}</a>
-                    </div>
+                    {{-- Brand on the far left. Always visible across LP /
+                         catalog / per-component pages so the top-bar is
+                         self-sufficient even when the sidebar is hidden. --}}
+                    <a href="/{{ $locale }}" class="text-sm font-bold text-primary tracking-tight">Pinion UI</a>
                     {{-- Theme — custom Alpine dropdown. Each row previews the
                          theme's primary / secondary / accent / base-100 swatches
                          via inline data-theme so CSS variables resolve to that
@@ -399,6 +393,12 @@
                             :title="debug ? 'lofi / night 同時表示' : 'デバッグ表示 (lofi/night 2-カラム)'"
                             x-text="debug ? 'lofi/night' : 'off'"></button>
                     </div>
+
+                    {{-- Components catalog link — pushed to the far right via
+                         ml-auto so the brand and the primary call-to-action
+                         (browse the catalog) bookend the control row. --}}
+                    <a href="/{{ $locale }}/overview"
+                       class="ml-auto text-xs font-medium px-2.5 py-1 rounded border border-base-300 transition-colors {{ $current === 'overview' ? 'bg-primary text-primary-content border-primary' : 'bg-base-100 text-base-content hover:bg-base-200' }}">{{ __('playground.nav.components') }}</a>
                 </div>
             </div>
 
