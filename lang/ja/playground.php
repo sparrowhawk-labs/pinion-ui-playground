@@ -5,6 +5,20 @@ return [
         'subline' => 'Blade アダプター · ライブデモ',
     ],
 
+    'nav' => [
+        'components' => 'コンポーネント',
+    ],
+
+    'catalog' => [
+        'title'    => 'コンポーネントカタログ',
+        'subtitle' => '46 個の Blade コンポーネント。 Tailwind + daisyUI のみで動く静的コンポーネントと、 Alpine.js で挙動を持つ動的コンポーネントを分けて整理。 カードを押すと各コンポーネントの個別ページに飛びます。',
+        'section'  => [
+            'static'  => '静的 — Tailwind + daisyUI のみ',
+            'dynamic' => '動的 — Alpine.js 駆動',
+            'icons'   => 'アイコンシステム',
+        ],
+    ],
+
     'hero' => [
         'eyebrow_chip' => 'v0.4.0 · BLADE',
         'eyebrow_note' => '— REACT / VUE / WEB COMPONENTS COMING v0.5+',
@@ -12,6 +26,8 @@ return [
             'line1' => 'つくる速度に、',
             'line2' => '上限はない。',
         ],
+        'pivot_punch' => 'コードはそのまま、 スタイルだけピボット。',
+        'pivot_sub'   => '<code>data-theme</code> と <code>data-tune</code> の 2 属性で、 色・形・余白・書体を丸ごと差し替え。 リライトもリビルドも不要。',
         'subtitle' => 'デザインは固めず、 走りながら決めていい。 色も形も余白も、 属性ひとつで丸ごと変わる。 ピボットは一瞬、 やり直しの時間はゼロ。 AI と並走するこの UI で、 クリエイティブが、 変幻自在に加速する。',
         'cta' => [
             'github'     => 'GitHub で見る',

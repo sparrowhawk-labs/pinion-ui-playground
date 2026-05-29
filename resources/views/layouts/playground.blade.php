@@ -233,7 +233,11 @@
     @endphp
 
     <div class="flex min-h-screen">
-        {{-- Sidebar --}}
+        {{-- Sidebar — suppressed on the LP root and the components catalog
+             (preline-style grid IS the navigation there). Pages that want
+             a sidebar-less layout pass `noSidebar => true` via @extends
+             arguments. --}}
+        @unless ($noSidebar ?? false)
         <aside class="w-60 shrink-0 border-r border-base-300 bg-base-200/40 sticky top-0 h-screen overflow-y-auto">
             <div class="p-4 border-b border-base-300">
                 <a href="/{{ $locale }}" class="text-sm font-bold text-primary">Pinion UI</a>
@@ -263,12 +267,23 @@
                 @endforeach
             </nav>
         </aside>
+        @endunless
 
         {{-- Main --}}
         <div class="flex-1 min-w-0 flex flex-col">
             {{-- Sticky control bar --}}
             <div class="sticky top-0 z-50 bg-base-200 border-b border-base-300 px-4 py-3">
                 <div class="flex flex-wrap items-center gap-4">
+                    {{-- Brand + primary nav. Always visible so the LP (no sidebar)
+                         and the catalog both expose the brand mark and the
+                         Components catalog entry. On pages WITH a sidebar this is
+                         redundant with the sidebar header but keeps the top-bar
+                         self-sufficient across all routes. --}}
+                    <div class="flex items-center gap-3 pr-2 border-r border-base-300">
+                        <a href="/{{ $locale }}" class="text-sm font-bold text-primary tracking-tight">Pinion UI</a>
+                        <a href="/{{ $locale }}/components"
+                           class="text-xs font-medium px-2 py-0.5 rounded border border-base-300 transition-colors {{ $current === 'components' ? 'bg-primary text-primary-content' : 'bg-base-100 text-base-content hover:bg-base-300' }}">{{ __('playground.nav.components') }}</a>
+                    </div>
                     <div class="flex items-center gap-2">
                         <label class="text-xs font-medium text-base-content/60">Theme:</label>
                         <select x-model="theme" @change="setTheme($event.target.value)" class="text-xs bg-base-100 border border-base-300 rounded px-2 py-1 outline-none">

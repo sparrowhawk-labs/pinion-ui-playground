@@ -5,6 +5,20 @@ return [
         'subline' => 'Blade adapter · live demos',
     ],
 
+    'nav' => [
+        'components' => 'Components',
+    ],
+
+    'catalog' => [
+        'title'    => 'Component Catalog',
+        'subtitle' => '46 Blade components. Static ones run on Tailwind + daisyUI alone; dynamic ones layer in Alpine.js for interactive behaviour. Tap any card to open the component\'s own page.',
+        'section'  => [
+            'static'  => 'Static — Tailwind + daisyUI only',
+            'dynamic' => 'Dynamic — Alpine.js driven',
+            'icons'   => 'Icon system',
+        ],
+    ],
+
     'hero' => [
         'eyebrow_chip' => 'v0.4.0 · BLADE',
         'eyebrow_note' => '— REACT / VUE / WEB COMPONENTS COMING v0.5+',
@@ -12,6 +26,8 @@ return [
             'line1' => 'No ceiling on',
             'line2' => 'how fast you build.',
         ],
+        'pivot_punch' => 'Pivot the look. Keep the code.',
+        'pivot_sub'   => 'Two attributes — <code>data-theme</code> and <code>data-tune</code> — swap color, shape, spacing, and type wholesale. No rewrite, no rebuild.',
         'subtitle' => 'Don\'t lock the design down — decide as you go. Color, form, and spacing all swap with a single attribute. Pivots take a moment, rework drops to zero. With AI alongside, your creativity shape-shifts and accelerates.',
         'cta' => [
             'github'     => 'View on GitHub',

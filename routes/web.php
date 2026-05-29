@@ -29,6 +29,7 @@ Route::prefix('{locale}')
     ->middleware(SetLocale::class)
     ->group(function () {
         Route::get('/',           fn () => view('pages.overview'))->name('overview');
+        Route::get('/components', fn () => view('pages.components'))->name('components');
         Route::get('/button',     fn () => view('pages.button'))->name('button');
         Route::get('/button-group', fn () => view('pages.button-group'))->name('button-group');
         Route::get('/alert',      fn () => view('pages.alert'))->name('alert');

@@ -5,6 +5,20 @@ return [
         'subline' => 'Blade 适配器 · 实时演示',
     ],
 
+    'nav' => [
+        'components' => '组件',
+    ],
+
+    'catalog' => [
+        'title'    => '组件目录',
+        'subtitle' => '46 个 Blade 组件。仅靠 Tailwind + daisyUI 即可运行的静态组件，以及依托 Alpine.js 提供交互行为的动态组件，按类别分别整理。点击卡片即可进入各组件的独立页面。',
+        'section'  => [
+            'static'  => '静态 — 仅 Tailwind + daisyUI',
+            'dynamic' => '动态 — Alpine.js 驱动',
+            'icons'   => '图标系统',
+        ],
+    ],
+
     'hero' => [
         'eyebrow_chip' => 'v0.4.0 · BLADE',
         'eyebrow_note' => '— REACT / VUE / WEB COMPONENTS COMING v0.5+',
@@ -12,6 +26,8 @@ return [
             'line1' => '创作的速度，',
             'line2' => '没有上限。',
         ],
+        'pivot_punch' => '风格自由切换，代码原封不动。',
+        'pivot_sub'   => '只用 <code>data-theme</code> 与 <code>data-tune</code> 两个属性，即可整体替换颜色、形状、间距和字体。无需重写、无需重新构建。',
         'subtitle' => '设计不必先定下来，可以边做边决定。颜色、形状、间距，一个属性就能整体切换。转向只在一瞬，返工时间归零。与 AI 并肩，创意随之变幻自如，不断加速。',
         'cta' => [
             'github'     => '在 GitHub 查看',

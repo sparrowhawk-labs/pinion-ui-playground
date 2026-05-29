@@ -1,6 +1,6 @@
-@extends('layouts.playground')
+@extends('layouts.playground', ['noSidebar' => true])
 
-@section('title', '— Overview')
+@section('title', '')
 @section('heading', '')
 @section('subheading', '')
 
@@ -188,6 +188,15 @@
                     <span class="tune-hero__title-line tune-hero__title-line--muted">{{ __('playground.hero.title.line1') }}</span>
                     <span class="tune-hero__title-line tune-hero__title-line--grad">{{ __('playground.hero.title.line2') }}</span>
                 </h1>
+
+                {{-- Pivot punch — the one-line value prop that separates Pinion UI
+                     from every other Blade component library: theme + tune are
+                     attributes, so the whole visual language can be re-skinned
+                     at runtime without touching markup or CSS. --}}
+                <p class="tune-hero__pivot-punch">
+                    <strong>{{ __('playground.hero.pivot_punch') }}</strong>
+                    <span class="tune-hero__pivot-sub">{!! __('playground.hero.pivot_sub') !!}</span>
+                </p>
 
                 <p class="tune-hero__subtitle">
                     {!! __('playground.hero.subtitle') !!}
@@ -630,6 +639,37 @@
             background-clip: text;
             -webkit-text-fill-color: transparent;
             padding-right: 0.06em;
+        }
+        /* Pivot punch — the value-prop tagline that lives between the H1
+           and the subtitle. `<strong>` gets the loud line, the sub elaborates
+           the mechanism (data-theme / data-tune attributes). */
+        .tune-hero__pivot-punch {
+            margin: 0.25rem 0 0.875rem;
+            max-width: 34rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.375rem;
+        }
+        .tune-hero__pivot-punch strong {
+            font-weight: 800;
+            font-size: 1.0625rem;
+            line-height: 1.35;
+            color: var(--color-base-content);
+            letter-spacing: -0.01em;
+        }
+        .tune-hero__pivot-sub {
+            font-size: 0.8125rem;
+            line-height: 1.55;
+            color: color-mix(in oklab, var(--color-base-content) 65%, transparent);
+        }
+        .tune-hero__pivot-sub code {
+            font-family: ui-monospace, "SFMono-Regular", monospace;
+            font-size: 0.78125rem;
+            background: color-mix(in oklab, var(--color-primary) 12%, transparent);
+            color: color-mix(in oklab, var(--color-primary) 85%, var(--color-base-content));
+            padding: 0.08em 0.36em;
+            border-radius: 0.25rem;
+            font-weight: 600;
         }
         .tune-hero__subtitle {
             font-size: 0.8125rem;
