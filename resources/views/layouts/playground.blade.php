@@ -273,9 +273,17 @@
 
         {{-- Main --}}
         <div class="flex-1 min-w-0 flex flex-col">
-            {{-- Sticky control bar --}}
-            <div class="sticky top-0 z-50 bg-base-200 border-b border-base-300 px-4 py-3">
-                <div class="flex flex-wrap items-center gap-4">
+            {{-- Sticky control bar. Outer div carries the bg + border so it
+                 spans full width and the colour doesn't cut off at any
+                 viewport size. Inner div is max-w-7xl mx-auto so the nav
+                 items line up with the page content below — backgrounds are
+                 always full-width, content is always constrained. Horizontal
+                 padding (px-6 lg:px-10) MUST match the LP hero's
+                 `.tune-hero` padding and the catalog wrapper's padding, or
+                 the first nav item and the first content character won't
+                 share an X position at the same viewport. --}}
+            <div class="sticky top-0 z-50 bg-base-200 border-b border-base-300 px-6 lg:px-10 py-3 w-full">
+                <div class="flex flex-wrap items-center gap-4 max-w-7xl mx-auto w-full">
                     {{-- Brand + primary nav. Always visible so the LP (no sidebar)
                          and the catalog both expose the brand mark and the
                          Components catalog entry. On pages WITH a sidebar this is
@@ -403,7 +411,13 @@
                  in the supposedly-visible single pane. `<template x-if>` swaps the
                  actual DOM, eliminating both issues. --}}
             <template x-if="!debug">
-                <main class="flex-1 px-6 lg:px-10 py-10 w-full {{ ($noSidebar ?? false) ? 'max-w-7xl mx-auto' : '' }}">
+                {{-- Main wrapper. When the sidebar is shown (component docs),
+                     padding lives here for the consistent doc-page look.
+                     When the sidebar is hidden (LP / catalog), this is bare
+                     full-width so each page can have a full-width section
+                     background (hero gradient etc.) AND constrain its inner
+                     content with its own max-w-7xl wrapper. --}}
+                <main class="flex-1 w-full {{ ($noSidebar ?? false) ? '' : 'px-6 lg:px-10 py-10' }}">
                     <h1 class="text-3xl font-bold mb-2">@yield('heading')</h1>
                     @hasSection('subheading')
                         <p class="text-base-content/60 mb-8">@yield('subheading')</p>

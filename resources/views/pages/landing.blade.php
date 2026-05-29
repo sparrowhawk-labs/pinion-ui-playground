@@ -435,9 +435,15 @@
             100% { transform: translate(-1%, 1%) scale(1.02); }
         }
 
-        /* Container grid 35 / 65 (stacks below lg). Copy LEFT, iframe RIGHT. */
+        /* Container grid 35 / 65 (stacks below lg). Copy LEFT, iframe RIGHT.
+           max-width constrains the inner content; the outer .tune-hero
+           section stays full-width so the gradient + grid backdrop never
+           gets clipped at the edges. */
         .tune-hero__container {
             position: relative;
+            max-width: 80rem;
+            margin-left: auto;
+            margin-right: auto;
             display: grid;
             grid-template-columns: 1fr;
             gap: 2rem;
@@ -896,6 +902,12 @@
             .tune-hero__row:hover { transform: none; }
         }
     </style>
+
+    {{-- Wrapper for all non-hero sections — keeps backgrounds full-width
+         (none of these have their own bg currently) while still constraining
+         the content to the same max-w-7xl as the navbar. Padding here so
+         the layout's main can stay bare. --}}
+    <div class="max-w-7xl mx-auto w-full px-6 lg:px-10">
 
     {{-- ============================================================
          2. Stat strip
@@ -1390,4 +1402,6 @@ npm run build &amp;&amp; php artisan serve</code></pre>
             </p>
         </div>
     </section>
+
+    </div> {{-- /max-w-7xl wrapper for non-hero sections --}}
 @endsection

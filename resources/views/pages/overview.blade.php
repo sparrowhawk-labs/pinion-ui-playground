@@ -95,10 +95,11 @@
     ];
 @endphp
 
-{{-- Catalog body. Outer `<main>` is provided by the layout (max-w-7xl mx-auto
-     when noSidebar is true), so this page just emits its own sections inside.
-     Avoid wrapping in another <main> — HTML disallows nested <main>. --}}
-<div class="w-full">
+{{-- Catalog body. The layout's <main> is now bare full-width (so any future
+     section bg won't clip at the edges), so this page provides its own
+     max-w + padding here. Backgrounds outside this wrapper stay edge-to-edge,
+     content inside stays aligned with the navbar's max-w-7xl. --}}
+<div class="max-w-7xl mx-auto w-full px-6 lg:px-10 py-10">
     {{-- Catalog header --}}
     <header class="mb-10">
         <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight mb-3">{{ __('playground.catalog.title') }}</h1>
