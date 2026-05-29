@@ -117,10 +117,12 @@
     tune: localStorage.getItem('pinion-tune') || 'default',
     ja: '{{ $htmlLocale }}' === 'ja',
     debug: localStorage.getItem('pinion-debug') === 'on',
+    themeOpen: false,
+    tuneOpen: false,
     themes: ['pinion','light','dark','abyss','acid','aqua','autumn','black','bumblebee','business','caramellatte','cmyk','coffee','corporate','cupcake','cyberpunk','dim','dracula','emerald','fantasy','forest','garden','halloween','lemonade','lofi','luxury','night','nord','pastel','retro','silk','sunset','synthwave','valentine','winter','wireframe'],
     tunes: ['default','minimal','sharp','soft','playful','corporate','brutal','elegant','bold','pixel','tech'],
-    setTheme(t) { this.theme = t; document.documentElement.setAttribute('data-theme', t); localStorage.setItem('pinion-theme', t); },
-    setTune(t) { this.tune = t; document.documentElement.setAttribute('data-tune', t); localStorage.setItem('pinion-tune', t); },
+    setTheme(t) { this.theme = t; document.documentElement.setAttribute('data-theme', t); localStorage.setItem('pinion-theme', t); this.themeOpen = false; },
+    setTune(t) { this.tune = t; document.documentElement.setAttribute('data-tune', t); localStorage.setItem('pinion-tune', t); this.tuneOpen = false; },
     setJa(on) { this.ja = on; document.documentElement.setAttribute('data-ja', on ? '' : 'off'); },
     setDebug(on) { this.debug = on; localStorage.setItem('pinion-debug', on ? 'on' : 'off'); },
     // Debug mode mounts the same yielded content twice (lofi + night). The two
@@ -281,27 +283,81 @@
                          self-sufficient across all routes. --}}
                     <div class="flex items-center gap-3 pr-2 border-r border-base-300">
                         <a href="/{{ $locale }}" class="text-sm font-bold text-primary tracking-tight">Pinion UI</a>
-                        <a href="/{{ $locale }}/components"
-                           class="text-xs font-medium px-2 py-0.5 rounded border border-base-300 transition-colors {{ $current === 'components' ? 'bg-primary text-primary-content' : 'bg-base-100 text-base-content hover:bg-base-300' }}">{{ __('playground.nav.components') }}</a>
+                        <a href="/{{ $locale }}/overview"
+                           class="text-xs font-medium px-2 py-0.5 rounded border border-base-300 transition-colors {{ $current === 'overview' ? 'bg-primary text-primary-content' : 'bg-base-100 text-base-content hover:bg-base-300' }}">{{ __('playground.nav.components') }}</a>
                     </div>
-                    <div class="flex items-center gap-2">
+                    {{-- Theme — custom Alpine dropdown. Each row previews the
+                         theme's primary / secondary / accent / base-100 swatches
+                         via inline data-theme so CSS variables resolve to that
+                         theme's tokens. Visually rich vs. the previous text-only
+                         <select>. --}}
+                    <div class="flex items-center gap-2 relative" @click.outside="themeOpen = false" @keydown.escape.window="themeOpen = false">
                         <label class="text-xs font-medium text-base-content/60">Theme:</label>
-                        <select x-model="theme" @change="setTheme($event.target.value)" class="text-xs bg-base-100 border border-base-300 rounded px-2 py-1 outline-none">
-                            @foreach(['pinion','light','dark','abyss','acid','aqua','autumn','black','bumblebee','business','caramellatte','cmyk','coffee','corporate','cupcake','cyberpunk','dim','dracula','emerald','fantasy','forest','garden','halloween','lemonade','lofi','luxury','night','nord','pastel','retro','silk','sunset','synthwave','valentine','winter','wireframe'] as $t)
-                                <option value="{{ $t }}">{{ $t }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <label class="text-xs font-medium text-base-content/60">Tune:</label>
-                        <div class="flex flex-wrap gap-1">
-                            <template x-for="t in tunes" :key="t">
-                                <button @click="setTune(t)"
-                                    :class="tune === t ? 'bg-primary text-primary-content' : 'bg-base-100 text-base-content hover:bg-base-300'"
-                                    class="text-xs px-2 py-0.5 rounded border border-base-300 transition-colors cursor-pointer"
-                                    x-text="t"></button>
+                        <button @click="themeOpen = !themeOpen"
+                                class="text-xs px-2 py-1 rounded border border-base-300 bg-base-100 hover:bg-base-200 transition-colors flex items-center gap-1.5 cursor-pointer"
+                                :aria-expanded="themeOpen">
+                            <span :data-theme="theme" class="inline-flex shrink-0 gap-0.5 rounded-sm">
+                                <span class="size-2.5 rounded-full bg-primary"></span>
+                                <span class="size-2.5 rounded-full bg-secondary"></span>
+                                <span class="size-2.5 rounded-full bg-accent"></span>
+                            </span>
+                            <span x-text="theme"></span>
+                            <svg class="size-3 text-base-content/50" :class="themeOpen ? 'rotate-180' : ''" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 9.28a.75.75 0 010-1.06z" clip-rule="evenodd"/></svg>
+                        </button>
+                        <ul x-show="themeOpen" x-cloak x-transition.opacity.duration.100ms
+                            class="absolute top-full left-0 mt-1 z-50 w-56 max-h-80 overflow-y-auto rounded-md border border-base-300 bg-base-100 shadow-lg py-1"
+                            role="listbox">
+                            <template x-for="t in themes" :key="t">
+                                <li>
+                                    <button @click="setTheme(t)"
+                                            class="flex items-center gap-2 w-full px-3 py-1.5 text-xs hover:bg-base-200 transition-colors text-left"
+                                            :class="theme === t ? 'bg-base-200 font-semibold' : ''"
+                                            role="option"
+                                            :aria-selected="theme === t">
+                                        <span :data-theme="t" class="inline-flex shrink-0 gap-0.5">
+                                            <span class="size-3 rounded-full bg-primary"></span>
+                                            <span class="size-3 rounded-full bg-secondary"></span>
+                                            <span class="size-3 rounded-full bg-accent"></span>
+                                            <span class="size-3 rounded-full bg-base-100 border border-base-content/30"></span>
+                                        </span>
+                                        <span x-text="t"></span>
+                                        <svg x-show="theme === t" class="ml-auto size-3 text-primary" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 5.29a1 1 0 01.006 1.414l-7.5 7.6a1 1 0 01-1.42.005l-3.5-3.5a1 1 0 011.414-1.414l2.79 2.79 6.794-6.886a1 1 0 011.416-.009z" clip-rule="evenodd"/></svg>
+                                    </button>
+                                </li>
                             </template>
-                        </div>
+                        </ul>
+                    </div>
+
+                    {{-- Tune — custom Alpine dropdown. Each row carries data-tune
+                         so its --font-heading resolves to the tune's actual
+                         display font; the preview row reads in that font, so
+                         the typographic difference between 'pixel' / 'elegant' /
+                         'brutal' etc. is visible at a glance instead of being
+                         lost behind generic system-font row labels. --}}
+                    <div class="flex items-center gap-2 relative" @click.outside="tuneOpen = false" @keydown.escape.window="tuneOpen = false">
+                        <label class="text-xs font-medium text-base-content/60">Tune:</label>
+                        <button @click="tuneOpen = !tuneOpen"
+                                class="text-xs px-2 py-1 rounded border border-base-300 bg-base-100 hover:bg-base-200 transition-colors flex items-center gap-1.5 cursor-pointer"
+                                :aria-expanded="tuneOpen">
+                            <span :data-tune="tune" style="font-family: var(--font-heading);" class="leading-none" x-text="tune"></span>
+                            <svg class="size-3 text-base-content/50" :class="tuneOpen ? 'rotate-180' : ''" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 9.28a.75.75 0 010-1.06z" clip-rule="evenodd"/></svg>
+                        </button>
+                        <ul x-show="tuneOpen" x-cloak x-transition.opacity.duration.100ms
+                            class="absolute top-full left-0 mt-1 z-50 w-60 max-h-96 overflow-y-auto rounded-md border border-base-300 bg-base-100 shadow-lg py-1"
+                            role="listbox">
+                            <template x-for="t in tunes" :key="t">
+                                <li>
+                                    <button @click="setTune(t)"
+                                            class="flex items-center gap-2 w-full px-3 py-2 hover:bg-base-200 transition-colors text-left"
+                                            :class="tune === t ? 'bg-base-200' : ''"
+                                            role="option"
+                                            :aria-selected="tune === t">
+                                        <span :data-tune="t" style="font-family: var(--font-heading); font-weight: var(--font-weight-heading, 700);" class="text-sm leading-none" x-text="'Aa ' + t"></span>
+                                        <svg x-show="tune === t" class="ml-auto size-3 text-primary" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 5.29a1 1 0 01.006 1.414l-7.5 7.6a1 1 0 01-1.42.005l-3.5-3.5a1 1 0 011.414-1.414l2.79 2.79 6.794-6.886a1 1 0 011.416-.009z" clip-rule="evenodd"/></svg>
+                                    </button>
+                                </li>
+                            </template>
+                        </ul>
                     </div>
                     <div class="flex items-center gap-2">
                         <label class="text-xs font-medium text-base-content/60">Lang:</label>
@@ -347,7 +403,7 @@
                  in the supposedly-visible single pane. `<template x-if>` swaps the
                  actual DOM, eliminating both issues. --}}
             <template x-if="!debug">
-                <main class="flex-1 px-6 lg:px-10 py-10 w-full">
+                <main class="flex-1 px-6 lg:px-10 py-10 w-full {{ ($noSidebar ?? false) ? 'max-w-7xl mx-auto' : '' }}">
                     <h1 class="text-3xl font-bold mb-2">@yield('heading')</h1>
                     @hasSection('subheading')
                         <p class="text-base-content/60 mb-8">@yield('subheading')</p>

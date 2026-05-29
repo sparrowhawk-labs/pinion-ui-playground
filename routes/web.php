@@ -28,9 +28,15 @@ Route::prefix('{locale}')
     ->where(['locale' => 'ja|en|zh-Hans|zh-Hant'])
     ->middleware(SetLocale::class)
     ->group(function () {
-        Route::get('/',           fn () => view('pages.overview'))->name('overview');
-        Route::get('/components', fn () => view('pages.components'))->name('components');
-        Route::get('/button',     fn () => view('pages.button'))->name('button');
+        // Root = marketing LP (no sidebar). Filename intentionally `landing`
+        // to keep it distinct from the catalog page below.
+        Route::get('/',         fn () => view('pages.landing'))->name('landing');
+        // Catalog / preline-style overview. Filename `overview` because the
+        // page title and visitor-facing name is "Overview"; the navbar
+        // link to it is labelled "Components" (the action verb) per
+        // 2026-05-29 product decision.
+        Route::get('/overview', fn () => view('pages.overview'))->name('overview');
+        Route::get('/button',   fn () => view('pages.button'))->name('button');
         Route::get('/button-group', fn () => view('pages.button-group'))->name('button-group');
         Route::get('/alert',      fn () => view('pages.alert'))->name('alert');
         Route::get('/badge',      fn () => view('pages.badge'))->name('badge');
