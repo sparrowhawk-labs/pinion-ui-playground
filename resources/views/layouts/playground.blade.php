@@ -288,39 +288,44 @@
                          catalog / per-component pages so the top-bar is
                          self-sufficient even when the sidebar is hidden. --}}
                     <a href="/{{ $locale }}" class="text-sm font-bold text-primary tracking-tight">Pinion UI</a>
-                    {{-- Theme — custom Alpine dropdown. Each row previews the
-                         theme's primary / secondary / accent / base-100 swatches
-                         via inline data-theme so CSS variables resolve to that
-                         theme's tokens. Visually rich vs. the previous text-only
-                         <select>. --}}
+                    {{-- Theme — custom Alpine dropdown. Each row's swatch sits
+                         inside a pill whose own bg comes from the theme's
+                         base-100 (via inline data-theme cascading the CSS
+                         variables down). That way a dark theme like dracula
+                         renders the pill on its own dark surface — the three
+                         primary / secondary / accent dots stand out against
+                         the theme's intended page colour instead of looking
+                         like a dark blob sitting on the white dropdown row.
+                         The previous design had no swatch container, which
+                         made dark themes' base-100 swatch read as an
+                         unrefined "hole" on the white dropdown background. --}}
                     <div class="flex items-center gap-2 relative" @click.outside="themeOpen = false" @keydown.escape.window="themeOpen = false">
                         <label class="text-xs font-medium text-base-content/60">Theme:</label>
                         <button @click="themeOpen = !themeOpen"
                                 class="text-xs px-2 py-1 rounded border border-base-300 bg-base-100 hover:bg-base-200 transition-colors flex items-center gap-1.5 cursor-pointer"
                                 :aria-expanded="themeOpen">
-                            <span :data-theme="theme" class="inline-flex shrink-0 gap-0.5 rounded-sm">
-                                <span class="size-2.5 rounded-full bg-primary"></span>
-                                <span class="size-2.5 rounded-full bg-secondary"></span>
-                                <span class="size-2.5 rounded-full bg-accent"></span>
+                            <span :data-theme="theme" class="inline-flex shrink-0 items-center gap-1 px-1.5 py-0.5 rounded bg-base-100 border border-base-content/20">
+                                <span class="size-2 rounded-full bg-primary"></span>
+                                <span class="size-2 rounded-full bg-secondary"></span>
+                                <span class="size-2 rounded-full bg-accent"></span>
                             </span>
                             <span x-text="theme"></span>
                             <svg class="size-3 text-base-content/50" :class="themeOpen ? 'rotate-180' : ''" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 9.28a.75.75 0 010-1.06z" clip-rule="evenodd"/></svg>
                         </button>
                         <ul x-show="themeOpen" x-cloak x-transition.opacity.duration.100ms
-                            class="absolute top-full left-0 mt-1 z-50 w-56 max-h-80 overflow-y-auto rounded-md border border-base-300 bg-base-100 shadow-lg py-1"
+                            class="absolute top-full left-0 mt-1 z-50 w-60 max-h-80 overflow-y-auto rounded-md border border-base-300 bg-base-100 shadow-lg py-1"
                             role="listbox">
                             <template x-for="t in themes" :key="t">
                                 <li>
                                     <button @click="setTheme(t)"
-                                            class="flex items-center gap-2 w-full px-3 py-1.5 text-xs hover:bg-base-200 transition-colors text-left"
+                                            class="flex items-center gap-2.5 w-full px-3 py-1.5 text-xs hover:bg-base-200 transition-colors text-left"
                                             :class="theme === t ? 'bg-base-200 font-semibold' : ''"
                                             role="option"
                                             :aria-selected="theme === t">
-                                        <span :data-theme="t" class="inline-flex shrink-0 gap-0.5">
-                                            <span class="size-3 rounded-full bg-primary"></span>
-                                            <span class="size-3 rounded-full bg-secondary"></span>
-                                            <span class="size-3 rounded-full bg-accent"></span>
-                                            <span class="size-3 rounded-full bg-base-100 border border-base-content/30"></span>
+                                        <span :data-theme="t" class="inline-flex shrink-0 items-center gap-1 px-2 py-1.5 rounded-md bg-base-100 border border-base-content/20">
+                                            <span class="size-2 rounded-full bg-primary"></span>
+                                            <span class="size-2 rounded-full bg-secondary"></span>
+                                            <span class="size-2 rounded-full bg-accent"></span>
                                         </span>
                                         <span x-text="t"></span>
                                         <svg x-show="theme === t" class="ml-auto size-3 text-primary" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 5.29a1 1 0 01.006 1.414l-7.5 7.6a1 1 0 01-1.42.005l-3.5-3.5a1 1 0 011.414-1.414l2.79 2.79 6.794-6.886a1 1 0 011.416-.009z" clip-rule="evenodd"/></svg>
@@ -385,15 +390,6 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <label class="text-xs font-medium text-base-content/60">Debug:</label>
-                        <button @click="setDebug(!debug)"
-                            :class="debug ? 'bg-primary text-primary-content' : 'bg-base-100 text-base-content hover:bg-base-300'"
-                            class="text-xs px-2 py-0.5 rounded border border-base-300 transition-colors cursor-pointer"
-                            :title="debug ? 'lofi / night 同時表示' : 'デバッグ表示 (lofi/night 2-カラム)'"
-                            x-text="debug ? 'lofi/night' : 'off'"></button>
-                    </div>
-
                     {{-- Components catalog link — pushed to the far right via
                          ml-auto so the brand and the primary call-to-action
                          (browse the catalog) bookend the control row. --}}
