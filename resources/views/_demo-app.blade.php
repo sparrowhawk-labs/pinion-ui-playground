@@ -156,7 +156,7 @@
             <x-slot:header>
                 <div class="flex items-center justify-between">
                     <h2 class="font-bold text-base" style="font-family: var(--font-heading);">Recent activity</h2>
-                    <a class="text-xs link link-hover text-primary">View all →</a>
+                    <a class="text-xs hover:underline underline-offset-2 text-primary">View all →</a>
                 </div>
             </x-slot:header>
 

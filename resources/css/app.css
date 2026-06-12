@@ -1,8 +1,4 @@
 @import 'tailwindcss';
-@plugin 'daisyui' {
-    themes: all;
-}
-
 /* pinion-ui preset: bundles @source globs for Blade + Compose PHP and tune tokens.
    Paths inside the preset resolve relative to the preset file itself, so adding
    new components in the package doesn't require touching this file again. */

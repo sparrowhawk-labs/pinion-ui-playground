@@ -42,7 +42,7 @@
     <div class="mb-8">
         <x-accordion>
             <x-accordion-item title="リンク付き">
-                <p>外部リソースへのリンクを含むコンテンツ。<a href="#" class="link link-primary">公式ドキュメント</a> を参照してください。</p>
+                <p>外部リソースへのリンクを含むコンテンツ。<a href="#" class="text-primary underline underline-offset-2 hover:opacity-80">公式ドキュメント</a> を参照してください。</p>
             </x-accordion-item>
             <x-accordion-item title="リスト">
                 <ul class="list-disc list-inside space-y-1">
@@ -74,7 +74,7 @@
                 daisyUI v5 の <code class="text-primary">@verbatim@plugin "daisyui/theme"@endverbatim</code> ディレクティブでテーマを定義してください。pinion-ui の class はすべて theme variable 経由なので、テーマを変えるだけで配色が追従します。
             </x-accordion-item>
             <x-accordion-item title="バグを見つけました">
-                GitHub Issues で報告してください。再現手順とスクリーンショットがあると助かります。<a href="#" class="link link-primary">sparrowhawk-labs/pinion-ui#issues</a>
+                GitHub Issues で報告してください。再現手順とスクリーンショットがあると助かります。<a href="#" class="text-primary underline underline-offset-2 hover:opacity-80">sparrowhawk-labs/pinion-ui#issues</a>
             </x-accordion-item>
         </x-accordion>
     </div>

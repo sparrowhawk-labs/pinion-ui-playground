@@ -153,14 +153,8 @@
                     <x-button color="primary" size="sm">＋ 作成…</x-button>
                 </x-slot:trigger>
                 <div class="space-y-3">
-                    <label class="block">
-                        <span class="text-sm font-medium">プロジェクト名</span>
-                        <input type="text" class="input input-bordered w-full mt-1" placeholder="my-app" />
-                    </label>
-                    <label class="block">
-                        <span class="text-sm font-medium">説明</span>
-                        <textarea class="textarea textarea-bordered w-full mt-1" rows="3" placeholder="任意"></textarea>
-                    </label>
+                    <x-input label="プロジェクト名" placeholder="my-app" />
+                    <x-textarea label="説明" rows="3" placeholder="任意" />
                 </div>
                 <x-slot:actions>
                     <x-button appearance="ghost" size="sm" @click="open = false">キャンセル</x-button>

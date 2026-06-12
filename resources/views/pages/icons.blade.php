@@ -100,7 +100,7 @@
         <h2 class="text-xl font-bold mb-2">Variant comparison</h2>
         <p class="text-base-content/60 mb-4 text-sm">Same icon across all 6 Solar styles + <code class="font-mono text-xs bg-base-200 px-1.5 py-0.5 rounded">emoji</code> / <code class="font-mono text-xs bg-base-200 px-1.5 py-0.5 rounded">pixel</code> virtual variants.</p>
         <div class="overflow-x-auto">
-            <table class="table table-sm">
+            <table class="w-full text-sm [&_th]:px-3 [&_th]:py-2 [&_th]:text-xs [&_th]:font-semibold [&_th]:text-base-content/60 [&_td]:px-3 [&_td]:py-2 [&_tbody_tr]:border-t [&_tbody_tr]:border-base-200">
                 <thead>
                     <tr>
                         <th class="text-left">icon</th>
@@ -135,11 +135,11 @@
 
     {{-- Library comparison --}}
     <section>
-        <h2 class="text-xl font-bold mb-2">Library comparison <span class="badge badge-warning badge-sm align-middle ml-1">PoC</span></h2>
+        <h2 class="text-xl font-bold mb-2">Library comparison <x-badge color="warning" appearance="solid" size="sm" class="align-middle ml-1">PoC</x-badge></h2>
         <p class="text-base-content/60 mb-2 text-sm">Same concept across <code class="text-xs bg-base-200 px-1.5 py-0.5 rounded">solar</code>, <code class="text-xs bg-base-200 px-1.5 py-0.5 rounded">fluent-emoji</code> (Microsoft, MIT — flat color), <code class="text-xs bg-base-200 px-1.5 py-0.5 rounded">pixelarticons</code> (MIT — monochrome 8bit). 25-concept PoC; some pixel icons are semantic fallbacks.</p>
         <p class="text-base-content/60 mb-6 text-xs">Plain <code class="text-xs bg-base-200 px-1.5 py-0.5 rounded">close / check / plus / minus</code> come from <code class="text-xs bg-base-200 px-1.5 py-0.5 rounded">solar-extra</code> (Solar wraps them in rings).</p>
         <div class="overflow-x-auto">
-            <table class="table table-sm">
+            <table class="w-full text-sm [&_th]:px-3 [&_th]:py-2 [&_th]:text-xs [&_th]:font-semibold [&_th]:text-base-content/60 [&_td]:px-3 [&_td]:py-2 [&_tbody_tr]:border-t [&_tbody_tr]:border-base-200">
                 <thead>
                     <tr>
                         <th class="text-left">concept</th>
@@ -191,7 +191,7 @@
             </div>
             <div class="flex items-center gap-2">
                 <input type="text" x-model="filter" placeholder="Filter by name..."
-                    class="input input-bordered input-sm w-64">
+                    class="w-64 h-[var(--h-field-sm)] px-3 text-sm rounded-[var(--radius-field)] border-[length:var(--border)] border-base-content/10 bg-base-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
                 <span class="text-xs text-base-content/60">
                     <span x-text="filteredIcons.length"></span> / <span x-text="allIcons.length"></span>
                     <span class="font-mono text-[10px] text-base-content/40" x-text="'(' + activeLibrary + ')'"></span>
@@ -215,12 +215,12 @@
 
         <div class="flex items-center justify-center gap-2 mt-8" x-show="totalPages > 1">
             <button @click="page = Math.max(1, page - 1)" :disabled="page === 1"
-                class="btn btn-sm btn-ghost" :class="page === 1 ? 'opacity-40 cursor-not-allowed' : ''">prev</button>
+                class="inline-flex items-center justify-center h-[var(--h-field-sm)] px-3 rounded-[var(--radius-field)] text-sm font-medium text-base-content hover:bg-base-200 transition-colors cursor-pointer" :class="page === 1 ? 'opacity-40 cursor-not-allowed' : ''">prev</button>
             <span class="text-sm text-base-content/70">
                 page <span x-text="page"></span> / <span x-text="totalPages"></span>
             </span>
             <button @click="page = Math.min(totalPages, page + 1)" :disabled="page === totalPages"
-                class="btn btn-sm btn-ghost" :class="page === totalPages ? 'opacity-40 cursor-not-allowed' : ''">next</button>
+                class="inline-flex items-center justify-center h-[var(--h-field-sm)] px-3 rounded-[var(--radius-field)] text-sm font-medium text-base-content hover:bg-base-200 transition-colors cursor-pointer" :class="page === totalPages ? 'opacity-40 cursor-not-allowed' : ''">next</button>
         </div>
     </section>
 

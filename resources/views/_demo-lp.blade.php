@@ -128,7 +128,7 @@
                     Drawn from brief, drawn by hand, finished in Glyphs. Variable axes calibrated for the actual layouts the type will live in — not abstract specimens.
                 </p>
                 <x-slot:footer>
-                    <a class="text-xs link link-hover text-primary">See the type library —</a>
+                    <a class="text-xs hover:underline underline-offset-2 text-primary">See the type library —</a>
                 </x-slot:footer>
             </x-card>
 
@@ -144,7 +144,7 @@
                     Magazines, art books, annual reports. Grids you can break with confidence. Type stacks that hold across 11 breakpoints and three reading distances.
                 </p>
                 <x-slot:footer>
-                    <a class="text-xs link link-hover text-accent">Studio monographs —</a>
+                    <a class="text-xs hover:underline underline-offset-2 text-accent">Studio monographs —</a>
                 </x-slot:footer>
             </x-card>
 
@@ -160,7 +160,7 @@
                     Wordmarks, sub-brands, and the rule books that keep them honest. We hand over a system, not a deck — and we stay on retainer to defend it.
                 </p>
                 <x-slot:footer>
-                    <a class="text-xs link link-hover text-success">Recent identities —</a>
+                    <a class="text-xs hover:underline underline-offset-2 text-success">Recent identities —</a>
                 </x-slot:footer>
             </x-card>
         </div>

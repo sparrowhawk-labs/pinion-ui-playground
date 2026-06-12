@@ -79,14 +79,14 @@
         <div class="border border-base-300 rounded-[var(--radius-box)] bg-base-100 p-element">
             <h3 class="font-medium mb-3">ログイン</h3>
             <div class="space-y-2">
-                <input type="email" placeholder="email" class="input input-bordered w-full" />
-                <input type="password" placeholder="password" class="input input-bordered w-full" />
-                <button class="btn btn-primary w-full">ログイン</button>
+                <x-input type="email" placeholder="email" />
+                <x-input type="password" placeholder="password" />
+                <x-button class="w-full">ログイン</x-button>
             </div>
             <x-divider>または</x-divider>
             <div class="space-y-2">
-                <button class="btn btn-outline w-full">Google でログイン</button>
-                <button class="btn btn-outline w-full">GitHub でログイン</button>
+                <x-button appearance="outline" color="neutral" class="w-full">Google でログイン</x-button>
+                <x-button appearance="outline" color="neutral" class="w-full">GitHub でログイン</x-button>
             </div>
         </div>
 

@@ -13,7 +13,7 @@
         <div class="flex items-center gap-6">
             <x-indicator>
                 <x-slot:badge>3</x-slot:badge>
-                <button class="btn btn-circle" aria-label="notifications">
+                <button class="inline-flex items-center justify-center w-10 h-10 rounded-full border-[length:var(--border)] border-base-content/10 bg-base-200 hover:bg-base-300 transition-colors cursor-pointer" aria-label="notifications">
                     <x-i type="bell" variant="linear" class="w-5 h-5" />
                 </button>
             </x-indicator>
@@ -48,7 +48,7 @@
         <div class="grid grid-cols-2 gap-8 place-items-center">
             <div class="flex flex-col items-center gap-3">
                 <x-indicator :dot="true">
-                    <button class="btn btn-circle" aria-label="notifications">
+                    <button class="inline-flex items-center justify-center w-10 h-10 rounded-full border-[length:var(--border)] border-base-content/10 bg-base-200 hover:bg-base-300 transition-colors cursor-pointer" aria-label="notifications">
                         <x-i type="bell" variant="linear" class="w-5 h-5" />
                     </button>
                 </x-indicator>
@@ -57,7 +57,7 @@
             <div class="flex flex-col items-center gap-3">
                 <x-indicator>
                     <x-slot:badge>12</x-slot:badge>
-                    <button class="btn btn-circle" aria-label="notifications">
+                    <button class="inline-flex items-center justify-center w-10 h-10 rounded-full border-[length:var(--border)] border-base-content/10 bg-base-200 hover:bg-base-300 transition-colors cursor-pointer" aria-label="notifications">
                         <x-i type="bell" variant="linear" class="w-5 h-5" />
                     </button>
                 </x-indicator>
@@ -132,7 +132,7 @@
             <div class="flex flex-col items-center gap-2">
                 <x-indicator color="primary">
                     <x-slot:badge>5</x-slot:badge>
-                    <button class="btn btn-square" aria-label="cart">
+                    <button class="inline-flex items-center justify-center w-10 h-10 rounded-[var(--radius-field)] border-[length:var(--border)] border-base-content/10 bg-base-200 hover:bg-base-300 transition-colors cursor-pointer" aria-label="cart">
                         <x-i type="cart-large" variant="linear" class="w-6 h-6" />
                     </button>
                 </x-indicator>
@@ -143,7 +143,7 @@
             <div class="flex flex-col items-center gap-2">
                 <x-indicator>
                     <x-slot:badge>99+</x-slot:badge>
-                    <button class="btn" aria-label="inbox">
+                    <button class="inline-flex items-center justify-center gap-2 h-10 px-4 rounded-[var(--radius-field)] border-[length:var(--border)] border-base-content/10 bg-base-200 text-sm font-medium hover:bg-base-300 transition-colors cursor-pointer" aria-label="inbox">
                         <x-i type="inbox" variant="linear" class="w-5 h-5" />
                         Inbox
                     </button>

@@ -960,7 +960,7 @@
             </x-stat>
         </div>
         <p class="text-xs text-base-content/50 text-right mt-2">
-            <a href="https://github.com/sparrowhawk-labs/pinion-icons" class="link link-hover text-primary">
+            <a href="https://github.com/sparrowhawk-labs/pinion-icons" class="hover:underline underline-offset-2 text-primary">
                 {{ __('playground.stat.icons_credit') }}
             </a>
         </p>
@@ -1082,7 +1082,7 @@ npm run build &amp;&amp; php artisan serve</code></pre>
 
                 <x-slot:footer>
                     <a href="https://github.com/sparrowhawk-labs/pinion-ui/blob/main/reference/components/{{ $previews[0]['name'] }}.md"
-                       class="text-xs link link-hover text-primary">reference/components/{{ $previews[0]['name'] }}.md →</a>
+                       class="text-xs hover:underline underline-offset-2 text-primary">reference/components/{{ $previews[0]['name'] }}.md →</a>
                 </x-slot:footer>
             </x-card>
 
@@ -1106,7 +1106,7 @@ npm run build &amp;&amp; php artisan serve</code></pre>
 
                 <x-slot:footer>
                     <a href="https://github.com/sparrowhawk-labs/pinion-ui/blob/main/reference/components/{{ $previews[1]['name'] }}.md"
-                       class="text-xs link link-hover text-primary">reference/components/{{ $previews[1]['name'] }}.md →</a>
+                       class="text-xs hover:underline underline-offset-2 text-primary">reference/components/{{ $previews[1]['name'] }}.md →</a>
                 </x-slot:footer>
             </x-card>
 
@@ -1132,7 +1132,7 @@ npm run build &amp;&amp; php artisan serve</code></pre>
 
                 <x-slot:footer>
                     <a href="https://github.com/sparrowhawk-labs/pinion-ui/blob/main/reference/components/{{ $previews[2]['name'] }}.md"
-                       class="text-xs link link-hover text-primary">reference/components/{{ $previews[2]['name'] }}.md →</a>
+                       class="text-xs hover:underline underline-offset-2 text-primary">reference/components/{{ $previews[2]['name'] }}.md →</a>
                 </x-slot:footer>
             </x-card>
 
@@ -1162,7 +1162,7 @@ npm run build &amp;&amp; php artisan serve</code></pre>
 
                 <x-slot:footer>
                     <a href="https://github.com/sparrowhawk-labs/pinion-ui/blob/main/reference/components/{{ $previews[3]['name'] }}.md"
-                       class="text-xs link link-hover text-primary">reference/components/{{ $previews[3]['name'] }}.md →</a>
+                       class="text-xs hover:underline underline-offset-2 text-primary">reference/components/{{ $previews[3]['name'] }}.md →</a>
                 </x-slot:footer>
             </x-card>
 
@@ -1184,7 +1184,7 @@ npm run build &amp;&amp; php artisan serve</code></pre>
 
                 <x-slot:footer>
                     <a href="https://github.com/sparrowhawk-labs/pinion-ui/blob/main/reference/components/{{ $previews[4]['name'] }}.md"
-                       class="text-xs link link-hover text-primary">reference/components/{{ $previews[4]['name'] }}.md →</a>
+                       class="text-xs hover:underline underline-offset-2 text-primary">reference/components/{{ $previews[4]['name'] }}.md →</a>
                 </x-slot:footer>
             </x-card>
 
@@ -1211,7 +1211,7 @@ npm run build &amp;&amp; php artisan serve</code></pre>
 
                 <x-slot:footer>
                     <a href="https://github.com/sparrowhawk-labs/pinion-ui/blob/main/reference/components/{{ $previews[5]['name'] }}.md"
-                       class="text-xs link link-hover text-primary">reference/components/{{ $previews[5]['name'] }}.md →</a>
+                       class="text-xs hover:underline underline-offset-2 text-primary">reference/components/{{ $previews[5]['name'] }}.md →</a>
                 </x-slot:footer>
             </x-card>
 
@@ -1232,7 +1232,7 @@ npm run build &amp;&amp; php artisan serve</code></pre>
 
                 <x-slot:footer>
                     <a href="https://github.com/sparrowhawk-labs/pinion-ui/blob/main/reference/components/{{ $previews[6]['name'] }}.md"
-                       class="text-xs link link-hover text-primary">reference/components/{{ $previews[6]['name'] }}.md →</a>
+                       class="text-xs hover:underline underline-offset-2 text-primary">reference/components/{{ $previews[6]['name'] }}.md →</a>
                 </x-slot:footer>
             </x-card>
 
@@ -1257,7 +1257,7 @@ npm run build &amp;&amp; php artisan serve</code></pre>
 
                 <x-slot:footer>
                     <a href="https://github.com/sparrowhawk-labs/pinion-ui/blob/main/reference/components/{{ $previews[7]['name'] }}.md"
-                       class="text-xs link link-hover text-primary">reference/components/{{ $previews[7]['name'] }}.md →</a>
+                       class="text-xs hover:underline underline-offset-2 text-primary">reference/components/{{ $previews[7]['name'] }}.md →</a>
                 </x-slot:footer>
             </x-card>
 
@@ -1286,7 +1286,7 @@ npm run build &amp;&amp; php artisan serve</code></pre>
 
                 <x-slot:footer>
                     <a href="https://github.com/sparrowhawk-labs/pinion-ui/blob/main/reference/components/{{ $previews[8]['name'] }}.md"
-                       class="text-xs link link-hover text-primary">reference/components/{{ $previews[8]['name'] }}.md →</a>
+                       class="text-xs hover:underline underline-offset-2 text-primary">reference/components/{{ $previews[8]['name'] }}.md →</a>
                 </x-slot:footer>
             </x-card>
         </div>
@@ -1300,7 +1300,7 @@ npm run build &amp;&amp; php artisan serve</code></pre>
     <section class="mb-section-inner">
         <div class="flex items-baseline justify-between mb-element">
             <h2 class="text-2xl font-bold tracking-tight">{{ __('playground.whats_new.title') }}</h2>
-            <a href="https://github.com/sparrowhawk-labs/pinion-ui/releases" class="text-sm link link-hover text-primary">
+            <a href="https://github.com/sparrowhawk-labs/pinion-ui/releases" class="text-sm hover:underline underline-offset-2 text-primary">
                 {{ __('playground.whats_new.all_releases') }} <x-i type="arrow-right" class="w-3.5 h-3.5 inline-block align-middle" />
             </a>
         </div>
