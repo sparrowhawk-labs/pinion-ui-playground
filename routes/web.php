@@ -31,6 +31,7 @@ Route::prefix('{locale}')
         // Root = marketing LP (no sidebar). Filename intentionally `landing`
         // to keep it distinct from the catalog page below.
         Route::get('/',         fn () => view('pages.landing'))->name('landing');
+        Route::get('/tune-lab', fn () => view('pages.tune-lab'))->name('tune-lab');
         // Catalog / preline-style overview. Filename `overview` because the
         // page title and visitor-facing name is "Overview"; the navbar
         // link to it is labelled "Components" (the action verb) per

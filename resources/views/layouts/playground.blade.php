@@ -121,7 +121,7 @@
     themeOpen: false,
     tuneOpen: false,
     themes: ['pinion','light','dark','abyss','acid','aqua','autumn','black','bumblebee','business','caramellatte','cmyk','coffee','corporate','cupcake','cyberpunk','dim','dracula','emerald','fantasy','forest','garden','halloween','lemonade','lofi','luxury','night','nord','pastel','retro','silk','sunset','synthwave','valentine','winter','wireframe'],
-    tunes: ['default','minimal','sharp','soft','playful','corporate','brutal','elegant','bold','pixel','tech'],
+    tunes: ['default','minimal','sharp','corporate','tech','brutal','editorial','luxury','soft','pixel','draft'],
     setTheme(t) { this.theme = t; document.documentElement.setAttribute('data-theme', t); localStorage.setItem('pinion-theme', t); this.themeOpen = false; },
     setTune(t) { this.tune = t; document.documentElement.setAttribute('data-tune', t); localStorage.setItem('pinion-tune', t); this.tuneOpen = false; },
     setJa(on) { this.ja = on; document.documentElement.setAttribute('data-ja', on ? '' : 'off'); },
@@ -215,6 +215,14 @@
                     ['slug' => 'accordion',           'label' => 'Accordion'],
                     ['slug' => 'collapse',            'label' => 'Collapse'],
                     ['slug' => 'sidebar',             'label' => 'Sidebar'],
+                ],
+            ],
+            [
+                'title' => 'Tune v2',
+                'subtitle' => 'review',
+                'badge' => null,
+                'items' => [
+                    ['slug' => 'tune-lab', 'label' => 'Tune Lab'],
                 ],
             ],
             [
