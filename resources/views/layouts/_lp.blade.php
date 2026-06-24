@@ -19,6 +19,15 @@
          hit. noindex prevents it from cluttering SERPs as duplicate / low-value. --}}
     <meta name="robots" content="noindex,nofollow">
 
+    {{-- v2 tune fonts. tune.css self-hosts only PixelMplus; every other tune's
+         typeface (font = tune identity, pinion-ui invariant #5) loads via this
+         link — mirrors layouts/playground.blade.php. Without it the embedded LP
+         falls back to system fonts and the FONT axis of the tune morph silently
+         breaks (rough/radius/shadow still apply, so it's easy to miss). --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&family=Playfair+Display:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Hanken+Grotesk:wght@300;400;500;600&family=Quicksand:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=Caveat:wght@400;500;600;700&family=Patrick+Hand&family=Press+Start+2P&family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@400;500;700&family=Zen+Maru+Gothic:wght@400;500;700&family=Yomogi&family=Zen+Kurenaido&family=M+PLUS+1p:wght@400;500;700&family=M+PLUS+1+Code:wght@400;500;700&display=swap" rel="stylesheet">
+
     {{-- Self-contained: needs the playground's compiled CSS so the embedded
          components render with theme + tune tokens. JS only needed for the
          tiny header CTA; safe to load. --}}
