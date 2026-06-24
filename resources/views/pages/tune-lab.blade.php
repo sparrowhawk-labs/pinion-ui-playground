@@ -37,41 +37,81 @@
     }
 
     /* ============================================================
-       Tune Lab control bar (the signature element) — an instrument
-       panel. Monospace labels, numbered tune keys, a strength dial.
-       Lives in its own scope so the morph transition doesn't soften
-       the panel's own hover feedback (those use shorter transitions).
+       SIGNATURE: the Tune Lab control DOCK — a floating, collapsible
+       toolbox pinned bottom-right (position:fixed). Collapsed = a compact
+       launcher; open = the full contact-sheet panel. The instrument chrome
+       stays visually STABLE (fixed radius/spacing) while the page below
+       morphs — the tool that drives the morph should not morph itself.
        ============================================================ */
-    .tl-bar {
-        background: color-mix(in oklab, var(--color-base-100) 86%, transparent);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid color-mix(in oklab, var(--color-base-content) 12%, transparent);
-        box-shadow: 0 10px 30px -22px color-mix(in oklab, var(--color-base-content) 60%, transparent);
-    }
-    .tl-bar__inner {
-        max-width: 80rem;
-        margin-inline: auto;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 0.75rem 1.25rem;
-        padding: 0.6rem 1.5rem;
-    }
-    @media (min-width: 1024px) { .tl-bar__inner { padding-inline: 2.5rem; } }
+    .tl-dock { position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 50; }
+    @media (max-width: 640px) { .tl-dock { right: 0.75rem; bottom: 0.75rem; } }
+    /* The dock is the STABLE instrument, but it lives under <html data-tune>,
+       so tune element-rules that use a descendant combinator still reach it —
+       notably draft's rough SVG filter on [data-tune="draft"] :is(button,…).
+       Neutralise any tune filter inside the dock so the toolbox never goes
+       "draughtsman" while the page below does. (backdrop-filter is unaffected.) */
+    .tl-dock, .tl-dock * { filter: none !important; }
+
+    /* shared mono legend (reused by launcher + panel field labels) */
     .tl-bar__legend {
         font-family: ui-monospace, "SFMono-Regular", monospace;
-        font-size: 0.625rem;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        font-weight: 700;
+        font-size: 0.625rem; letter-spacing: 0.18em; text-transform: uppercase;
+        font-weight: 700; white-space: nowrap;
         color: color-mix(in oklab, var(--color-accent) 80%, var(--color-base-content));
-        white-space: nowrap;
     }
-    .tl-bar__group { display: flex; align-items: center; gap: 0.5rem; min-width: 0; }
-    .tl-bar__divider {
-        width: 1px; align-self: stretch; min-height: 1.5rem;
-        background: color-mix(in oklab, var(--color-base-content) 14%, transparent);
+
+    /* collapsed launcher (FAB) */
+    .tl-fab {
+        display: inline-flex; align-items: center; gap: 0.6rem;
+        padding: 0.5rem 0.95rem 0.5rem 0.55rem; border-radius: 999px;
+        background: color-mix(in oklab, var(--color-base-100) 90%, transparent);
+        backdrop-filter: blur(10px);
+        border: 1px solid color-mix(in oklab, var(--color-base-content) 14%, transparent);
+        box-shadow: 0 14px 34px -14px color-mix(in oklab, var(--color-base-content) 55%, transparent);
+        cursor: pointer;
+        transition: transform 160ms cubic-bezier(.2,.8,.2,1), box-shadow 160ms ease;
     }
+    .tl-fab:hover { transform: translateY(-2px); box-shadow: 0 18px 42px -14px color-mix(in oklab, var(--color-base-content) 60%, transparent); }
+    .tl-fab:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+    .tl-fab__icon { display:inline-flex; width:1.85rem; height:1.85rem; flex:none; align-items:center; justify-content:center; border-radius:10px; background: var(--color-primary); color: var(--color-primary-content); }
+    .tl-fab__icon svg { width: 1.05rem; height: 1.05rem; }
+    .tl-fab__txt { display:flex; flex-direction:column; align-items:flex-start; gap:1px; line-height:1; }
+    .tl-fab__label { font-family: ui-monospace, monospace; font-size:0.5rem; letter-spacing:0.2em; font-weight:700; color: color-mix(in oklab, var(--color-base-content) 50%, transparent); }
+    .tl-fab__tune { font-size:0.95rem; font-weight:700; color: var(--color-base-content); }
+
+    /* expanded panel */
+    .tl-panel {
+        width: 21rem; max-width: calc(100vw - 1.5rem);
+        max-height: calc(100vh - 2rem); overflow-y: auto;
+        background: color-mix(in oklab, var(--color-base-100) 92%, transparent);
+        backdrop-filter: blur(14px);
+        border: 1px solid color-mix(in oklab, var(--color-base-content) 13%, transparent);
+        border-radius: 16px;
+        box-shadow: 0 26px 64px -20px color-mix(in oklab, var(--color-base-content) 60%, transparent);
+        transform-origin: bottom right;
+    }
+    .tl-panel__head {
+        position: sticky; top: 0; z-index: 1;
+        display:flex; align-items:center; justify-content:space-between;
+        padding: 0.7rem 0.85rem;
+        background: color-mix(in oklab, var(--color-base-100) 92%, transparent);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid color-mix(in oklab, var(--color-base-content) 10%, transparent);
+    }
+    .tl-panel__close {
+        display:inline-flex; align-items:center; justify-content:center;
+        width:1.75rem; height:1.75rem; border-radius:8px; cursor:pointer;
+        color: color-mix(in oklab, var(--color-base-content) 55%, transparent);
+        transition: background 140ms ease, color 140ms ease;
+    }
+    .tl-panel__close:hover { background: color-mix(in oklab, var(--color-base-content) 8%, transparent); color: var(--color-base-content); }
+    .tl-panel__close:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 1px; }
+    .tl-panel__close svg { width: 1.1rem; height: 1.1rem; }
+    .tl-panel__body { padding: 0.85rem; display:flex; flex-direction:column; gap: 0.9rem; }
+    .tl-field { display:flex; flex-direction:column; gap: 0.45rem; }
+    .tl-field__legend { color: color-mix(in oklab, var(--color-base-content) 45%, transparent) !important; }
+    .tl-panel__readout { display:flex; flex-direction:column; gap:0.35rem; padding-top:0.7rem; border-top: 1px solid color-mix(in oklab, var(--color-base-content) 10%, transparent); }
+    .tl-panel__readout .tl-readout, .tl-panel__readout .tl-spec { white-space: normal; }
 
     /* ── SIGNATURE: the switcher is a CONTACT SHEET of all 11 tunes ──
        Each chip carries its OWN `data-tune`, so its corner radius, border
@@ -81,12 +121,12 @@
        the order is not a sequence, so the chip's own SHAPE + TYPE VOICE
        carry the information instead. Uniform cell size keeps the sheet
        reading as a tidy grid rather than chaos. */
-    .tl-keys { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+    .tl-keys { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.35rem; }
     .tl-key {
         position: relative;
         display: inline-flex; align-items: center; justify-content: center;
-        min-width: 4.75rem;
-        padding: 0.34rem 0.6rem;
+        min-width: 0; width: 100%;
+        padding: 0.4rem 0.5rem;
         /* shape + border read from THIS chip's data-tune (md strength) */
         border-radius: var(--radius-field, 6px);
         border: max(1px, var(--border, 1px)) solid color-mix(in oklab, var(--color-base-content) 22%, transparent);
@@ -244,6 +284,7 @@
         strength: (document.documentElement.getAttribute('data-tune-strength') || 'md'),
         strengths: ['xs','sm','md','lg','xl'],
         spec: { r: 0, b: 0, f: '' },
+        dockOpen: (window.innerWidth >= 1024),   // open on desktop, collapsed on phones
         setStrength(s) {
             this.strength = s;
             document.documentElement.setAttribute('data-tune-strength', s);
@@ -273,55 +314,90 @@
     <div class="tl-probe" x-ref="probe" aria-hidden="true"></div>
 
     {{-- ============================================================
-         CONTROL BAR — the signature instrument panel. Sticky inside
-         content, sits just under the layout's own navbar.
+         CONTROL DOCK — the signature instrument, a floating toolbox pinned
+         bottom-right (position:fixed). Collapsed = a compact launcher; open =
+         the full contact-sheet panel. Stays inside .tune-lab so tune/setTune/
+         spec/$refs.probe remain in scope. Default open on desktop.
          ============================================================ --}}
-    <div class="tl-bar sticky top-0 z-40">
-        <div class="tl-bar__inner">
-            <span class="tl-bar__legend">Tune&nbsp;Lab</span>
+    <div class="tl-dock">
+        {{-- collapsed launcher --}}
+        <button type="button" class="tl-fab" x-show="!dockOpen" x-cloak
+                x-on:click="dockOpen = true"
+                x-transition:enter="transition ease-out duration-200"
+                x-transition:enter-start="opacity-0 translate-y-2"
+                x-transition:enter-end="opacity-100 translate-y-0"
+                aria-label="Tune Lab を開く">
+            <span class="tl-fab__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <line x1="4" y1="8" x2="20" y2="8"/><circle cx="9" cy="8" r="2.4" fill="currentColor" stroke="none"/>
+                    <line x1="4" y1="16" x2="20" y2="16"/><circle cx="15" cy="16" r="2.4" fill="currentColor" stroke="none"/>
+                </svg>
+            </span>
+            <span class="tl-fab__txt">
+                <span class="tl-fab__label">TUNE&nbsp;LAB</span>
+                <span class="tl-fab__tune" style="font-family: var(--font-heading)" x-text="tune"></span>
+            </span>
+        </button>
 
-            {{-- Tune keys = a contact sheet. Each chip wears its OWN data-tune,
-                 so its corner radius / border / typeface are real specimens of
-                 that tune. Active = body scope `tune`. --}}
-            <div class="tl-bar__group">
-                <span class="tl-bar__legend" style="color: color-mix(in oklab, var(--color-base-content) 45%, transparent)">tune</span>
-                <div class="tl-keys" role="group" aria-label="Tune preset">
-                    @foreach($tuneKeys as $t)
-                        <button type="button"
-                                class="tl-key"
-                                data-tune="{{ $t['name'] }}"
-                                x-on:click="setTune('{{ $t['name'] }}')"
-                                x-bind:class="{ 'is-active': tune === '{{ $t['name'] }}' }"
-                                x-bind:aria-pressed="tune === '{{ $t['name'] }}'"
-                                title="data-tune={{ $t['name'] }}">
-                            <span class="tl-key__name" style="font-family: {{ $t['font'] }}; {{ $t['style'] }}">{{ $t['label'] }}</span>
-                        </button>
-                    @endforeach
-                </div>
+        {{-- expanded panel --}}
+        <div class="tl-panel" x-show="dockOpen" x-cloak
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 translate-y-3 scale-95"
+             x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+             x-transition:leave="transition ease-in duration-150"
+             x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+             x-transition:leave-end="opacity-0 translate-y-3 scale-95"
+             role="group" aria-label="Tune Lab controls">
+
+            <div class="tl-panel__head">
+                <span class="tl-bar__legend">Tune&nbsp;Lab</span>
+                <button type="button" class="tl-panel__close" x-on:click="dockOpen = false" aria-label="ツールボックスを閉じる">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
             </div>
 
-            <div class="tl-bar__divider" aria-hidden="true"></div>
-
-            {{-- Strength dial: 5 notches → data-tune-strength on <html>. --}}
-            <div class="tl-bar__group">
-                <span class="tl-bar__legend" style="color: color-mix(in oklab, var(--color-base-content) 45%, transparent)">strength</span>
-                <div class="tl-strength" role="group" aria-label="Tune strength">
-                    <template x-for="s in strengths" :key="s">
-                        <button type="button"
-                                x-on:click="setStrength(s)"
-                                x-bind:class="{ 'is-active': strength === s }"
-                                x-bind:aria-pressed="strength === s"
-                                x-text="s"></button>
-                    </template>
+            <div class="tl-panel__body">
+                {{-- Tune keys = a contact sheet. Each chip wears its OWN data-tune,
+                     so its corner radius / border / typeface are real specimens of
+                     that tune. Active = body scope `tune`. --}}
+                <div class="tl-field">
+                    <span class="tl-bar__legend tl-field__legend">tune</span>
+                    <div class="tl-keys" role="group" aria-label="Tune preset">
+                        @foreach($tuneKeys as $t)
+                            <button type="button"
+                                    class="tl-key"
+                                    data-tune="{{ $t['name'] }}"
+                                    x-on:click="setTune('{{ $t['name'] }}')"
+                                    x-bind:class="{ 'is-active': tune === '{{ $t['name'] }}' }"
+                                    x-bind:aria-pressed="tune === '{{ $t['name'] }}'"
+                                    title="data-tune={{ $t['name'] }}">
+                                <span class="tl-key__name" style="font-family: {{ $t['font'] }}; {{ $t['style'] }}">{{ $t['label'] }}</span>
+                            </button>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
 
-            {{-- Live read-out: the active identity, and the morph MEASURED. --}}
-            <div class="ml-auto flex items-center justify-end gap-x-4 gap-y-1 flex-wrap">
-                <span class="tl-readout" aria-hidden="true">data-tune=<b x-text="tune"></b> · strength=<i x-text="strength"></i></span>
-                <span class="tl-spec" aria-hidden="true">
-                    <span class="tl-swatch"></span>radius <b x-text="spec.r + 'px'"></b> · border <b x-text="spec.b + 'px'"></b> · <b x-text="spec.f"></b>
-                </span>
+                {{-- Strength dial: 5 notches → data-tune-strength on <html>. --}}
+                <div class="tl-field">
+                    <span class="tl-bar__legend tl-field__legend">strength</span>
+                    <div class="tl-strength" role="group" aria-label="Tune strength">
+                        <template x-for="s in strengths" :key="s">
+                            <button type="button"
+                                    x-on:click="setStrength(s)"
+                                    x-bind:class="{ 'is-active': strength === s }"
+                                    x-bind:aria-pressed="strength === s"
+                                    x-text="s"></button>
+                        </template>
+                    </div>
+                </div>
+
+                {{-- Live read-out: the active identity, and the morph MEASURED. --}}
+                <div class="tl-panel__readout">
+                    <span class="tl-readout" aria-hidden="true">data-tune=<b x-text="tune"></b> · strength=<i x-text="strength"></i></span>
+                    <span class="tl-spec" aria-hidden="true">
+                        <span class="tl-swatch"></span>radius <b x-text="spec.r + 'px'"></b> · border <b x-text="spec.b + 'px'"></b> · <b x-text="spec.f"></b>
+                    </span>
+                </div>
             </div>
         </div>
     </div>
@@ -329,13 +405,13 @@
     {{-- ============================================================
          1. HERO — Halcyon (fictional incident-response SaaS).
          ============================================================ --}}
-    <section class="tl-hero" style="padding-block: clamp(3.5rem, 8vw, 6rem);">
+    <section class="tl-hero" style="padding-block: clamp(3rem, 8vw, var(--space-section));">
         {{-- Specimen backdrop: faint calibration paper + the active tune's name
              set huge behind everything, re-lettering itself on every switch. --}}
         <div class="tl-hero__paper" aria-hidden="true"></div>
         <div class="tl-hero__ghost" aria-hidden="true" x-text="tune"></div>
 
-        <div class="tl-section grid lg:grid-cols-[1.15fr_0.85fr] gap-12 items-center">
+        <div class="tl-section grid lg:grid-cols-[1.15fr_0.85fr] gap-section-inner items-center">
             <div>
                 <div class="flex items-center gap-3 mb-5 flex-wrap">
                     <x-badge appearance="soft" color="primary" icon="bolt-circle">v3 · 稼働率 99.99%</x-badge>
@@ -423,8 +499,8 @@
          3. FEATURES — 4 cards, icons + heading + body.
          Shows radius / shadow / border per tune.
          ============================================================ --}}
-    <section class="tl-section" style="padding-block: clamp(3rem, 6vw, 4.5rem);">
-        <div class="max-w-2xl mb-10">
+    <section class="tl-section" style="padding-block: clamp(2.5rem, 7vw, var(--space-section));">
+        <div class="max-w-2xl mb-section-inner">
             <p class="tl-eyebrow mb-3">shape — radius · shadow · border</p>
             <h2 class="tl-h text-3xl lg:text-4xl mb-3">嵐の中でも、手順は静かに進む</h2>
             <p class="text-base" style="color:color-mix(in oklab,var(--color-base-content) 70%,transparent)">
@@ -458,9 +534,9 @@
          4. STATS + DATA — density-heavy. Stats group, a wide table,
          and a state timeline. Lets corporate/tech vs soft/luxury differ.
          ============================================================ --}}
-    <section style="background:color-mix(in oklab,var(--color-base-200) 55%,transparent); padding-block: clamp(3rem, 6vw, 4.5rem);">
+    <section style="background:color-mix(in oklab,var(--color-base-200) 55%,transparent); padding-block: clamp(2.5rem, 7vw, var(--space-section));">
         <div class="tl-section">
-            <div class="max-w-2xl mb-9">
+            <div class="max-w-2xl mb-section-inner">
                 <p class="tl-eyebrow mb-3">density — spacing · rhythm</p>
                 <h2 class="tl-h text-3xl lg:text-4xl mb-3">数字で見る、静けさ</h2>
                 <p class="text-base" style="color:color-mix(in oklab,var(--color-base-content) 70%,transparent)">
@@ -469,7 +545,7 @@
             </div>
 
             {{-- Stat group --}}
-            <div class="stats stats-vertical lg:stats-horizontal shadow w-full mb-element">
+            <div class="stats stats-vertical lg:stats-horizontal shadow w-full mb-element bg-base-100">
                 <x-stat wrapped="false" label="MTTR 中央値" value="6.2分" desc="導入前比" trend="down" trendValue="-58%" valueColor="success">
                     <x-i type="clock-circle" class="w-8 h-8" />
                 </x-stat>
@@ -496,7 +572,7 @@
                             <thead class="bg-base-200 text-base-content/70">
                                 <tr>
                                     @foreach(['ID','概要','重大度','MTTR','担当','状態','操作'] as $col)
-                                        <th class="px-4 py-2 text-left font-medium whitespace-nowrap">{{ $col }}</th>
+                                        <th class="px-compact py-compact text-left font-medium whitespace-nowrap">{{ $col }}</th>
                                     @endforeach
                                 </tr>
                             </thead>
@@ -515,13 +591,13 @@
                                 @endphp
                                 @foreach($incidents as $r)
                                     <tr class="border-t border-base-300 hover:bg-base-200/50">
-                                        <td class="px-4 py-2 whitespace-nowrap font-mono text-xs">{{ $r[0] }}</td>
-                                        <td class="px-4 py-2 whitespace-nowrap">{{ $r[1] }}</td>
-                                        <td class="px-4 py-2 whitespace-nowrap"><x-badge size="sm" appearance="soft" :color="$sevColor[$r[2]]">{{ $r[2] }}</x-badge></td>
-                                        <td class="px-4 py-2 whitespace-nowrap font-mono text-xs">{{ $r[3] }}</td>
-                                        <td class="px-4 py-2 whitespace-nowrap">{{ $r[4] }}</td>
-                                        <td class="px-4 py-2 whitespace-nowrap"><x-badge size="sm" appearance="dot" :color="$stColor[$r[6]]">{{ $stLabel[$r[6]] }}</x-badge></td>
-                                        <td class="px-4 py-2 whitespace-nowrap"><x-button size="xs" appearance="soft" color="primary">詳細</x-button></td>
+                                        <td class="px-compact py-compact whitespace-nowrap font-mono text-xs">{{ $r[0] }}</td>
+                                        <td class="px-compact py-compact whitespace-nowrap">{{ $r[1] }}</td>
+                                        <td class="px-compact py-compact whitespace-nowrap"><x-badge size="sm" appearance="soft" :color="$sevColor[$r[2]]">{{ $r[2] }}</x-badge></td>
+                                        <td class="px-compact py-compact whitespace-nowrap font-mono text-xs">{{ $r[3] }}</td>
+                                        <td class="px-compact py-compact whitespace-nowrap">{{ $r[4] }}</td>
+                                        <td class="px-compact py-compact whitespace-nowrap"><x-badge size="sm" appearance="dot" :color="$stColor[$r[6]]">{{ $stLabel[$r[6]] }}</x-badge></td>
+                                        <td class="px-compact py-compact whitespace-nowrap"><x-button size="xs" appearance="soft" color="primary">詳細</x-button></td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -547,8 +623,8 @@
     {{-- ============================================================
          5. PRICING — 3 tiers, one "Popular".
          ============================================================ --}}
-    <section class="tl-section" style="padding-block: clamp(3rem, 6vw, 4.5rem);">
-        <div class="max-w-2xl mx-auto text-center mb-10">
+    <section class="tl-section" style="padding-block: clamp(2.5rem, 7vw, var(--space-section));">
+        <div class="max-w-2xl mx-auto text-center mb-section-inner">
             <p class="tl-eyebrow mb-3">surface — card radius · border</p>
             <h2 class="tl-h text-3xl lg:text-4xl mb-3">チームの規模に合わせて</h2>
             <p class="text-base" style="color:color-mix(in oklab,var(--color-base-content) 70%,transparent)">
@@ -562,10 +638,10 @@
                 <x-slot:header><h3 class="tl-h font-bold text-lg">Starter</h3></x-slot:header>
                 <p class="mb-1"><span class="tl-h text-4xl font-bold">¥0</span><span class="text-sm" style="color:color-mix(in oklab,var(--color-base-content) 55%,transparent)">/月</span></p>
                 <p class="text-sm mb-5" style="color:color-mix(in oklab,var(--color-base-content) 60%,transparent)">個人・小規模チーム向け。</p>
-                <ul class="space-y-2.5 text-sm mb-6 flex-1">
-                    <li class="flex gap-2"><x-i type="check" library="solar-extra" class="w-4 h-4 text-success shrink-0 mt-0.5" /> 3 名まで</li>
-                    <li class="flex gap-2"><x-i type="check" library="solar-extra" class="w-4 h-4 text-success shrink-0 mt-0.5" /> 基本アラート相関</li>
-                    <li class="flex gap-2"><x-i type="check" library="solar-extra" class="w-4 h-4 text-success shrink-0 mt-0.5" /> 7 日間の履歴</li>
+                <ul class="space-y-compact text-sm mb-6 flex-1">
+                    <li class="flex gap-micro"><x-i type="check" library="solar-extra" class="w-4 h-4 text-success shrink-0 mt-0.5" /> 3 名まで</li>
+                    <li class="flex gap-micro"><x-i type="check" library="solar-extra" class="w-4 h-4 text-success shrink-0 mt-0.5" /> 基本アラート相関</li>
+                    <li class="flex gap-micro"><x-i type="check" library="solar-extra" class="w-4 h-4 text-success shrink-0 mt-0.5" /> 7 日間の履歴</li>
                 </ul>
                 <x-button appearance="outline" color="neutral" class="w-full">無料で始める</x-button>
             </x-card>
@@ -580,11 +656,11 @@
                 </x-slot:header>
                 <p class="mb-1"><span class="tl-h text-4xl font-bold">¥4,800</span><span class="text-sm" style="color:color-mix(in oklab,var(--color-base-content) 55%,transparent)">/月</span></p>
                 <p class="text-sm mb-5" style="color:color-mix(in oklab,var(--color-base-content) 60%,transparent)">成長中の運用チームに。</p>
-                <ul class="space-y-2.5 text-sm mb-6 flex-1">
-                    <li class="flex gap-2"><x-i type="check" library="solar-extra" class="w-4 h-4 text-success shrink-0 mt-0.5" /> 20 名まで</li>
-                    <li class="flex gap-2"><x-i type="check" library="solar-extra" class="w-4 h-4 text-success shrink-0 mt-0.5" /> 自動エスカレーション</li>
-                    <li class="flex gap-2"><x-i type="check" library="solar-extra" class="w-4 h-4 text-success shrink-0 mt-0.5" /> 自動 postmortem</li>
-                    <li class="flex gap-2"><x-i type="check" library="solar-extra" class="w-4 h-4 text-success shrink-0 mt-0.5" /> 90 日間の履歴</li>
+                <ul class="space-y-compact text-sm mb-6 flex-1">
+                    <li class="flex gap-micro"><x-i type="check" library="solar-extra" class="w-4 h-4 text-success shrink-0 mt-0.5" /> 20 名まで</li>
+                    <li class="flex gap-micro"><x-i type="check" library="solar-extra" class="w-4 h-4 text-success shrink-0 mt-0.5" /> 自動エスカレーション</li>
+                    <li class="flex gap-micro"><x-i type="check" library="solar-extra" class="w-4 h-4 text-success shrink-0 mt-0.5" /> 自動 postmortem</li>
+                    <li class="flex gap-micro"><x-i type="check" library="solar-extra" class="w-4 h-4 text-success shrink-0 mt-0.5" /> 90 日間の履歴</li>
                 </ul>
                 <x-button color="primary" class="w-full" icon="rocket">14 日間 無料トライアル</x-button>
             </x-card>
@@ -594,10 +670,10 @@
                 <x-slot:header><h3 class="tl-h font-bold text-lg">Enterprise</h3></x-slot:header>
                 <p class="mb-1"><span class="tl-h text-4xl font-bold">応相談</span></p>
                 <p class="text-sm mb-5" style="color:color-mix(in oklab,var(--color-base-content) 60%,transparent)">大規模・規制業界向け。</p>
-                <ul class="space-y-2.5 text-sm mb-6 flex-1">
-                    <li class="flex gap-2"><x-i type="check" library="solar-extra" class="w-4 h-4 text-success shrink-0 mt-0.5" /> 無制限メンバー</li>
-                    <li class="flex gap-2"><x-i type="check" library="solar-extra" class="w-4 h-4 text-success shrink-0 mt-0.5" /> SSO / SCIM / 監査ログ</li>
-                    <li class="flex gap-2"><x-i type="check" library="solar-extra" class="w-4 h-4 text-success shrink-0 mt-0.5" /> 専任 CSM・SLA 保証</li>
+                <ul class="space-y-compact text-sm mb-6 flex-1">
+                    <li class="flex gap-micro"><x-i type="check" library="solar-extra" class="w-4 h-4 text-success shrink-0 mt-0.5" /> 無制限メンバー</li>
+                    <li class="flex gap-micro"><x-i type="check" library="solar-extra" class="w-4 h-4 text-success shrink-0 mt-0.5" /> SSO / SCIM / 監査ログ</li>
+                    <li class="flex gap-micro"><x-i type="check" library="solar-extra" class="w-4 h-4 text-success shrink-0 mt-0.5" /> 専任 CSM・SLA 保証</li>
                 </ul>
                 <x-button appearance="outline" color="neutral" class="w-full" icon="chat-round">営業に相談</x-button>
             </x-card>
@@ -608,8 +684,8 @@
          6. FORM / INTERACTIVE — tabs + accordion + inputs.
          Field radius / padding per tune.
          ============================================================ --}}
-    <section style="background:color-mix(in oklab,var(--color-base-200) 55%,transparent); padding-block: clamp(3rem, 6vw, 4.5rem);">
-        <div class="tl-section grid lg:grid-cols-2 gap-12 items-start">
+    <section style="background:color-mix(in oklab,var(--color-base-200) 55%,transparent); padding-block: clamp(2.5rem, 7vw, var(--space-section));">
+        <div class="tl-section grid lg:grid-cols-2 gap-section-inner items-start">
             <div>
                 <p class="tl-eyebrow mb-3">fields — input radius · padding</p>
                 <h2 class="tl-h text-3xl lg:text-4xl mb-3">5 分で、最初の連携を</h2>
@@ -655,7 +731,7 @@
             <div>
                 <p class="tl-eyebrow mb-3">よくある質問</p>
                 <h2 class="tl-h text-3xl lg:text-4xl mb-6">気になるところ</h2>
-                <x-accordion>
+                <x-accordion class="bg-base-100">
                     <x-accordion-item title="既存のオンコールツールから移行できますか？">
                         はい。PagerDuty / Opsgenie のスケジュールとエスカレーションポリシーを CSV / API でインポートできます。移行ガイドに沿って通常 1 営業日以内に完了します。
                     </x-accordion-item>
@@ -676,17 +752,18 @@
     {{-- ============================================================
          7. TUNE MAP — where each tune sits (shape × voice).
          ============================================================ --}}
-    <section class="tl-section" style="padding-block: clamp(3rem, 6vw, 4.5rem);">
-        <div class="max-w-2xl mb-9">
-            <p class="tl-eyebrow mb-3">coordinates — shape × voice</p>
-            <h2 class="tl-h text-3xl lg:text-4xl mb-3">各 tune の立ち位置</h2>
-            <p class="text-base" style="color:color-mix(in oklab,var(--color-base-content) 70%,transparent)">
-                横軸 = 角の鋭さ（sharp → round）、縦軸 = 声の大きさ（quiet → loud）。上のキーで tune を選ぶと、現在地がハイライトされます。
-            </p>
-        </div>
+    <section class="tl-section" style="padding-block: clamp(2.5rem, 7vw, var(--space-section));">
+        <div class="grid lg:grid-cols-[4fr_6fr] gap-section-inner items-start">
+            <div>
+                <p class="tl-eyebrow mb-3">coordinates — shape × voice</p>
+                <h2 class="tl-h text-3xl lg:text-4xl mb-3">各 tune の立ち位置</h2>
+                <p class="text-base" style="color:color-mix(in oklab,var(--color-base-content) 70%,transparent)">
+                    横軸 = 角の鋭さ（sharp → round）、縦軸 = 声の大きさ（quiet → loud）。上のキーで tune を選ぶと、現在地がハイライトされます。
+                </p>
+            </div>
 
-        <div class="max-w-3xl">
-            <x-positioning-map
+            <div>
+                <x-positioning-map
                 :points="[
                     ['x' => 38, 'y' => 14, 'label' => 'minimal'],
                     ['x' => 15, 'y' => 24, 'label' => 'corporate'],
@@ -703,15 +780,16 @@
                 x-active="tune"
                 :x-labels="['sharp','round']"
                 :y-labels="['quiet','loud']"
-                size="lg"
-            />
+                    size="lg"
+                />
+            </div>
         </div>
     </section>
 
     {{-- ============================================================
          8. CTA BAND
          ============================================================ --}}
-    <section style="background:var(--color-primary); color:var(--color-primary-content); padding-block: clamp(3rem, 6vw, 4.5rem);">
+    <section style="background:var(--color-primary); color:var(--color-primary-content); padding-block: clamp(2.5rem, 7vw, var(--space-section));">
         <div class="tl-section text-center">
             <h2 class="tl-h text-3xl lg:text-5xl mb-4">次の障害は、もっと静かに。</h2>
             <p class="text-lg mb-8 mx-auto" style="max-width:36rem;opacity:0.85;">
@@ -719,7 +797,7 @@
             </p>
             <div class="flex flex-wrap items-center justify-center gap-3">
                 <x-button color="neutral" size="lg" icon="rocket" icon-right="alt-arrow-right">無料トライアルを始める</x-button>
-                <x-button appearance="outline" size="lg" color="neutral" icon="chat-round" class="!border-current">デモを予約</x-button>
+                <x-button appearance="outline" size="lg" color="neutral" icon="chat-round" class="!border-current !text-current hover:!bg-primary-content/10">デモを予約</x-button>
             </div>
         </div>
     </section>
@@ -728,7 +806,7 @@
          FOOTER
          ============================================================ --}}
     <footer class="border-t border-base-300" style="padding-block: 3rem;">
-        <div class="tl-section grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="tl-section grid sm:grid-cols-2 lg:grid-cols-4 gap-element">
             <div>
                 <div class="flex items-center gap-2 mb-3">
                     <x-i type="shield-check" class="w-5 h-5 text-primary" />
