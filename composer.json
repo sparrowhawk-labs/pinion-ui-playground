@@ -6,13 +6,6 @@
     "keywords": ["laravel", "pinion", "pinion-ui", "pinion-icons", "showcase", "playground", "sparrowhawk-labs"],
     "homepage": "https://sparrowhawk-labs.dev",
     "license": "MIT",
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../pinion-ui",
-            "options": { "symlink": true }
-        }
-    ],
     "require": {
         "php": "^8.3",
         "laravel/framework": "^13.0",

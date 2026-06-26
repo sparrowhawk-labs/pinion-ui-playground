@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e5d703accf3fb6dfe6420a4816a8cefd",
+    "content-hash": "3829eafd37a5f60e447fbcb6e9bc56cf",
     "packages": [
         {
             "name": "brick/math",
@@ -3369,16 +3369,23 @@
         {
             "name": "sparrowhawk-labs/pinion-ui",
             "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sparrowhawk-labs/pinion-ui",
+                "reference": "3e3bc3a274f5ab60c1a3ebf3a3d66450e0825604"
+            },
             "dist": {
-                "type": "path",
-                "url": "../pinion-ui",
-                "reference": "2d436d9dbc0d67118f7b1c61f30c34f63b9b8f34"
+                "type": "zip",
+                "url": "https://api.github.com/repos/sparrowhawk-labs/pinion-ui/zipball/3e3bc3a274f5ab60c1a3ebf3a3d66450e0825604",
+                "reference": "3e3bc3a274f5ab60c1a3ebf3a3d66450e0825604",
+                "shasum": ""
             },
             "require": {
                 "illuminate/support": "^11.0|^12.0|^13.0",
                 "php": "^8.2",
                 "sparrowhawk-labs/pinion-icons": "^1.0"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -3388,22 +3395,14 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "SparrowhawkLabs\\PinionUi\\": "src/"
-                },
                 "files": [
                     "src/helpers.php"
-                ]
-            },
-            "scripts": {
-                "test": [
-                    "@php tests/Compose/run.php",
-                    "@php tests/Lint/run.php"
                 ],
-                "lint": [
-                    "@php tests/Lint/run.php"
-                ]
+                "psr-4": {
+                    "SparrowhawkLabs\\PinionUi\\": "src/"
+                }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -3418,10 +3417,10 @@
             "description": "Blade UI component system for Laravel — daisyUI semantic colors, Alpine.js interactivity, and Tune design tokens. Pairs with sparrowhawk-labs/pinion-icons.",
             "homepage": "https://sparrowhawk-labs.dev",
             "keywords": [
+                "DaisyUI",
                 "alpinejs",
                 "blade",
                 "components",
-                "daisyui",
                 "laravel",
                 "pinion",
                 "sparrowhawk-labs",
@@ -3432,10 +3431,7 @@
                 "issues": "https://github.com/sparrowhawk-labs/pinion-ui/issues",
                 "source": "https://github.com/sparrowhawk-labs/pinion-ui"
             },
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "time": "2026-06-25T06:25:17+00:00"
         },
         {
             "name": "symfony/clock",
